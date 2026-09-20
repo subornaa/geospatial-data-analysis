@@ -1,5 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
-<title>Geospatial Data Analysis with Python</title><style>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Geospatial Data Analysis with Python</title><style>
  :root{--green:#2f6f4f;--ink:#1f2933;--muted:#5b6673;}
  *{box-sizing:border-box}
  body{margin:0;font-family:Georgia,'Times New Roman',serif;color:var(--ink);line-height:1.6;background:#fff;}
@@ -19,16 +18,9 @@
  .cover h1{font-size:2.4rem;margin:0 0 8px} .cover p{color:#555;font-size:1.1rem;margin:4px}
  .toc{page-break-after:always} .toc h1{border-bottom:2px solid var(--green)}
  .toc ul{list-style:none;padding-left:0} .toc li{margin:5px 0;font-weight:600}
- .toc a{text-decoration:none;color:var(--ink)}
  .chapter{page-break-before:always} h2.pb{page-break-before:always}
  @page{margin:2cm}
-</style></head><body>
-<div class="cover"><h1>Geospatial Data Analysis with Python</h1>
-<p>Python programming for geospatial data handling, processing, visualization &amp; workflow automation</p>
-<p style="margin-top:26px">An open educational resource</p>
-<p style="color:#888">Dr. Suborna Ahmed &middot; UBC Faculty of Forestry &amp; Environmental Stewardship</p></div>
-<div class="toc"><h1>Contents</h1><ul><li><a href="#about">About this book</a></li><li><a href="#ch1">Chapter 1 — Python Foundations</a></li><li><a href="#ch2">Chapter 2 — Programming Logic &amp; Reusable Code</a></li><li><a href="#ch3">Chapter 3 — Tabular Data with Pandas</a></li><li><a href="#ch4">Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a></li><li><a href="#ch5">Chapter 5 — CRS, Files &amp; Data Quality</a></li><li><a href="#ch6">Chapter 6 — Consolidation</a></li><li><a href="#ch7">Chapter 7 — ArcPy: Tools &amp; Environments</a></li><li><a href="#ch8">Chapter 8 — ArcPy: Automation</a></li><li><a href="#ch9">Chapter 9 — Raster Data with NumPy &amp; Rasterio</a></li><li><a href="#ch10">Chapter 10 — Visualization &amp; Communication</a></li><li><a href="#ch11">Chapter 11 — Introductory Machine Learning</a></li></ul></div>
-<section class="chapter" id="about"><h1>About this book</h1>
+</style></head><body><div class="cover"><h1>Geospatial Data Analysis with Python</h1><p>Python programming for geospatial data handling, processing, visualization &amp; workflow automation</p><p style="margin-top:26px">An open educational resource</p><p style="color:#888">Dr. Suborna Ahmed &middot; UBC Faculty of Forestry &amp; Environmental Stewardship</p></div><div class="toc"><h1>Contents</h1><ul><li>About this book</li><li>Chapter 1 — Python Foundations</li><li>Chapter 2 — Programming Logic &amp; Reusable Code</li><li>Chapter 3 — Tabular Data with Pandas</li><li>Chapter 4 — Vector Data with GeoPandas &amp; Shapely</li><li>Chapter 5 — CRS, Files &amp; Data Quality</li><li>Chapter 6 — Consolidation</li><li>Chapter 7 — ArcPy: Tools &amp; Environments</li><li>Chapter 8 — ArcPy: Automation</li><li>Chapter 9 — Raster Data with NumPy &amp; Rasterio</li><li>Chapter 10 — Visualization &amp; Communication</li><li>Chapter 11 — Introductory Machine Learning</li></ul></div><section class="chapter"><h1>About this book</h1>
 <p>This open educational resource teaches <b>Python programming for geospatial data
 analysis</b>, starting from no assumed programming experience. You'll learn Python
 fundamentals with small geospatial examples, then work with tabular, vector, and
@@ -37,7 +29,6 @@ to machine learning on satellite imagery.</p>
 <p>Two environmental datasets recur throughout: the <b>Malcolm Knapp Research Forest</b>
 in British Columbia and the <b>mangrove coast of northwest Madagascar</b>, alongside
 Landsat imagery.</p>
-
 <h2>How to use this book</h2>
 <ul>
   <li>Each chapter is a hands-on lesson: read the explanation, run the code, and try the
@@ -47,30 +38,25 @@ Landsat imagery.</p>
       which requires ArcGIS Pro.</li>
   <li>Each chapter ends with <b>practice exercises</b> to work through on your own.</li>
 </ul>
-
 <h2>About the author</h2>
 <p><b>Dr. Suborna Ahmed</b> — Associate Professor of Teaching, Department of Forest
 Resources Management, Faculty of Forestry &amp; Environmental Stewardship, University of
 British Columbia. She teaches data analytics, computing, forest biometrics, and
 quantitative methods for forestry and natural-resources students, and develops open
 educational resources using real forestry datasets. She is the project lead for this OER.</p>
-
 <h2>OER team</h2>
 <p>This resource was developed with the UBC OER team:</p>
 <table><thead><tr><th>Contributor</th><th>Affiliation</th></tr></thead><tbody><tr><td>Ehsan Karim</td><td>Associate Professor, School of Population and Public Health, Faculty of Medicine, UBC</td></tr><tr><td>Jiaxin Wen</td><td>BSc, Faculty of Arts and Economics; Statistics, UBC</td></tr><tr><td>Peace Damasco Uychiaoco</td><td>BSc, Faculty of Forestry &amp; Environmental Stewardship, NRES – Conservation, UBC</td></tr><tr><td>Bennett Wardman</td><td>Department of Forest and Conservation Sciences, Faculty of Forestry &amp; Environmental Stewardship, UBC</td></tr><tr><td>Rachel Lim</td><td>Forest Resources Management Department, Faculty of Forestry &amp; Environmental Stewardship, UBC</td></tr></tbody></table>
-
 <h2>Companion book</h2>
 <p>See the companion resource,
 <a href="https://subornaa.github.io/modern-computing-forestry/"><i>Modern Data Analytics
 for Forestry and Natural Resources</i></a> (efficient coding, data analysis, and
 AI-assisted debugging, in R &amp; Quarto).</p>
-
 <h2>License</h2>
 <p>Content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>. Code is under the MIT licence.</p>
-
 <h2>How to cite</h2>
 <p>Ahmed, S. (2026). <i>Geospatial Data Analysis with Python.</i> UBC Faculty of Forestry &amp; Environmental Stewardship. CC BY 4.0.</p>
-</section><section class="chapter" id="ch1"><h1>Chapter 1 — Python Foundations</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</section><section class="chapter"><h1>Chapter 1 — Python Foundations</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is your <strong>first teaching notebook</strong>. We learn the building blocks of Python
@@ -1308,7 +1294,7 @@ and functions, applied to coordinates and files.</li>
 </div>
  
 
-</section><section class="chapter" id="ch2"><h1>Chapter 2 — Programming Logic &amp; Reusable Code</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</section><section class="chapter"><h1>Chapter 2 — Programming Logic &amp; Reusable Code</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Last week we stored data in variables, lists, and dictionaries. This week we make
@@ -2020,7 +2006,7 @@ Your Week 2 exercise includes one "fix this broken function" task.</p>
 </div>
  
 
-</section><section class="chapter" id="ch3"><h1>Chapter 3 — Tabular Data with Pandas</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</section><section class="chapter"><h1>Chapter 3 — Tabular Data with Pandas</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Most environmental data arrives as <strong>tables</strong> — plots, fire records, field
@@ -2687,7 +2673,7 @@ answer. Your exercise includes one merge to debug.</p>
 </div>
  
 
-</section><section class="chapter" id="ch4"><h1>Chapter 4 — Vector Data with GeoPandas &amp; Shapely</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</section><section class="chapter"><h1>Chapter 4 — Vector Data with GeoPandas &amp; Shapely</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Last week's table had <code>lat</code>/<code>lon</code> columns. <strong>GeoPandas</strong> turns a table into a
@@ -3365,7 +3351,7 @@ filter · measure · attribute + spatial joins · export GeoPackage.</p>
 </div>
  
 
-</section><section class="chapter" id="ch5"><h1>Chapter 5 — CRS, Files &amp; Data Quality</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</section><section class="chapter"><h1>Chapter 5 — CRS, Files &amp; Data Quality</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This week makes your spatial data <strong>trustworthy</strong>: the right <strong>coordinate reference
@@ -4005,7 +3991,7 @@ everything Lab 1 assesses.</li>
 </div>
  
 
-</section><section class="chapter" id="ch6"><h1>Chapter 6 — Consolidation</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</section><section class="chapter"><h1>Chapter 6 — Consolidation</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>No new concepts this week.</strong> We connect Weeks 1–5 into one small, reproducible
@@ -4168,7 +4154,7 @@ and a <em>tool</em>.</p>
 </div>
  
 
-</section><section class="chapter" id="ch7"><h1>Chapter 7 — ArcPy: Tools &amp; Environments</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</section><section class="chapter"><h1>Chapter 7 — ArcPy: Tools &amp; Environments</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For two weeks we use <strong>ArcPy</strong> — ArcGIS Pro's Python package — to <strong>automate</strong>
@@ -4758,7 +4744,7 @@ listing datasets/fields · <code>Describe</code> · tool messages &amp; errors �
 </div>
  
 
-</section><section class="chapter" id="ch8"><h1>Chapter 8 — ArcPy: Automation</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</section><section class="chapter"><h1>Chapter 8 — ArcPy: Automation</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Last week we ran single tools. This week is ArcPy's real payoff: <strong>automation</strong> —
@@ -5348,7 +5334,7 @@ error handling &amp; logging.</p>
 </div>
  
 
-</section><section class="chapter" id="ch9"><h1>Chapter 9 — Raster Data with NumPy &amp; Rasterio</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</section><section class="chapter"><h1>Chapter 9 — Raster Data with NumPy &amp; Rasterio</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vector data was points and polygons. <strong>Raster</strong> data is a grid of cells — elevation,
@@ -6011,7 +5997,7 @@ write GeoTIFF with Rasterio · display with Matplotlib.</p>
 </div>
  
 
-</section><section class="chapter" id="ch10"><h1>Chapter 10 — Visualization &amp; Communication</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</section><section class="chapter"><h1>Chapter 10 — Visualization &amp; Communication</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A result only matters if you can <strong>communicate</strong> it. This week: clear maps of vector
@@ -6636,7 +6622,7 @@ attribute charts · one <code>.explore()</code> map · honest interpretation.</p
 </div>
  
 
-</section><section class="chapter" id="ch11"><h1>Chapter 11 — Introductory Machine Learning</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</section><section class="chapter"><h1>Chapter 11 — Introductory Machine Learning</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Mapping-burned-area-from-Landsat-imagery">Mapping burned area from Landsat imagery<a class="anchor-link" href="#Mapping-burned-area-from-Landsat-imagery">&#182;</a></h3><p>We introduce machine-learning <strong>programming</strong> with scikit-learn on a <strong>real remote-
@@ -7279,5 +7265,4 @@ Split that sample 70/30 (<code>random_state=0</code>), fit a <code>DecisionTreeC
 </div>
  
 
-</section>
-</body></html>
+</section></body></html>

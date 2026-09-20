@@ -1,0 +1,706 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Chapter 9 — Raster Data with NumPy &amp; Rasterio · Geospatial Data Analysis with Python</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-C3T7WND9D5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C3T7WND9D5');
+</script><style>
+ :root{--green:#2f6f4f;--ink:#1f2933;--muted:#5b6673;}
+ *{box-sizing:border-box}
+ body{margin:0;font-family:Georgia,'Times New Roman',serif;color:var(--ink);line-height:1.6;background:#fff;}
+ h1,h2,h3,h4{font-family:'Segoe UI',system-ui,Arial,sans-serif;color:var(--green);}
+ a{color:var(--green);}
+ pre{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:6px;padding:10px 12px;overflow:auto;font-family:Consolas,ui-monospace,monospace;font-size:.85rem;white-space:pre-wrap;word-wrap:break-word;}
+ code{font-family:Consolas,ui-monospace,monospace;background:#eef1f4;padding:1px 4px;border-radius:3px;}
+ table{border-collapse:collapse;margin:8px 0} th,td{border:1px solid #cbd5e1;padding:4px 8px;text-align:left;font-size:.92rem} th{background:#eaf2ed}
+ img,svg{max-width:100%}
+ details{border-left:3px solid var(--green);padding:2px 10px;margin:8px 0;background:#f7faf8}
+ summary{font-weight:600;color:var(--green)}
+ blockquote{border-left:3px solid #cbd5e1;margin:8px 0;padding:2px 12px;color:#475569}
+ .jp-InputArea-prompt,.jp-OutputArea-prompt,.prompt{display:none}
+
+ header.topbar{position:sticky;top:0;z-index:10;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;font-family:'Segoe UI',system-ui,Arial,sans-serif;}
+ header.topbar .t{font-weight:700;font-size:1.05rem;}
+ header.topbar a.pdf{background:#fff;color:var(--green);text-decoration:none;font-weight:700;border-radius:20px;padding:7px 16px;font-size:.9rem;white-space:nowrap;}
+ .layout{display:flex;align-items:flex-start;max-width:1200px;margin:0 auto;}
+ nav.toc{position:sticky;top:56px;align-self:flex-start;width:280px;min-width:280px;height:calc(100vh - 56px);overflow:auto;padding:16px 14px;border-right:1px solid #e5e7eb;font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.92rem;}
+ nav.toc a.brand{display:block;font-weight:700;color:var(--green);text-decoration:none;font-size:1rem;margin-bottom:8px;}
+ nav.toc h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid #eaf2ed;padding-bottom:6px;}
+ nav.toc ul{list-style:none;padding-left:0;margin:8px 0;} nav.toc li{margin:3px 0;}
+ nav.toc a{text-decoration:none;color:var(--ink);display:block;padding:4px 8px;border-radius:5px;}
+ nav.toc a:hover{background:#eaf2ed;color:var(--green);}
+ nav.toc a.active{background:var(--green);color:#fff;font-weight:600;}
+ main{flex:1;min-width:0;max-width:820px;padding:24px 34px 50px;}
+ .chapter h1{border-bottom:2px solid #eaf2ed;padding-bottom:6px;margin-top:0;}
+ h2.pb{margin-top:26px;}
+ .cover{padding:10px 0 8px;border-bottom:2px solid #eaf2ed;margin-bottom:16px;}
+ .cover h1{font-size:2rem;margin:0 0 4px;border:0;} .cover p{color:var(--muted);margin:2px 0;}
+ .pn{display:flex;justify-content:space-between;gap:12px;margin:34px 0 10px;padding-top:16px;border-top:1px solid #e5e7eb;font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.92rem;}
+ .pn a{text-decoration:none;font-weight:600;background:#eaf2ed;color:var(--green);border-radius:8px;padding:8px 14px;max-width:48%;}
+ .pn a:hover{background:#d9e8df;}
+ footer.foot{border-top:1px solid #e5e7eb;margin-top:26px;padding:16px 0 40px;color:var(--muted);font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.85rem;}
+ @media(max-width:820px){ nav.toc{display:none} main{padding:18px 16px 40px} .pn a{max-width:none} }
+</style></head><body><header class="topbar"><span class="t">Geospatial Data Analysis with Python</span><a class="pdf" href="Geospatial_Data_Analysis_with_Python.pdf" download>⬇ Download PDF</a></header><div class="layout"><nav class="toc"><a class="brand" href="index.html">Geospatial Data Analysis with Python</a><h2>Contents</h2><ul><li><a href="index.html">About this book</a></li><li><a href="ch01.html">Chapter 1 — Python Foundations</a></li><li><a href="ch02.html">Chapter 2 — Programming Logic &amp; Reusable Code</a></li><li><a href="ch03.html">Chapter 3 — Tabular Data with Pandas</a></li><li><a href="ch04.html">Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a></li><li><a href="ch05.html">Chapter 5 — CRS, Files &amp; Data Quality</a></li><li><a href="ch06.html">Chapter 6 — Consolidation</a></li><li><a href="ch07.html">Chapter 7 — ArcPy: Tools &amp; Environments</a></li><li><a href="ch08.html">Chapter 8 — ArcPy: Automation</a></li><li><a class="active" href="ch09.html">Chapter 9 — Raster Data with NumPy &amp; Rasterio</a></li><li><a href="ch10.html">Chapter 10 — Visualization &amp; Communication</a></li><li><a href="ch11.html">Chapter 11 — Introductory Machine Learning</a></li></ul></nav><main><section class="chapter"><h1>Chapter 9 — Raster Data with NumPy &amp; Rasterio</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Vector data was points and polygons. <strong>Raster</strong> data is a grid of cells — elevation,
+satellite bands, land cover. The key idea: <strong>a raster band is a NumPy array</strong>.
+<strong>Rasterio</strong> reads/writes the georeferenced files; <strong>NumPy</strong> does the math;
+<strong>Matplotlib</strong> displays it.</p>
+<blockquote><p>Run in <strong>Python (gem530)</strong>. The NumPy cells run anywhere; the Rasterio cells need
+a raster file (provided) and the gem530 environment.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Learning-outcomes">Learning outcomes<a class="anchor-link" href="#Learning-outcomes">&#182;</a></h3><ol>
+<li>Describe raster structure: bands, rows, columns, cells, NoData.</li>
+<li>Read a raster band into a <strong>NumPy array</strong> and inspect metadata.</li>
+<li>Do array math, <strong>masking</strong>, and simple <strong>reclassification</strong>.</li>
+<li>Compute a simple index (e.g. a difference or NDVI).</li>
+<li><strong>Write</strong> a GeoTIFF and display it with Matplotlib.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-A-raster-is-an-array">1. A raster <em>is</em> an array<a class="anchor-link" href="#1.-A-raster-is-an-array">&#182;</a></h2><p>Let's build a tiny synthetic elevation raster (4×4) so the NumPy ideas are concrete.
+<code>255</code> marks NoData (cells with no valid value).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">band</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">255</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">255</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mi">8</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shape (rows, cols):&quot;</span><span class="p">,</span> <span class="n">band</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;min/max (incl. NoData):&quot;</span><span class="p">,</span> <span class="n">band</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">band</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Elevation, canopy height, burn severity, satellite bands — all arrive as grids. Seeing a raster as an <strong>array</strong> is what lets you compute on millions of forest pixels at once.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Handle-NoData-with-a-mask">2. Handle NoData with a mask<a class="anchor-link" href="#2.-Handle-NoData-with-a-mask">&#182;</a></h2><p>Replace the NoData value with <code>np.nan</code> so it doesn't corrupt statistics.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">nodata</span> <span class="o">=</span> <span class="mi">255</span>
+<span class="n">masked</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">band</span> <span class="o">==</span> <span class="n">nodata</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">band</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean elevation (NoData ignored):&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">masked</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Forestry example.</strong> Cloud, shadow and off-image pixels are NoData. Masking them is why your mean canopy height describes the <em>forest</em>, not the holes in the data.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-NoData">&#9989; Quick check &#8212; NoData<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-NoData">&#182;</a></h3><p>Why replace a NoData value (255) with <code>np.nan</code> before averaging?</p>
+<details open><summary>▶ Show answer</summary>
+NoData isn't a measurement — leaving 255 in would drag the mean upward. Mask it, then use <code>np.nanmean()</code> so only real pixels count.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Array-math-&amp;-reclassification">3. Array math &amp; reclassification<a class="anchor-link" href="#3.-Array-math-&amp;-reclassification">&#182;</a></h2><p>Operations apply to every cell at once. Here we reclassify into low/high zones.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># add 100 m to every valid cell (array math)</span>
+<span class="n">raised</span> <span class="o">=</span> <span class="n">masked</span> <span class="o">+</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raised</span><span class="p">)</span>
+
+<span class="c1"># reclassify: 1 = low (&lt;12), 2 = high (&gt;=12); NoData stays NaN</span>
+<span class="n">reclass</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">masked</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">masked</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reclassified:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">reclass</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Reclassifying continuous values into classes — low/moderate/high burn severity, slope classes — is how raw measurements become <strong>management categories</strong>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-A-simple-index-(NDVI)">4. A simple index (NDVI)<a class="anchor-link" href="#4.-A-simple-index-(NDVI)">&#182;</a></h2><p>Vegetation indices combine bands. NDVI = (NIR − Red) / (NIR + Red). With two small
+synthetic bands:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">red</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.22</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.19</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">]])</span>
+<span class="n">nir</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.40</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">]])</span>
+<span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">nir</span> <span class="o">-</span> <span class="n">red</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">nir</span> <span class="o">+</span> <span class="n">red</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NDVI:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Forestry example.</strong> NDVI turns raw bands into a vegetation-vigour map: the workhorse index for monitoring forest health, drought stress and regrowth after harvest or fire.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.-Read-a-real-raster-with-Rasterio">5. Read a real raster with Rasterio<a class="anchor-link" href="#5.-Read-a-real-raster-with-Rasterio">&#182;</a></h2><p>The real workflow: open a GeoTIFF, read a band into an array, and inspect its
+georeferencing (CRS, transform, NoData).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">rasterio.transform</span> <span class="kn">import</span> <span class="n">from_origin</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># In the course you would open a provided raster (e.g. SRTM over MKRF). Here we</span>
+<span class="c1"># create a small demo GeoTIFF so the notebook runs on its own:</span>
+<span class="n">demo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+<span class="n">demo</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9999.0</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data/demo_elev.tif&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GTiff&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                   <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
+                   <span class="n">transform</span><span class="o">=</span><span class="n">from_origin</span><span class="p">(</span><span class="o">-</span><span class="mf">122.75</span><span class="p">,</span> <span class="mf">49.40</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">nodata</span><span class="o">=-</span><span class="mf">9999.0</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+    <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">demo</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data/demo_elev.tif&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">elev</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>              <span class="c1"># band 1 -&gt; a NumPy array</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shape:&quot;</span><span class="p">,</span> <span class="n">elev</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;| CRS:&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="s2">&quot;| NoData:&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">nodata</span><span class="p">)</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">profile</span>           <span class="c1"># keep georeferencing for writing later</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Rasterio keeps pixels tied to real-world coordinates. Without the CRS and transform your result is a picture; with them it's a <strong>map</strong> you can overlay on stands and roads.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-Rasterio">&#9989; Quick check &#8212; Rasterio<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-Rasterio">&#182;</a></h3><p>What does <code>src.read(1)</code> give you?</p>
+<details open><summary>▶ Show answer</summary>
+<b>Band 1 as a NumPy array</b>. The dataset object also carries <code>src.crs</code>, <code>src.transform</code> and <code>src.nodata</code>.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="6.-Write-a-result-back-to-a-GeoTIFF">6. Write a result back to a GeoTIFF<a class="anchor-link" href="#6.-Write-a-result-back-to-a-GeoTIFF">&#182;</a></h2><p>Compute something, then save it <strong>with the same georeferencing</strong> so it lines up in
+any GIS.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># reclassify the raster we read (elev) and write it out with the SAME profile</span>
+<span class="n">elev_masked</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">elev</span> <span class="o">==</span> <span class="o">-</span><span class="mf">9999.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">elev</span><span class="p">)</span>
+<span class="n">elev_reclass</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">elev_masked</span><span class="p">),</span> <span class="o">-</span><span class="mf">9999.0</span><span class="p">,</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">elev_masked</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+
+<span class="n">Path</span><span class="p">(</span><span class="s2">&quot;outputs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">profile</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>            <span class="c1"># reuse CRS + transform from the source</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;outputs/elev_reclass.tif&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">profile</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+    <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">elev_reclass</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;outputs/elev_reclass.tif&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">chk</span><span class="p">:</span>   <span class="c1"># re-open to confirm</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wrote + re-opened:&quot;</span><span class="p">,</span> <span class="n">chk</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;| CRS kept:&quot;</span><span class="p">,</span> <span class="n">chk</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Writing results back to GeoTIFF (same georeferencing) is how your analysis becomes a layer a colleague opens in QGIS or ArcGIS.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="7.-Display-with-Matplotlib">7. Display with Matplotlib<a class="anchor-link" href="#7.-Display-with-Matplotlib">&#182;</a></h2><p>A quick look at a raster array (full mapping is Week 10).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">masked</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;terrain&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;elevation (m)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Synthetic elevation&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Try it yourself.</strong> Change the reclassification threshold from 12 to 11 and
+re-run. How many cells change class?</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Forestry example.</strong> A quick colour-mapped display is the fastest way to sanity-check a burn-severity or NDVI result <em>before</em> you trust a number from it.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Burn-severity-classes--(~20-min)">&#128736;&#65039; In-class activity &#8212; Burn-severity classes  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Burn-severity-classes--(~20-min)">&#182;</a></h2><p>A small burn-severity grid is below (<code>-1</code> marks NoData). Work individually.</p>
+<p><strong>Task 1.</strong> Mask NoData to <code>np.nan</code> and report the mean severity.
+<strong>Task 2.</strong> Reclassify into 1 = low (&lt;0.3), 2 = moderate (0.3–0.6), 3 = high (&gt;0.6).
+<strong>Task 3.</strong> Count the pixels in each class.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">severity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.80</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span>  <span class="mf">0.90</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span>  <span class="mf">0.65</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">,</span>  <span class="mf">0.75</span><span class="p">],</span>
+<span class="p">])</span>
+<span class="c1"># TODO Task 1: mask -1 -&gt; np.nan, print the mean</span>
+<span class="c1"># TODO Task 2: reclassify into 1 / 2 / 3</span>
+<span class="c1"># TODO Task 3: count pixels per class</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — mask & mean</summary>
+<pre>masked = np.where(severity == -1.0, np.nan, severity)
+print("mean severity:", round(np.nanmean(masked), 3))</pre>
+</details><details open><summary>▶ Task 2 — reclassify</summary>
+<pre>cls = np.where(np.isnan(masked), np.nan,
+      np.where(masked &lt; 0.3, 1, np.where(masked &lt;= 0.6, 2, 3)))
+print(cls)</pre>
+</details><details open><summary>▶ Task 3 — counts</summary>
+<pre>for k in (1, 2, 3):
+    print("class", k, "->", int(np.nansum(cls == k)), "pixels")</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Common-errors-this-week-(and-the-fix)">Common errors this week (and the fix)<a class="anchor-link" href="#Common-errors-this-week-(and-the-fix)">&#182;</a></h2><table>
+<thead><tr>
+<th>Symptom</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>statistics look wrong</td>
+<td>NoData included</td>
+<td>mask to <code>np.nan</code>, use <code>np.nanmean</code></td>
+</tr>
+<tr>
+<td><code>ValueError: operands could not be broadcast</code></td>
+<td>arrays different shapes</td>
+<td>check <code>arr.shape</code> before combining</td>
+</tr>
+<tr>
+<td>output won't line up in GIS</td>
+<td>wrote without the profile</td>
+<td>reuse <code>src.profile</code> when writing</td>
+</tr>
+<tr>
+<td>all-black / all-white image</td>
+<td>one extreme value stretches the colours</td>
+<td>mask NoData before plotting</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="%F0%9F%8E%93-Additional-learning-(optional)">&#127891; Additional learning (optional)<a class="anchor-link" href="#%F0%9F%8E%93-Additional-learning-(optional)">&#182;</a></h2><h3 id="Bonus-1-%E2%80%94-From-pixel-counts-to-hectares">Bonus 1 &#8212; From pixel counts to hectares<a class="anchor-link" href="#Bonus-1-%E2%80%94-From-pixel-counts-to-hectares">&#182;</a></h3><p><strong>Why code this?</strong> Managers ask "how many hectares burned?", not "how many pixels?".
+With a known pixel size the conversion is one line — and it's how burn/harvest areas
+get reported.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="bp">cls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">pixel_m</span> <span class="o">=</span> <span class="mi">30</span>                          <span class="c1"># Landsat pixels are 30 x 30 m</span>
+<span class="n">area_ha_per_pixel</span> <span class="o">=</span> <span class="p">(</span><span class="n">pixel_m</span> <span class="o">*</span> <span class="n">pixel_m</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10_000</span>     <span class="c1"># m2 -&gt; hectares</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="bp">cls</span> <span class="o">==</span> <span class="n">k</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;class </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> pixels = </span><span class="si">{</span><span class="n">n</span> <span class="o">*</span> <span class="n">area_ha_per_pixel</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ha&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bonus-2-%E2%80%94-Zonal-statistics-(a-value-inside-a-zone)">Bonus 2 &#8212; Zonal statistics (a value inside a zone)<a class="anchor-link" href="#Bonus-2-%E2%80%94-Zonal-statistics-(a-value-inside-a-zone)">&#182;</a></h3><p><strong>Why code this?</strong> "What's the mean NDVI <em>inside this stand</em>?" is the classic zonal
+question — a boolean mask plus <code>np.nanmean</code> answers it.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">ndvi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+<span class="n">stand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">]])</span>
+<span class="n">inside</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">stand</span><span class="p">,</span> <span class="n">ndvi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean NDVI inside the stand:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">inside</span><span class="p">),</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean NDVI overall        :&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">ndvi</span><span class="p">),</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 Swap the boolean mask for a rasterised stand boundary and this is production zonal stats.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Packages-used-this-week">Packages used this week<a class="anchor-link" href="#Packages-used-this-week">&#182;</a></h2><ul>
+<li><strong>NumPy</strong> — n-dimensional arrays and fast cell-wise math; a raster band is a NumPy
+array. <em>Geospatial link:</em> all raster analysis (indices, masking, reclassify).</li>
+<li><strong>Rasterio</strong> — read/write georeferenced rasters (GeoTIFF) as arrays, preserving
+CRS + transform + NoData. <em>Geospatial link:</em> the bridge between raster files and
+NumPy.</li>
+<li><strong>Matplotlib</strong> — display arrays (<code>imshow</code>). See the
+<a href="../../docs/PACKAGE_GUIDE.md">Package Guide</a>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Working-with-AI-(30-second-habit)">Working with AI (30-second habit)<a class="anchor-link" href="#Working-with-AI-(30-second-habit)">&#182;</a></h2><p>Raster bugs cluster around <strong>NoData</strong>, <strong>dtype</strong>, and <strong>array shape</strong>. If AI code
+gives odd statistics, check whether NoData was masked and whether the arrays have
+matching shapes before you combine them.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Recap-&amp;-what's-next">Recap &amp; what's next<a class="anchor-link" href="#Recap-&amp;-what's-next">&#182;</a></h2><p>Raster = array · NoData masking · array math &amp; reclassify · a simple index · read/
+write GeoTIFF with Rasterio · display with Matplotlib.</p>
+<ul>
+<li><strong>Practice:</strong> Week 9 Exercise.</li>
+<li><strong>Check yourself:</strong> <code>Quizzes/Week09_Quiz.html</code>.</li>
+<li><strong>Next week:</strong> turn all of this into clear maps — visualization &amp; communication.</li>
+</ul>
+
+</div>
+</div>
+</div>
+ 
+
+<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Practise raster-as-array operations: NoData, reclassify, indices.</p>
+<p><em>Structure: 1) core · 2) apply · 3) interpret · 4) debug · 5) extension. ~30–60 min, individual.</em></p>
+<blockquote><p>NumPy parts run anywhere; the Rasterio part needs the gem530 env + a raster file.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Setup-(run-first)">Setup (run first)<a class="anchor-link" href="#Setup-(run-first)">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">band</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">255</span><span class="p">],[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">255</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">nodata</span> <span class="o">=</span> <span class="mi">255</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.-Core">1. Core<a class="anchor-link" href="#1.-Core">&#182;</a></h3><p>Mask the NoData value to <code>np.nan</code> and print the mean of the valid cells.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.-Apply">2. Apply<a class="anchor-link" href="#2.-Apply">&#182;</a></h3><p>Reclassify <code>masked</code> into 1 (<code>&lt; 6</code>) and 2 (<code>&gt;= 6</code>), keeping NaN as NaN.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3.-Interpret">3. Interpret<a class="anchor-link" href="#3.-Interpret">&#182;</a></h3><p>How many valid cells are class 2? Print the count (comment on it).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4.-Debug">4. Debug<a class="anchor-link" href="#4.-Debug">&#182;</a></h3><p>This mean is wrong because NoData wasn't handled. Fix it.</p>
+<div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">band</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.-Extension">5. Extension<a class="anchor-link" href="#5.-Extension">&#182;</a></h3><p>Given red/nir arrays, compute NDVI = (nir − red)/(nir + red).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
+</section><div class="pn"><a class="prev" href="ch08.html">← Chapter 8 — ArcPy: Automation</a><a class="next" href="ch10.html">Chapter 10 — Visualization &amp; Communication →</a></div><footer class="foot"><p><b>Geospatial Data Analysis with Python</b> &middot; Dr. Suborna Ahmed &middot; UBC Faculty of Forestry &amp; Environmental Stewardship</p><p>Content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>. Code is under the MIT licence.</p><p><b>Cite as:</b> Ahmed, S. (2026). <i>Geospatial Data Analysis with Python.</i> UBC Faculty of Forestry &amp; Environmental Stewardship. CC BY 4.0.</p></footer></main></div></body></html>

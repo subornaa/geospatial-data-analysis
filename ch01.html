@@ -1,0 +1,1281 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Chapter 1 — Python Foundations · Geospatial Data Analysis with Python</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-C3T7WND9D5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C3T7WND9D5');
+</script><style>
+ :root{--green:#2f6f4f;--ink:#1f2933;--muted:#5b6673;}
+ *{box-sizing:border-box}
+ body{margin:0;font-family:Georgia,'Times New Roman',serif;color:var(--ink);line-height:1.6;background:#fff;}
+ h1,h2,h3,h4{font-family:'Segoe UI',system-ui,Arial,sans-serif;color:var(--green);}
+ a{color:var(--green);}
+ pre{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:6px;padding:10px 12px;overflow:auto;font-family:Consolas,ui-monospace,monospace;font-size:.85rem;white-space:pre-wrap;word-wrap:break-word;}
+ code{font-family:Consolas,ui-monospace,monospace;background:#eef1f4;padding:1px 4px;border-radius:3px;}
+ table{border-collapse:collapse;margin:8px 0} th,td{border:1px solid #cbd5e1;padding:4px 8px;text-align:left;font-size:.92rem} th{background:#eaf2ed}
+ img,svg{max-width:100%}
+ details{border-left:3px solid var(--green);padding:2px 10px;margin:8px 0;background:#f7faf8}
+ summary{font-weight:600;color:var(--green)}
+ blockquote{border-left:3px solid #cbd5e1;margin:8px 0;padding:2px 12px;color:#475569}
+ .jp-InputArea-prompt,.jp-OutputArea-prompt,.prompt{display:none}
+
+ header.topbar{position:sticky;top:0;z-index:10;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;font-family:'Segoe UI',system-ui,Arial,sans-serif;}
+ header.topbar .t{font-weight:700;font-size:1.05rem;}
+ header.topbar a.pdf{background:#fff;color:var(--green);text-decoration:none;font-weight:700;border-radius:20px;padding:7px 16px;font-size:.9rem;white-space:nowrap;}
+ .layout{display:flex;align-items:flex-start;max-width:1200px;margin:0 auto;}
+ nav.toc{position:sticky;top:56px;align-self:flex-start;width:280px;min-width:280px;height:calc(100vh - 56px);overflow:auto;padding:16px 14px;border-right:1px solid #e5e7eb;font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.92rem;}
+ nav.toc a.brand{display:block;font-weight:700;color:var(--green);text-decoration:none;font-size:1rem;margin-bottom:8px;}
+ nav.toc h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid #eaf2ed;padding-bottom:6px;}
+ nav.toc ul{list-style:none;padding-left:0;margin:8px 0;} nav.toc li{margin:3px 0;}
+ nav.toc a{text-decoration:none;color:var(--ink);display:block;padding:4px 8px;border-radius:5px;}
+ nav.toc a:hover{background:#eaf2ed;color:var(--green);}
+ nav.toc a.active{background:var(--green);color:#fff;font-weight:600;}
+ main{flex:1;min-width:0;max-width:820px;padding:24px 34px 50px;}
+ .chapter h1{border-bottom:2px solid #eaf2ed;padding-bottom:6px;margin-top:0;}
+ h2.pb{margin-top:26px;}
+ .cover{padding:10px 0 8px;border-bottom:2px solid #eaf2ed;margin-bottom:16px;}
+ .cover h1{font-size:2rem;margin:0 0 4px;border:0;} .cover p{color:var(--muted);margin:2px 0;}
+ .pn{display:flex;justify-content:space-between;gap:12px;margin:34px 0 10px;padding-top:16px;border-top:1px solid #e5e7eb;font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.92rem;}
+ .pn a{text-decoration:none;font-weight:600;background:#eaf2ed;color:var(--green);border-radius:8px;padding:8px 14px;max-width:48%;}
+ .pn a:hover{background:#d9e8df;}
+ footer.foot{border-top:1px solid #e5e7eb;margin-top:26px;padding:16px 0 40px;color:var(--muted);font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.85rem;}
+ @media(max-width:820px){ nav.toc{display:none} main{padding:18px 16px 40px} .pn a{max-width:none} }
+</style></head><body><header class="topbar"><span class="t">Geospatial Data Analysis with Python</span><a class="pdf" href="Geospatial_Data_Analysis_with_Python.pdf" download>⬇ Download PDF</a></header><div class="layout"><nav class="toc"><a class="brand" href="index.html">Geospatial Data Analysis with Python</a><h2>Contents</h2><ul><li><a href="index.html">About this book</a></li><li><a class="active" href="ch01.html">Chapter 1 — Python Foundations</a></li><li><a href="ch02.html">Chapter 2 — Programming Logic &amp; Reusable Code</a></li><li><a href="ch03.html">Chapter 3 — Tabular Data with Pandas</a></li><li><a href="ch04.html">Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a></li><li><a href="ch05.html">Chapter 5 — CRS, Files &amp; Data Quality</a></li><li><a href="ch06.html">Chapter 6 — Consolidation</a></li><li><a href="ch07.html">Chapter 7 — ArcPy: Tools &amp; Environments</a></li><li><a href="ch08.html">Chapter 8 — ArcPy: Automation</a></li><li><a href="ch09.html">Chapter 9 — Raster Data with NumPy &amp; Rasterio</a></li><li><a href="ch10.html">Chapter 10 — Visualization &amp; Communication</a></li><li><a href="ch11.html">Chapter 11 — Introductory Machine Learning</a></li></ul></nav><main><section class="chapter"><h1>Chapter 1 — Python Foundations</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is your <strong>first teaching notebook</strong>. We learn the building blocks of Python
+using tiny, real geospatial examples — coordinates and shapes for two places we
+will return to all term: the <strong>Malcolm Knapp Research Forest (MKRF)</strong> in British
+Columbia and the <strong>mangrove coast of NW Madagascar</strong>.</p>
+<blockquote><p>No prior Python experience is assumed. Run each code cell, read the output, and
+try the <em>Try it yourself</em> prompts. Nothing here is graded — the graded practice
+is the <strong>Week 1 Exercise</strong> and the <strong>Week 1 Quiz</strong>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Learning-outcomes">Learning outcomes<a class="anchor-link" href="#Learning-outcomes">&#182;</a></h3><p>By the end of this week you should be able to:</p>
+<ol>
+<li>Run and edit <strong>code</strong> and <strong>Markdown</strong> cells in Jupyter, and write comments.</li>
+<li>Create and inspect <strong>variables</strong> (numbers, strings, booleans).</li>
+<li>Build and index <strong>lists, tuples, and dictionaries</strong>.</li>
+<li>Construct a <strong>file path</strong> with <code>pathlib</code>.</li>
+<li><strong>Import</strong> a package and use it.</li>
+<li>Make a simple <strong>Shapely</strong> <code>Point</code>, <code>LineString</code>, and <code>Polygon</code> from coordinates.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="How-this-notebook-works">How this notebook works<a class="anchor-link" href="#How-this-notebook-works">&#182;</a></h3><ul>
+<li><strong>Code cells</strong> (grey) contain Python. Click one and press <strong>Shift + Enter</strong> to run it.</li>
+<li><strong>Markdown cells</strong> (like this one) are text/instructions.</li>
+<li>Lines starting with <code>#</code> inside code are <strong>comments</strong> — notes for humans, ignored by Python.</li>
+<li>Make sure the kernel (top-right) says <strong>Python (gem530)</strong>. If not, see the
+environment setup in <code>environments/README.md</code>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="0.-First-run-%E2%80%94-check-your-setup">0. First run &#8212; check your setup<a class="anchor-link" href="#0.-First-run-%E2%80%94-check-your-setup">&#182;</a></h2><p>Run the cell below. If you see a Python version printed, you are ready.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Python version:&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;If you can read this, your notebook is working.&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Python version: 3.11.15
+If you can read this, your notebook is working.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-Variables:-describing-a-field-site">1. Variables: describing a field site<a class="anchor-link" href="#1.-Variables:-describing-a-field-site">&#182;</a></h2><p>A <strong>variable</strong> is a name that stores a value. Let's describe the MKRF research
+forest. Notice the different <strong>types</strong>: text (<code>str</code>), whole numbers (<code>int</code>),
+decimals (<code>float</code>), and true/false (<code>bool</code>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># A variable = name on the left, value on the right</span>
+<span class="n">site_name</span>   <span class="o">=</span> <span class="s2">&quot;Malcolm Knapp Research Forest&quot;</span>   <span class="c1"># str  (text, in quotes)</span>
+<span class="n">latitude</span>    <span class="o">=</span> <span class="mf">49.27</span>                              <span class="c1"># float (decimal degrees North)</span>
+<span class="n">longitude</span>   <span class="o">=</span> <span class="o">-</span><span class="mf">122.57</span>                            <span class="c1"># float (decimal degrees; West is negative)</span>
+<span class="n">elevation_m</span> <span class="o">=</span> <span class="mi">150</span>                                <span class="c1"># int  (whole number, metres)</span>
+<span class="n">is_protected</span> <span class="o">=</span> <span class="kc">True</span>                              <span class="c1"># bool (True or False)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">site_name</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="s2">&quot;latitude,&quot;</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Malcolm Knapp Research Forest: 49.27 latitude, -122.57 longitude
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use <code>type()</code> to ask Python what type a value is:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">site_name</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">elevation_m</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">is_protected</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class &#39;str&#39;&gt;
+&lt;class &#39;float&#39;&gt;
+&lt;class &#39;int&#39;&gt;
+&lt;class &#39;bool&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Try it yourself.</strong> In a new cell, create variables for a second site — the
+Madagascar mangrove coast is near <code>-13.35, 48.55</code>. Give it a <code>site_name</code>,
+<code>latitude</code>, <code>longitude</code>, and a boolean like <code>has_mangroves = True</code>, then print them.</p>
+</blockquote>
+<details open><summary>✅ Show answer</summary>
+<pre>site_name = "Madagascar mangrove coast"
+latitude = -13.35
+longitude = 48.55
+has_mangroves = True
+print(site_name, latitude, longitude, has_mangroves)</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-types">&#9989; Quick check &#8212; types<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-types">&#182;</a></h3><p><code>elevation_m = 150</code> and <code>latitude = 49.27</code>. Which is an <code>int</code>, and which is a <code>float</code>?</p>
+<details open><summary>▶ Show answer</summary>
+<code>elevation_m</code> is an <b>int</b> (whole number); <code>latitude</code> is a
+<b>float</b> (it has a decimal). Confirm with <code>type(elevation_m)</code>.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Every field measurement — a tree's height, a plot's
+coordinates, whether a stand is protected — is a <em>variable</em>. Naming values clearly
+is the first step to a <strong>reproducible</strong> forest analysis instead of a maze of
+unlabelled spreadsheet cells.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Operators:-doing-things-with-values">2. Operators: doing things with values<a class="anchor-link" href="#2.-Operators:-doing-things-with-values">&#182;</a></h2><p><strong>Arithmetic</strong> (<code>+ - * /</code>), <strong>comparison</strong> (<code>&gt;  &lt;  ==</code>), and <strong>logical</strong>
+(<code>and  or  not</code>) operators let us compute and ask questions about our data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Arithmetic</span>
+<span class="n">elevation_ft</span> <span class="o">=</span> <span class="n">elevation_m</span> <span class="o">*</span> <span class="mf">3.281</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Elevation in feet:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">elevation_ft</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Comparison -&gt; gives a boolean</span>
+<span class="n">in_northern_hemisphere</span> <span class="o">=</span> <span class="n">latitude</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Northern hemisphere?&quot;</span><span class="p">,</span> <span class="n">in_northern_hemisphere</span><span class="p">)</span>
+
+<span class="c1"># Logical: combine conditions</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Protected AND northern?&quot;</span><span class="p">,</span> <span class="n">is_protected</span> <span class="ow">and</span> <span class="n">in_northern_hemisphere</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Elevation in feet: 492.2
+Northern hemisphere? True
+Protected AND northern? True
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Try it yourself.</strong> Is the Madagascar site in the northern hemisphere?
+Write a comparison using its latitude (it is negative — south of the equator).</p>
+</blockquote>
+<details open><summary>✅ Show answer</summary>
+<pre>madagascar_lat = -13.35
+print(madagascar_lat &gt; 0)   # False &mdash; it is south of the equator</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Forestry example.</strong> Comparison and logic let you <em>flag data automatically</em>:
+<code>dbh_cm &gt; 50</code> finds the big trees; <code>slope &gt; 30 and forested</code> finds erosion-risk
+stands. You'll run these checks over <strong>thousands of records</strong> instead of scanning
+rows by eye.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Data-structures:-grouping-many-values">3. Data structures: grouping many values<a class="anchor-link" href="#3.-Data-structures:-grouping-many-values">&#182;</a></h2><p>Real geospatial work involves <em>collections</em> of values. Three you will use constantly:</p>
+<table>
+<thead><tr>
+<th>Structure</th>
+<th>Looks like</th>
+<th>Use it for</th>
+<th>Changeable?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>list</strong></td>
+<td><code>[a, b, c]</code></td>
+<td>an ordered, editable collection</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><strong>tuple</strong></td>
+<td><code>(x, y)</code></td>
+<td>a fixed pair/record (e.g. a coordinate)</td>
+<td>no</td>
+</tr>
+<tr>
+<td><strong>dict</strong></td>
+<td><code>{"key": value}</code></td>
+<td>labelled attributes of one thing</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># A tuple: one coordinate pair (longitude, latitude) -- fixed</span>
+<span class="n">mkrf_point</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">122.57</span><span class="p">,</span> <span class="mf">49.27</span><span class="p">)</span>
+
+<span class="c1"># A list: several plot coordinates in MKRF -- ordered and editable</span>
+<span class="n">plot_coords</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="o">-</span><span class="mf">122.573</span><span class="p">,</span> <span class="mf">49.271</span><span class="p">),</span>
+    <span class="p">(</span><span class="o">-</span><span class="mf">122.569</span><span class="p">,</span> <span class="mf">49.268</span><span class="p">),</span>
+    <span class="p">(</span><span class="o">-</span><span class="mf">122.566</span><span class="p">,</span> <span class="mf">49.274</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1"># A dictionary: labelled attributes of one site</span>
+<span class="n">site</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;MKRF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">122.57</span><span class="p">,</span>
+    <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="mf">49.27</span><span class="p">,</span>
+    <span class="s2">&quot;elevation_m&quot;</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
+    <span class="s2">&quot;protected&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of plots:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plot_coords</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Site name from dict:&quot;</span><span class="p">,</span> <span class="n">site</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Number of plots: 3
+Site name from dict: MKRF
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Indexing</strong> pulls items out. Python counts from <strong>0</strong>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First plot:&quot;</span><span class="p">,</span> <span class="n">plot_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>     <span class="c1"># index 0 = first</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Last plot: &quot;</span><span class="p">,</span> <span class="n">plot_coords</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>     <span class="c1"># -1 = last</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Longitude of first plot:&quot;</span><span class="p">,</span> <span class="n">plot_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># first item, then its first value</span>
+
+<span class="c1"># Lists are editable: add a new plot</span>
+<span class="n">plot_coords</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="o">-</span><span class="mf">122.571</span><span class="p">,</span> <span class="mf">49.269</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Now there are&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plot_coords</span><span class="p">),</span> <span class="s2">&quot;plots&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>First plot: (-122.573, 49.271)
+Last plot:  (-122.566, 49.274)
+Longitude of first plot: -122.573
+Now there are 4 plots
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Try it yourself.</strong> Add a <code>"country"</code> key to the <code>site</code> dictionary with the
+value <code>"Canada"</code>, then print the whole dictionary.</p>
+</blockquote>
+<details open><summary>✅ Show answer</summary>
+<pre>site["country"] = "Canada"
+print(site)</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-indexing">&#9989; Quick check &#8212; indexing<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-indexing">&#182;</a></h3><p>For <code>plots = [(-122.57, 49.27), (-122.55, 49.29)]</code>, what does <code>plots[1][0]</code> give?</p>
+<details open><summary>▶ Show answer</summary>
+<code>-122.55</code> — the <b>second</b> tuple (index 1), then its <b>first</b> value
+(index 0), the longitude. Remember indexing starts at 0.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> A forest inventory <em>is</em> a list of plot dictionaries; a
+species-code table <em>is</em> a dictionary. Lists and dicts hold <strong>many records at once</strong>
+— no separate variable per tree — which is exactly the idea behind Pandas (Week 3).</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-File-paths-with-pathlib">4. File paths with <code>pathlib</code><a class="anchor-link" href="#4.-File-paths-with-pathlib">&#182;</a></h2><p>Your data lives in files. <code>pathlib</code> builds paths that work on Windows, Mac, and
+Linux. Use the <code>/</code> operator to join folders — cleaner and safer than typing
+<code>"data\\sites.csv"</code> by hand.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>            <span class="c1"># a folder (relative path)</span>
+<span class="n">sites_file</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="s2">&quot;sites.csv&quot;</span>  <span class="c1"># join folder + filename</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Full path:&quot;</span><span class="p">,</span> <span class="n">sites_file</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File name:&quot;</span><span class="p">,</span> <span class="n">sites_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extension:&quot;</span><span class="p">,</span> <span class="n">sites_file</span><span class="o">.</span><span class="n">suffix</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Full path: data\sites.csv
+File name: sites.csv
+Extension: .csv
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We will treat <em>relative paths</em> (like <code>data/sites.csv</code>) as the reproducible
+default and revisit <strong>why</strong> in <strong>Week 5 (files &amp; data quality)</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Environmental data lives in <em>hundreds</em> of files (shapefiles,
+rasters, CSVs). Building paths in code means the same analysis re-runs on a new
+folder of survey data, on any computer — no manual re-typing, no broken links.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.-Importing-packages">5. Importing packages<a class="anchor-link" href="#5.-Importing-packages">&#182;</a></h2><p>Python's power comes from <strong>packages</strong>. You <code>import</code> a package, then use its tools
+with a dot: <code>package.tool()</code>. Here is the built-in <code>math</code> package.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># straight-line distance between two of our plots (in DEGREES for now)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">plot_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">plot_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Planar distance:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="s2">&quot;degrees&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Planar distance: 0.005 degrees
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Notice the distance is in <strong>degrees</strong>, which is not a real-world length.
+Turning coordinates into metres needs a <strong>coordinate reference system</strong> — the
+topic of <strong>Week 5</strong>. For now, just notice the problem exists.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Nobody re-writes geospatial math from scratch. Importing
+packages (NumPy, GeoPandas, Rasterio) lets you build on tested tools — the
+difference between an afternoon and a month on a mangrove-loss analysis.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="6.-Your-first-geometries:-Shapely">6. Your first geometries: Shapely<a class="anchor-link" href="#6.-Your-first-geometries:-Shapely">&#182;</a></h2><p>A coordinate pair is just numbers. <strong>Shapely</strong> turns coordinates into <em>geometry
+objects</em> — <code>Point</code>, <code>LineString</code>, <code>Polygon</code> — the same objects that <strong>GeoPandas</strong>
+(Week 4) uses for whole datasets. This is a <em>tiny</em> first taste.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">Polygon</span>
+
+<span class="c1"># A Point: one location (lon, lat)</span>
+<span class="n">mkrf</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="o">-</span><span class="mf">122.57</span><span class="p">,</span> <span class="mf">49.27</span><span class="p">)</span>
+
+<span class="c1"># A LineString: an ordered path (e.g. a short trail) through several points</span>
+<span class="n">trail</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="o">-</span><span class="mf">122.573</span><span class="p">,</span> <span class="mf">49.271</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">122.569</span><span class="p">,</span> <span class="mf">49.268</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">122.566</span><span class="p">,</span> <span class="mf">49.274</span><span class="p">)])</span>
+
+<span class="c1"># A Polygon: a closed area (first and last point join automatically)</span>
+<span class="n">stand</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="o">-</span><span class="mf">122.575</span><span class="p">,</span> <span class="mf">49.270</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">122.565</span><span class="p">,</span> <span class="mf">49.270</span><span class="p">),</span>
+                 <span class="p">(</span><span class="o">-</span><span class="mf">122.565</span><span class="p">,</span> <span class="mf">49.276</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">122.575</span><span class="p">,</span> <span class="mf">49.276</span><span class="p">)])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Point:      &quot;</span><span class="p">,</span> <span class="n">mkrf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Trail length:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">trail</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="s2">&quot;degrees&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stand area: &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">stand</span><span class="o">.</span><span class="n">area</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="s2">&quot;square degrees&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Point:       POINT (-122.57 49.27)
+Trail length: 0.01171 degrees
+Stand area:  6e-05 square degrees
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In Jupyter, a Shapely geometry draws itself. Run the next cell to <em>see</em> the
+polygon (its shape appears as a small picture):</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stand</span>   <span class="c1"># displaying a geometry shows its shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+<div class="output_svg output_subarea output_execute_result">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100.0" height="100.0" viewBox="-122.5754 49.269600000000004 0.010800000000003251 0.006799999999998363" preserveAspectRatio="xMinYMin meet"><g transform="matrix(1,0,0,-1,0,98.546)"><path fill-rule="evenodd" fill="#66cc99" stroke="#555555" stroke-width="0.00021600000000006502" opacity="0.6" d="M -122.575,49.27 L -122.565,49.27 L -122.565,49.276 L -122.575,49.276 L -122.575,49.27 z" /></g></svg>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Try it yourself.</strong> Make a <strong>triangle</strong> <code>Polygon</code> from any three coordinates
+near the Madagascar site (around <code>48.55, -13.35</code>), and display it. Remember
+Shapely expects <code>(lon, lat)</code> order.</p>
+</blockquote>
+<details open><summary>✅ Show answer</summary>
+<pre>from shapely.geometry import Polygon
+triangle = Polygon([(48.55, -13.35), (48.60, -13.35), (48.57, -13.30)])   # (lon, lat)!
+print(triangle)
+triangle</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Forestry example.</strong> A sample plot is a <code>Point</code>, a stream or trail is a
+<code>LineString</code>, and a harvest block or mangrove patch is a <code>Polygon</code>. Turning
+coordinates into geometry objects is what later lets you <strong>measure areas, find
+what's inside a reserve, and map change over time</strong>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-geometry-order">&#9989; Quick check &#8212; geometry order<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-geometry-order">&#182;</a></h3><p>To place a point at <strong>latitude 49.3, longitude −122.6</strong>, do you write
+<code>Point(49.3, -122.6)</code> or <code>Point(-122.6, 49.3)</code>?</p>
+<details open><summary>▶ Show answer (discuss first!)</summary>
+<code>Point(-122.6, 49.3)</code> — Shapely takes <b>(lon, lat)</b>. Writing
+<code>(lat, lon)</code> puts the point in the wrong place (a classic bug).
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Build-&amp;-Share-Your-Field-Site--(~20-min)">&#128736;&#65039; In-class activity &#8212; Build &amp; Share Your Field Site  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Build-&amp;-Share-Your-Field-Site--(~20-min)">&#182;</a></h2><p>Turn a <strong>real place you care about</strong> into Python data and your first geometry — then
+we'll share and discuss. Work individually; edit the starter cell below.</p>
+<p><strong>Task 1.</strong> Create variables for your site: <code>site_name</code>, <code>lat</code>, <code>lon</code>, <code>protected</code>.
+<strong>Task 2.</strong> Make a list <code>neighbours</code> of 2–3 nearby <code>(lon, lat)</code> coordinates, and a
+dictionary <code>site</code> with keys <code>name</code>, <code>lat</code>, <code>lon</code>.
+<strong>Task 3.</strong> Make a Shapely <code>Point</code> for your site and a <code>LineString</code> through your
+<code>neighbours</code>; print the line's <code>.length</code> and display the point.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># ---- Your turn: edit the values, then run ----</span>
+<span class="n">site_name</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>            <span class="c1"># e.g. &quot;Malcolm Knapp Research Forest&quot;</span>
+<span class="n">lat</span><span class="p">,</span> <span class="n">lon</span>  <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span>         <span class="c1"># your coordinates (decimal degrees)</span>
+<span class="n">protected</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># Task 2: a list of neighbours and a dict</span>
+<span class="n">neighbours</span> <span class="o">=</span> <span class="p">[(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">),</span> <span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)]</span>        <span class="c1"># &lt;- change these!</span>
+<span class="n">site</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">site_name</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="n">lat</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="n">lon</span><span class="p">}</span>
+
+<span class="c1"># Task 3: make your geometries (fill these in)</span>
+<span class="c1"># from shapely.geometry import Point, LineString</span>
+<span class="c1"># here = Point( ... )</span>
+<span class="c1"># path = LineString( ... )</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">site</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">neighbours</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;name&#39;: &#39;...&#39;, &#39;lat&#39;: 0.0, &#39;lon&#39;: 0.0}
+[(0.0, 0.0), (0.0, 0.0)]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><p>Have a go first, then open each one as we talk it through.</p>
+<details open><summary>▶ Task 1 — variables</summary>
+<pre>site_name = "Malcolm Knapp Research Forest"
+lat, lon  = 49.27, -122.57
+protected = True
+print(site_name, lat, lon, protected)</pre>
+</details>
+<details open><summary>▶ Task 2 — list &amp; dict</summary>
+<pre>neighbours = [(-122.57, 49.27), (-122.55, 49.29), (-122.52, 49.31)]
+site = {"name": site_name, "lat": lat, "lon": lon}
+print(neighbours)
+print(site)</pre>
+</details>
+<details open><summary>▶ Task 3 — geometries</summary>
+<pre>from shapely.geometry import Point, LineString
+here = Point(lon, lat)               # (lon, lat)!
+path = LineString(neighbours)
+print("Point:", here)
+print("Line length (degrees):", round(path.length, 4))
+here</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Packages-used-this-week">Packages used this week<a class="anchor-link" href="#Packages-used-this-week">&#182;</a></h2><p><em>(what it does · why we use it · when · how it connects to geospatial work)</em></p>
+<ul>
+<li><strong>Jupyter Notebook</strong> — interactive code + notes + output in one document. <em>Why:</em>
+run geospatial code step by step and keep a readable record. <em>When:</em> every week.
+<em>Geospatial link:</em> the workspace where all other tools run; maps render inline.</li>
+<li><strong>Python standard library</strong> (built in) — core language + helpers like <code>math</code>.
+<em>Why:</em> the foundation everything builds on. <em>When:</em> always.</li>
+<li><strong><code>pathlib</code></strong> (standard library) — build file paths safely. <em>Why:</em> geospatial work
+is file-heavy; reproducible paths prevent "file not found" errors. <em>When:</em> any time
+you read/write data. <em>Geospatial link:</em> every shapefile/raster/CSV is opened by a path.</li>
+<li><strong>Shapely</strong> — geometry objects (Point, LineString, Polygon). <em>Why:</em> represent real
+features as objects you can measure. <em>When:</em> introduced here; used fully via
+GeoPandas in Week 4. <em>Geospatial link:</em> the geometry engine under GeoDataFrames.</li>
+</ul>
+<p>See the full <a href="../../docs/PACKAGE_GUIDE.md">Package Guide</a> for more.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Why-this-matters">Why this matters<a class="anchor-link" href="#Why-this-matters">&#182;</a></h2><p>Today's pieces look small, but they are the <strong>vocabulary of every geospatial
+workflow</strong>: a forest inventory is a list of plot dictionaries, a satellite image is
+arrays of numbers, and a conservation map is Shapely geometries with attributes.
+Master these and the rest of the course is <em>combining</em> them.</p>
+<p><strong>Career connection.</strong> GIS analysts, remote-sensing scientists, and conservation
+data specialists write exactly this code every day — reading coordinates, organising
+attributes, and turning them into maps and decisions.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Concept-check-(discuss-with-a-neighbour-%E2%80%94-2-min)">Concept check (discuss with a neighbour &#8212; 2 min)<a class="anchor-link" href="#Concept-check-(discuss-with-a-neighbour-%E2%80%94-2-min)">&#182;</a></h2><ol>
+<li>What will <code>type(49.27)</code> say — and why is it different from <code>type(49)</code>?</li>
+<li><code>coords = [(-122.6, 49.3), (-122.5, 49.4)]</code>. How do you get the <strong>latitude</strong> of
+the second point? (Careful with the order!)</li>
+</ol>
+<p><em>Vote/show hands first, then reveal:</em></p>
+<details open><summary>▶ Answer 1</summary>
+<code>&lt;class 'float'&gt;</code>, because <code>49.27</code> has a decimal point.
+<code>type(49)</code> is <code>&lt;class 'int'&gt;</code> (a whole number).
+</details>
+<details open><summary>▶ Answer 2</summary>
+<code>coords[1][1]</code> — the second tuple (index 1), then its second value (the
+latitude). <code>coords[1][0]</code> would give the longitude.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Common-errors-this-week-(and-the-fix)">Common errors this week (and the fix)<a class="anchor-link" href="#Common-errors-this-week-(and-the-fix)">&#182;</a></h2><table>
+<thead><tr>
+<th>Message you see</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NameError: name 'x' is not defined</code></td>
+<td>used a variable before creating it, or a typo</td>
+<td>define it first; check spelling</td>
+</tr>
+<tr>
+<td><code>IndexError: list index out of range</code></td>
+<td>asked for <code>list[3]</code> when it holds fewer items</td>
+<td>indexing starts at <strong>0</strong>; check <code>len()</code></td>
+</tr>
+<tr>
+<td><code>SyntaxError</code></td>
+<td>missing quote, bracket, or <code>:</code></td>
+<td>read the arrow in the message; check the line above</td>
+</tr>
+<tr>
+<td>point in the wrong place</td>
+<td>swapped lon/lat</td>
+<td>Shapely wants <strong><code>(lon, lat)</code></strong></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Quick-reference-%E2%80%94-Week-1-cheat-sheet">Quick reference &#8212; Week 1 cheat sheet<a class="anchor-link" href="#Quick-reference-%E2%80%94-Week-1-cheat-sheet">&#182;</a></h2><div class="highlight"><pre><span></span><span class="n">name</span>  <span class="o">=</span> <span class="s2">&quot;MKRF&quot;</span>                 <span class="c1"># string (str)</span>
+<span class="n">lat</span>   <span class="o">=</span> <span class="mf">49.27</span>                  <span class="c1"># decimal (float)</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mf">122.6</span><span class="p">,</span> <span class="mf">49.3</span><span class="p">)]</span>      <span class="c1"># list of (lon, lat) tuples</span>
+<span class="n">site</span>  <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;MKRF&quot;</span><span class="p">}</span>       <span class="c1"># dictionary</span>
+<span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>                      <span class="c1"># first item  (index starts at 0)</span>
+<span class="n">site</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>                   <span class="c1"># dict value by key</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;sites.csv&quot;</span>     <span class="c1"># build a file path</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="n">Point</span><span class="p">(</span><span class="o">-</span><span class="mf">122.6</span><span class="p">,</span> <span class="mf">49.3</span><span class="p">)</span>            <span class="c1"># a geometry, (lon, lat)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="%F0%9F%8C%9F-Challenge-(optional-%E2%80%94-for-a-bit-more)">&#127775; Challenge (optional &#8212; for a bit more)<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge-(optional-%E2%80%94-for-a-bit-more)">&#182;</a></h2><p>Build a dictionary for a place <strong>you</strong> care about with keys <code>name</code>, <code>lat</code>, <code>lon</code>,
+and a list <code>neighbours</code> of 2–3 nearby coordinates. Then make a Shapely <code>LineString</code>
+through the neighbours and print its <code>.length</code>. (It's in degrees — we fix that in
+Week 5!)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="%F0%9F%8E%93-Additional-learning-(optional)">&#127891; Additional learning (optional)<a class="anchor-link" href="#%F0%9F%8E%93-Additional-learning-(optional)">&#182;</a></h2><p><em>If we have spare time we'll do these together — otherwise they're great self-study.
+Not required for the quiz or exercise, but they make the next weeks easier.</em></p>
+<h3 id="Bonus-1-%E2%80%94-Formatting-output-with-f-strings">Bonus 1 &#8212; Formatting output with f-strings<a class="anchor-link" href="#Bonus-1-%E2%80%94-Formatting-output-with-f-strings">&#182;</a></h3><p><strong>Why code this?</strong> A result only matters if you can <em>communicate</em> it. An <strong>f-string</strong>
+drops variables into a string, so you can build clean report lines, map labels, and
+messages from your data — something you'll do in every week of this course.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Douglas-fir&quot;</span>
+<span class="n">dbh_cm</span>  <span class="o">=</span> <span class="mf">47.5</span>
+<span class="n">plot_id</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="c1"># an f-string starts with f&quot;...&quot; — put variables inside { }</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Plot </span><span class="si">{</span><span class="n">plot_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">species</span><span class="si">}</span><span class="s2">, DBH </span><span class="si">{</span><span class="n">dbh_cm</span><span class="si">}</span><span class="s2"> cm&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;That is about </span><span class="si">{</span><span class="n">dbh_cm</span> <span class="o">/</span> <span class="mf">2.54</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> inches.&quot;</span><span class="p">)</span>   <span class="c1"># :.1f = round to 1 decimal</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Plot 12: Douglas-fir, DBH 47.5 cm
+That is about 18.7 inches.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 Instead of printing bare numbers, foresters format results into readable
+summaries — e.g. a per-plot line in a stand report, or a label on a map.</p>
+<p><strong>Try it yourself.</strong> Write an f-string that prints
+<code>Site MKRF is at 49.27 N, -122.57 W</code> using variables.</p>
+</blockquote>
+<details open><summary>✅ Show answer</summary>
+<pre>lat, lon = 49.27, -122.57
+print(f"Site MKRF is at {lat} N, {lon} W")</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bonus-2-%E2%80%94-A-forest-inventory-as-a-list-of-dictionaries">Bonus 2 &#8212; A forest inventory as a list of dictionaries<a class="anchor-link" href="#Bonus-2-%E2%80%94-A-forest-inventory-as-a-list-of-dictionaries">&#182;</a></h3><p><strong>Why code this?</strong> Real datasets are <em>collections of records</em>. Modelling a forest
+inventory as a <strong>list of dictionaries</strong> — one dict per plot — is the exact mental
+model behind every table you'll meet in <strong>Pandas</strong> (Week 3) and <strong>GeoPandas</strong>
+(Week 4). Learn it here in miniature and those weeks feel familiar.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># each tree/plot is a dictionary; the inventory is a list of them</span>
+<span class="n">inventory</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;plot&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">:</span> <span class="s2">&quot;Douglas-fir&quot;</span><span class="p">,</span>      <span class="s2">&quot;dbh_cm&quot;</span><span class="p">:</span> <span class="mf">47.5</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;plot&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">:</span> <span class="s2">&quot;western redcedar&quot;</span><span class="p">,</span> <span class="s2">&quot;dbh_cm&quot;</span><span class="p">:</span> <span class="mf">61.0</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;plot&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">:</span> <span class="s2">&quot;Douglas-fir&quot;</span><span class="p">,</span>      <span class="s2">&quot;dbh_cm&quot;</span><span class="p">:</span> <span class="mf">28.0</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="c1"># loop over the records</span>
+<span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">inventory</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tree</span><span class="p">[</span><span class="s2">&quot;plot&quot;</span><span class="p">],</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">],</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">[</span><span class="s2">&quot;dbh_cm&quot;</span><span class="p">],</span> <span class="s2">&quot;cm&quot;</span><span class="p">)</span>
+
+<span class="c1"># a quick summary: average DBH across the inventory</span>
+<span class="n">dbhs</span> <span class="o">=</span> <span class="p">[</span><span class="n">tree</span><span class="p">[</span><span class="s2">&quot;dbh_cm&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">inventory</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average DBH:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">dbhs</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">dbhs</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;cm&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1 - Douglas-fir - 47.5 cm
+2 - western redcedar - 61.0 cm
+3 - Douglas-fir - 28.0 cm
+Average DBH: 45.5 cm
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 This <em>is</em> a forest inventory table, built from plain Python. In Week 3 Pandas
+will do the looping and summarising for you — but it's the same idea.</p>
+<p><strong>Try it yourself.</strong> Add a fourth tree to <code>inventory</code>, then count how many are
+<code>"Douglas-fir"</code> (hint: a loop with an <code>if</code>, or a list comprehension).</p>
+</blockquote>
+<details open><summary>✅ Show answer</summary>
+<pre>inventory.append({"plot": 4, "species": "Douglas-fir", "dbh_cm": 39.0})
+n_df = sum(1 for tree in inventory if tree["species"] == "Douglas-fir")
+print(n_df, "Douglas-fir trees")   # 3</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Working-with-AI-this-term-(30-second-habit)">Working with AI this term (30-second habit)<a class="anchor-link" href="#Working-with-AI-this-term-(30-second-habit)">&#182;</a></h2><p>You may use AI assistants, but in this course you must be able to <strong>explain and
+check</strong> any code. Each week has a small "does this code do what it claims?" task.
+Habit to start now: if AI gives you code, (1) read each line, (2) run it, (3) check
+the result is sensible, (4) confirm functions exist in the official docs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Recap-&amp;-what's-next">Recap &amp; what's next<a class="anchor-link" href="#Recap-&amp;-what's-next">&#182;</a></h2><p>Today: cells &amp; comments · variables &amp; types · operators · lists/tuples/dicts &amp;
+indexing · file paths · importing packages · first Shapely geometries.</p>
+<ul>
+<li><strong>Practice now:</strong> open the <strong>Week 1 Exercise</strong> (5 short parts, ~30–60 min).</li>
+<li><strong>Check yourself:</strong> the <strong>Week 1 Quiz</strong> (<code>Quizzes/Week01_Quiz.html</code>), ~1 hour;
+detailed answers unlock after the due date.</li>
+<li><strong>Next week (Week 2):</strong> programming logic &amp; reusable code — conditions, loops,
+and functions, applied to coordinates and files.</li>
+</ul>
+
+</div>
+</div>
+</div>
+ 
+
+<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Practise variables, data structures, indexing, and a first Shapely geometry.</p>
+<p><em>Structure: 1) core · 2) apply · 3) interpret · 4) debug · 5) extension. ~30–60 min, individual.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.-Core">1. Core<a class="anchor-link" href="#1.-Core">&#182;</a></h3><p>Create variables for a site: <code>name</code> (str), <code>lat</code> and <code>lon</code> (floats), <code>protected</code> (bool). Print a one-line summary.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.-Apply">2. Apply<a class="anchor-link" href="#2.-Apply">&#182;</a></h3><p>Make a list <code>coords</code> of three <code>(lon, lat)</code> tuples, and a dictionary <code>site</code> with keys <code>name</code>, <code>n_plots</code>, <code>region</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3.-Interpret">3. Interpret<a class="anchor-link" href="#3.-Interpret">&#182;</a></h3><p>Print the <code>type()</code> of <code>name</code>, <code>lat</code>, and <code>protected</code>. In a comment, note which is text, decimal, and true/false.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4.-Debug">4. Debug<a class="anchor-link" href="#4.-Debug">&#182;</a></h3><p>This line should print the <strong>latitude</strong> of the first coordinate but is wrong. Fix it.</p>
+<div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.-Extension">5. Extension<a class="anchor-link" href="#5.-Extension">&#182;</a></h3><p>Import Shapely and make a <code>Point</code> from the first coordinate; print it.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
+</section><div class="pn"><a class="prev" href="index.html">← About this book</a><a class="next" href="ch02.html">Chapter 2 — Programming Logic &amp; Reusable Code →</a></div><footer class="foot"><p><b>Geospatial Data Analysis with Python</b> &middot; Dr. Suborna Ahmed &middot; UBC Faculty of Forestry &amp; Environmental Stewardship</p><p>Content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>. Code is under the MIT licence.</p><p><b>Cite as:</b> Ahmed, S. (2026). <i>Geospatial Data Analysis with Python.</i> UBC Faculty of Forestry &amp; Environmental Stewardship. CC BY 4.0.</p></footer></main></div></body></html>

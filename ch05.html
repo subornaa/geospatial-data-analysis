@@ -1,0 +1,683 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Chapter 5 — CRS, Files &amp; Data Quality · Geospatial Data Analysis with Python</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-C3T7WND9D5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C3T7WND9D5');
+</script><style>
+ :root{--green:#2f6f4f;--ink:#1f2933;--muted:#5b6673;}
+ *{box-sizing:border-box}
+ body{margin:0;font-family:Georgia,'Times New Roman',serif;color:var(--ink);line-height:1.6;background:#fff;}
+ h1,h2,h3,h4{font-family:'Segoe UI',system-ui,Arial,sans-serif;color:var(--green);}
+ a{color:var(--green);}
+ pre{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:6px;padding:10px 12px;overflow:auto;font-family:Consolas,ui-monospace,monospace;font-size:.85rem;white-space:pre-wrap;word-wrap:break-word;}
+ code{font-family:Consolas,ui-monospace,monospace;background:#eef1f4;padding:1px 4px;border-radius:3px;}
+ table{border-collapse:collapse;margin:8px 0} th,td{border:1px solid #cbd5e1;padding:4px 8px;text-align:left;font-size:.92rem} th{background:#eaf2ed}
+ img,svg{max-width:100%}
+ details{border-left:3px solid var(--green);padding:2px 10px;margin:8px 0;background:#f7faf8}
+ summary{font-weight:600;color:var(--green)}
+ blockquote{border-left:3px solid #cbd5e1;margin:8px 0;padding:2px 12px;color:#475569}
+ .jp-InputArea-prompt,.jp-OutputArea-prompt,.prompt{display:none}
+
+ header.topbar{position:sticky;top:0;z-index:10;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;font-family:'Segoe UI',system-ui,Arial,sans-serif;}
+ header.topbar .t{font-weight:700;font-size:1.05rem;}
+ header.topbar a.pdf{background:#fff;color:var(--green);text-decoration:none;font-weight:700;border-radius:20px;padding:7px 16px;font-size:.9rem;white-space:nowrap;}
+ .layout{display:flex;align-items:flex-start;max-width:1200px;margin:0 auto;}
+ nav.toc{position:sticky;top:56px;align-self:flex-start;width:280px;min-width:280px;height:calc(100vh - 56px);overflow:auto;padding:16px 14px;border-right:1px solid #e5e7eb;font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.92rem;}
+ nav.toc a.brand{display:block;font-weight:700;color:var(--green);text-decoration:none;font-size:1rem;margin-bottom:8px;}
+ nav.toc h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid #eaf2ed;padding-bottom:6px;}
+ nav.toc ul{list-style:none;padding-left:0;margin:8px 0;} nav.toc li{margin:3px 0;}
+ nav.toc a{text-decoration:none;color:var(--ink);display:block;padding:4px 8px;border-radius:5px;}
+ nav.toc a:hover{background:#eaf2ed;color:var(--green);}
+ nav.toc a.active{background:var(--green);color:#fff;font-weight:600;}
+ main{flex:1;min-width:0;max-width:820px;padding:24px 34px 50px;}
+ .chapter h1{border-bottom:2px solid #eaf2ed;padding-bottom:6px;margin-top:0;}
+ h2.pb{margin-top:26px;}
+ .cover{padding:10px 0 8px;border-bottom:2px solid #eaf2ed;margin-bottom:16px;}
+ .cover h1{font-size:2rem;margin:0 0 4px;border:0;} .cover p{color:var(--muted);margin:2px 0;}
+ .pn{display:flex;justify-content:space-between;gap:12px;margin:34px 0 10px;padding-top:16px;border-top:1px solid #e5e7eb;font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.92rem;}
+ .pn a{text-decoration:none;font-weight:600;background:#eaf2ed;color:var(--green);border-radius:8px;padding:8px 14px;max-width:48%;}
+ .pn a:hover{background:#d9e8df;}
+ footer.foot{border-top:1px solid #e5e7eb;margin-top:26px;padding:16px 0 40px;color:var(--muted);font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.85rem;}
+ @media(max-width:820px){ nav.toc{display:none} main{padding:18px 16px 40px} .pn a{max-width:none} }
+</style></head><body><header class="topbar"><span class="t">Geospatial Data Analysis with Python</span><a class="pdf" href="Geospatial_Data_Analysis_with_Python.pdf" download>⬇ Download PDF</a></header><div class="layout"><nav class="toc"><a class="brand" href="index.html">Geospatial Data Analysis with Python</a><h2>Contents</h2><ul><li><a href="index.html">About this book</a></li><li><a href="ch01.html">Chapter 1 — Python Foundations</a></li><li><a href="ch02.html">Chapter 2 — Programming Logic &amp; Reusable Code</a></li><li><a href="ch03.html">Chapter 3 — Tabular Data with Pandas</a></li><li><a href="ch04.html">Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a></li><li><a class="active" href="ch05.html">Chapter 5 — CRS, Files &amp; Data Quality</a></li><li><a href="ch06.html">Chapter 6 — Consolidation</a></li><li><a href="ch07.html">Chapter 7 — ArcPy: Tools &amp; Environments</a></li><li><a href="ch08.html">Chapter 8 — ArcPy: Automation</a></li><li><a href="ch09.html">Chapter 9 — Raster Data with NumPy &amp; Rasterio</a></li><li><a href="ch10.html">Chapter 10 — Visualization &amp; Communication</a></li><li><a href="ch11.html">Chapter 11 — Introductory Machine Learning</a></li></ul></nav><main><section class="chapter"><h1>Chapter 5 — CRS, Files &amp; Data Quality</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This week makes your spatial data <strong>trustworthy</strong>: the right <strong>coordinate reference
+system (CRS)</strong> so measurements are correct, plus checks for invalid geometry,
+duplicates, and missing data. These skills are the foundation of <strong>Lab 1</strong>.</p>
+<blockquote><p>Run in <strong>Python (gem530)</strong>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Learning-outcomes">Learning outcomes<a class="anchor-link" href="#Learning-outcomes">&#182;</a></h3><ol>
+<li>Explain geographic vs projected CRS and inspect/change a CRS.</li>
+<li>Reproject and compute <strong>correct</strong> area/length.</li>
+<li>Find and fix <strong>invalid geometry</strong>, <strong>duplicates</strong>, and <strong>missing data</strong>.</li>
+<li>Use <strong>relative paths</strong> and a reproducible folder layout.</li>
+<li>Run a small <strong>QA checklist</strong> function.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-What-CRS-is-my-data-in?">1. What CRS is my data in?<a class="anchor-link" href="#1.-What-CRS-is-my-data-in?">&#182;</a></h2><p>A <strong>geographic</strong> CRS (e.g. WGS84, <code>EPSG:4326</code>) uses degrees of lat/lon. A
+<strong>projected</strong> CRS (e.g. BC Albers <code>EPSG:3005</code>, or a UTM zone) uses metres — needed
+for real distances and areas.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="c1"># In the course: gdf = gpd.read_file(&quot;data/fires_points.gpkg&quot;)  (your Week 4 output).</span>
+<span class="c1"># Here we build a small MKRF (British Columbia) sample so BC Albers (EPSG:3005) is correct:</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;site&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;MKRF-1&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF-2&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF-3&quot;</span><span class="p">]},</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">([</span><span class="o">-</span><span class="mf">122.57</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.55</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.52</span><span class="p">],</span> <span class="p">[</span><span class="mf">49.27</span><span class="p">,</span> <span class="mf">49.29</span><span class="p">,</span> <span class="mf">49.31</span><span class="p">]),</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CRS:&quot;</span><span class="p">,</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is it geographic (degrees)?&quot;</span><span class="p">,</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">is_geographic</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Knowing whether your data is in degrees or metres decides whether an 'area' means anything. Nearly every geospatial mistake starts with an unchecked CRS.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-which-CRS-for-area?">&#9989; Quick check &#8212; which CRS for area?<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-which-CRS-for-area?">&#182;</a></h3><p>To compute area in square metres, do you use a geographic CRS (EPSG:4326) or a projected one (EPSG:3005)?</p>
+<details open><summary>▶ Show answer</summary>
+A <b>projected</b> CRS (e.g. EPSG:3005), whose units are metres. Geographic CRSs use degrees, which don't measure area.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Reproject-and-measure-correctly">2. Reproject and measure correctly<a class="anchor-link" href="#2.-Reproject-and-measure-correctly">&#182;</a></h2><p>Degrees can't measure area. Reproject to a projected CRS, <em>then</em> measure. For
+polygons, compare the area before and after to see why this matters.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># BC Albers (metres) suits the MKRF area; Madagascar would use a UTM zone.</span>
+<span class="n">gdf_m</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:3005&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New CRS:&quot;</span><span class="p">,</span> <span class="n">gdf_m</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Now geographic?&quot;</span><span class="p">,</span> <span class="n">gdf_m</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">is_geographic</span><span class="p">)</span>   <span class="c1"># False -&gt; metres</span>
+
+<span class="c1"># Example with a polygon layer:</span>
+<span class="c1"># stands = gpd.read_file(&quot;data/MKRF/stands.shp&quot;)</span>
+<span class="c1"># print(&quot;Area in degrees^2 (wrong):&quot;, stands.area.iloc[0])</span>
+<span class="c1"># print(&quot;Area in m^2 (correct):&quot;, stands.to_crs(3005).area.iloc[0])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Key idea.</strong> Always reproject to a projected CRS <strong>before</strong> computing area or
+distance. Reporting an area in "square degrees" is a classic mistake.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Forestry example.</strong> A 40-ha cutblock is 40 ha only in a <em>projected</em> CRS; measured in degrees the number is meaningless. Reproject, then measure — every area/volume estimate depends on it.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Data-quality-checks">3. Data-quality checks<a class="anchor-link" href="#3.-Data-quality-checks">&#182;</a></h2><p>Real layers contain invalid geometries, duplicates, and gaps. Find them explicitly.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># invalid geometries?</span>
+<span class="n">invalid</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="o">~</span><span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_valid</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid geometries:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid</span><span class="p">))</span>
+
+<span class="c1"># a common repair for polygons: buffer(0) or make_valid()</span>
+<span class="c1"># gdf[&quot;geometry&quot;] = gdf.geometry.buffer(0)</span>
+
+<span class="c1"># duplicate rows?</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Duplicate rows:&quot;</span><span class="p">,</span> <span class="n">gdf</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># missing attribute values per column</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Missing values per column:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Field datasets carry invalid polygons, duplicate plots, and missing values. Catching them in code protects every downstream total and map.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-QA">&#9989; Quick check &#8212; QA<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-QA">&#182;</a></h3><p>What does <code>gdf.duplicated().sum()</code> tell you?</p>
+<details open><summary>▶ Show answer</summary>
+The <b>number of duplicate rows</b> — a quick check for repeated plots. <code>gdf.isna().sum()</code> similarly counts missing values per column.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-Reproducible-paths-&amp;-folders">4. Reproducible paths &amp; folders<a class="anchor-link" href="#4.-Reproducible-paths-&amp;-folders">&#182;</a></h2><p>Use <strong>relative paths</strong> (from your project folder), not absolute ones like
+<code>C:/Users/you/...</code>, so the project runs on any machine.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">project</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">project</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+<span class="n">outputs</span>  <span class="o">=</span> <span class="n">project</span> <span class="o">/</span> <span class="s2">&quot;outputs&quot;</span>
+<span class="n">outputs</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Project:&quot;</span><span class="p">,</span> <span class="n">project</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading from:&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;| writing to:&quot;</span><span class="p">,</span> <span class="n">outputs</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A tidy, reproducible layout:</p>
+
+<pre><code>project/
+  data/      raw + cleaned inputs
+  outputs/   results you generate
+  notebook.ipynb</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Relative paths and a tidy data/outputs layout let your analysis re-run on a colleague's machine and next year's data — the definition of reproducible.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.-A-reusable-QA-function">5. A reusable QA function<a class="anchor-link" href="#5.-A-reusable-QA-function">&#182;</a></h2><p>Wrap the checks so you can run them on any layer — you will reuse this in Lab 1.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">quick_qa</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;layer&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Print a short data-quality report for a GeoDataFrame.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--- QA: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> ---&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rows:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gdf</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CRS:&quot;</span><span class="p">,</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;invalid geometries:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="o">~</span><span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_valid</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;duplicate rows:&quot;</span><span class="p">,</span> <span class="n">gdf</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;missing values:&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+
+<span class="n">quick_qa</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="s2">&quot;fires_points&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Try it yourself.</strong> Add one line to <code>quick_qa</code> that also prints whether the
+CRS is geographic or projected (hint: <code>gdf.crs.is_geographic</code>).</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Forestry example.</strong> A reusable QA function is the checklist you run on every new survey layer before trusting it — consistency you can't get by eye.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-QA-a-messy-layer--(~20-min)">&#128736;&#65039; In-class activity &#8212; QA a messy layer  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-QA-a-messy-layer--(~20-min)">&#182;</a></h2><p>The layer below has a duplicate plot and a missing measurement. Find and fix the
+problems, then reproject. Work individually; we'll discuss.</p>
+<p><strong>Task 1.</strong> Report the number of duplicate rows and missing values.
+<strong>Task 2.</strong> Drop the duplicate rows into a new <code>clean</code> GeoDataFrame.
+<strong>Task 3.</strong> Reproject <code>clean</code> to <code>EPSG:3005</code> and confirm it's no longer geographic.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;plot&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;dbh_cm&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">40.0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">55.0</span><span class="p">,</span> <span class="mf">55.0</span><span class="p">]},</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">([</span><span class="o">-</span><span class="mf">122.57</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.55</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.52</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.52</span><span class="p">],</span>
+                                <span class="p">[</span><span class="mf">49.27</span><span class="p">,</span> <span class="mf">49.29</span><span class="p">,</span> <span class="mf">49.31</span><span class="p">,</span> <span class="mf">49.31</span><span class="p">]),</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># TODO Task 1: report duplicates and missing values</span>
+<span class="c1"># TODO Task 2: drop duplicate rows -&gt; clean</span>
+<span class="c1"># TODO Task 3: reproject clean to EPSG:3005; confirm not geographic</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — report</summary>
+<pre>print("duplicates:", gdf.duplicated().sum())
+print(gdf.isna().sum())</pre>
+</details><details open><summary>▶ Task 2 — drop duplicates</summary>
+<pre>clean = gdf.drop_duplicates()
+print(len(clean), "rows after dropping duplicates")</pre>
+</details><details open><summary>▶ Task 3 — reproject</summary>
+<pre>clean_m = clean.to_crs("EPSG:3005")
+print("geographic?", clean_m.crs.is_geographic)   # False</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Common-errors-this-week-(and-the-fix)">Common errors this week (and the fix)<a class="anchor-link" href="#Common-errors-this-week-(and-the-fix)">&#182;</a></h2><table>
+<thead><tr>
+<th>Message / symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>area/distance is nonsense</td>
+<td>measured in a geographic (degrees) CRS</td>
+<td><code>.to_crs("EPSG:3005")</code> then measure</td>
+</tr>
+<tr>
+<td>spatial join returns nothing</td>
+<td>layers in different CRSs</td>
+<td>reproject one to match the other</td>
+</tr>
+<tr>
+<td>works on my PC, not yours</td>
+<td>absolute path like <code>C:/Users/you/...</code></td>
+<td>use a relative path from the project</td>
+</tr>
+<tr>
+<td><code>TopologyException</code></td>
+<td>invalid (self-intersecting) polygon</td>
+<td>repair with <code>buffer(0)</code> / <code>make_valid</code></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Quick-reference-%E2%80%94-Week-5-cheat-sheet">Quick reference &#8212; Week 5 cheat sheet<a class="anchor-link" href="#Quick-reference-%E2%80%94-Week-5-cheat-sheet">&#182;</a></h2><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="o">.</span><span class="n">crs</span>                       <span class="c1"># what CRS am I in?</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">is_geographic</span>         <span class="c1"># True = degrees, False = projected (metres)</span>
+<span class="n">gdf_m</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:3005&quot;</span><span class="p">)</span>   <span class="c1"># reproject, THEN measure</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_valid</span>         <span class="c1"># find invalid geometries</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>        <span class="c1"># count duplicate rows</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>              <span class="c1"># count missing values per column</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">Path</span><span class="p">(</span><span class="s2">&quot;outputs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   <span class="c1"># relative, reproducible</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="%F0%9F%8E%93-Additional-learning-(optional)">&#127891; Additional learning (optional)<a class="anchor-link" href="#%F0%9F%8E%93-Additional-learning-(optional)">&#182;</a></h2><p><em>Great if we have time, otherwise self-study. Not required for the quiz or exercise.</em></p>
+<h3 id="Bonus-1-%E2%80%94-Real-distances-(reproject,-then-measure)">Bonus 1 &#8212; Real distances (reproject, then measure)<a class="anchor-link" href="#Bonus-1-%E2%80%94-Real-distances-(reproject,-then-measure)">&#182;</a></h3><p><strong>Why code this?</strong> "How far is each plot from the road?" only has a real answer in
+metres — i.e. in a projected CRS. This is the everyday reason we reproject.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">(</span>
+    <span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">([</span><span class="o">-</span><span class="mf">122.57</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.50</span><span class="p">],</span> <span class="p">[</span><span class="mf">49.27</span><span class="p">,</span> <span class="mf">49.30</span><span class="p">]),</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:3005&quot;</span><span class="p">)</span>                      <span class="c1"># -&gt; metres</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">pts</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">pts</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;distance between the two plots:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> <span class="s2">&quot;m&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 In degrees this number would be meaningless; in a projected CRS it's real metres.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bonus-2-%E2%80%94-Repairing-an-invalid-polygon">Bonus 2 &#8212; Repairing an invalid polygon<a class="anchor-link" href="#Bonus-2-%E2%80%94-Repairing-an-invalid-polygon">&#182;</a></h3><p><strong>Why code this?</strong> Digitised stand boundaries often self-intersect ("bow-ties"), which
+breaks area and overlay tools. A one-line repair rescues them.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<span class="n">bowtie</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>   <span class="c1"># self-intersecting</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">bowtie</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:3005&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;valid before?&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">is_valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                      <span class="c1"># common repair</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;valid after? &quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">is_valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 Run this before any area calculation on messy boundary data.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Packages-used-this-week">Packages used this week<a class="anchor-link" href="#Packages-used-this-week">&#182;</a></h2><ul>
+<li><strong>GeoPandas</strong> — inspect/change CRS (<code>.to_crs</code>), validity (<code>.is_valid</code>), and run
+quality checks. <em>Geospatial link:</em> correctness of every measurement and join.</li>
+<li><strong>pyproj</strong> — the CRS engine <em>behind</em> <code>.to_crs</code>. You rarely call it directly; know
+it is doing the reprojection. See the <a href="../../docs/PACKAGE_GUIDE.md">Package Guide</a>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Working-with-AI-(30-second-habit)">Working with AI (30-second habit)<a class="anchor-link" href="#Working-with-AI-(30-second-habit)">&#182;</a></h2><p>AI often forgets the CRS. When AI gives you reprojection or area code, verify: (1)
+the source CRS is set, (2) you reproject <strong>before</strong> measuring, (3) the result units
+make sense (metres, not degrees).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Recap-&amp;-what's-next">Recap &amp; what's next<a class="anchor-link" href="#Recap-&amp;-what's-next">&#182;</a></h2><p>Geographic vs projected CRS · reproject then measure · validity/duplicate/missing
+checks · relative paths &amp; folders · a reusable QA function.</p>
+<ul>
+<li><strong>Practice:</strong> Week 5 Exercise.</li>
+<li><strong>Check yourself:</strong> <code>Quizzes/Week05_Quiz.html</code>.</li>
+<li><strong>Next week (Week 6):</strong> consolidation + <strong>Lab 1</strong> studio — you have now learned
+everything Lab 1 assesses.</li>
+</ul>
+
+</div>
+</div>
+</div>
+ 
+
+<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Practise reprojection, correct measurement, and quality checks.</p>
+<p><em>Structure: 1) core · 2) apply · 3) interpret · 4) debug · 5) extension. ~30–60 min, individual.</em></p>
+<blockquote><p>Run in <strong>Python (gem530)</strong>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Setup-(run-first)">Setup (run first)<a class="anchor-link" href="#Setup-(run-first)">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="c1"># small MKRF (BC) sample so BC Albers (EPSG:3005) is correct:</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">({</span><span class="s2">&quot;site&quot;</span><span class="p">:[</span><span class="s2">&quot;MKRF-1&quot;</span><span class="p">,</span><span class="s2">&quot;MKRF-2&quot;</span><span class="p">,</span><span class="s2">&quot;MKRF-3&quot;</span><span class="p">]},</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">([</span><span class="o">-</span><span class="mf">122.57</span><span class="p">,</span><span class="o">-</span><span class="mf">122.55</span><span class="p">,</span><span class="o">-</span><span class="mf">122.52</span><span class="p">],[</span><span class="mf">49.27</span><span class="p">,</span><span class="mf">49.29</span><span class="p">,</span><span class="mf">49.31</span><span class="p">]),</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.-Core">1. Core<a class="anchor-link" href="#1.-Core">&#182;</a></h3><p>Reproject <code>gdf</code> to <code>EPSG:3005</code> (BC Albers, metres) and print the new CRS.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.-Apply">2. Apply<a class="anchor-link" href="#2.-Apply">&#182;</a></h3><p>Confirm the reprojected CRS is <strong>not</strong> geographic.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3.-Interpret">3. Interpret<a class="anchor-link" href="#3.-Interpret">&#182;</a></h3><p>In a comment, explain why area/distance must be computed in a projected CRS, not degrees.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4.-Debug">4. Debug<a class="anchor-link" href="#4.-Debug">&#182;</a></h3><p>A spatial join fails because the two layers are in different CRSs. Fix the pattern.</p>
+<div class="highlight"><pre><span></span><span class="n">joined</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>   <span class="c1"># other is in a different CRS</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.-Extension">5. Extension<a class="anchor-link" href="#5.-Extension">&#182;</a></h3><p>Write a function <code>quick_qa(gdf)</code> that prints row count, CRS, duplicate rows, and total missing values.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
+</section><div class="pn"><a class="prev" href="ch04.html">← Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a><a class="next" href="ch06.html">Chapter 6 — Consolidation →</a></div><footer class="foot"><p><b>Geospatial Data Analysis with Python</b> &middot; Dr. Suborna Ahmed &middot; UBC Faculty of Forestry &amp; Environmental Stewardship</p><p>Content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>. Code is under the MIT licence.</p><p><b>Cite as:</b> Ahmed, S. (2026). <i>Geospatial Data Analysis with Python.</i> UBC Faculty of Forestry &amp; Environmental Stewardship. CC BY 4.0.</p></footer></main></div></body></html>

@@ -1,0 +1,721 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Chapter 4 — Vector Data with GeoPandas &amp; Shapely · Geospatial Data Analysis with Python</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-C3T7WND9D5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C3T7WND9D5');
+</script><style>
+ :root{--green:#2f6f4f;--ink:#1f2933;--muted:#5b6673;}
+ *{box-sizing:border-box}
+ body{margin:0;font-family:Georgia,'Times New Roman',serif;color:var(--ink);line-height:1.6;background:#fff;}
+ h1,h2,h3,h4{font-family:'Segoe UI',system-ui,Arial,sans-serif;color:var(--green);}
+ a{color:var(--green);}
+ pre{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:6px;padding:10px 12px;overflow:auto;font-family:Consolas,ui-monospace,monospace;font-size:.85rem;white-space:pre-wrap;word-wrap:break-word;}
+ code{font-family:Consolas,ui-monospace,monospace;background:#eef1f4;padding:1px 4px;border-radius:3px;}
+ table{border-collapse:collapse;margin:8px 0} th,td{border:1px solid #cbd5e1;padding:4px 8px;text-align:left;font-size:.92rem} th{background:#eaf2ed}
+ img,svg{max-width:100%}
+ details{border-left:3px solid var(--green);padding:2px 10px;margin:8px 0;background:#f7faf8}
+ summary{font-weight:600;color:var(--green)}
+ blockquote{border-left:3px solid #cbd5e1;margin:8px 0;padding:2px 12px;color:#475569}
+ .jp-InputArea-prompt,.jp-OutputArea-prompt,.prompt{display:none}
+
+ header.topbar{position:sticky;top:0;z-index:10;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;font-family:'Segoe UI',system-ui,Arial,sans-serif;}
+ header.topbar .t{font-weight:700;font-size:1.05rem;}
+ header.topbar a.pdf{background:#fff;color:var(--green);text-decoration:none;font-weight:700;border-radius:20px;padding:7px 16px;font-size:.9rem;white-space:nowrap;}
+ .layout{display:flex;align-items:flex-start;max-width:1200px;margin:0 auto;}
+ nav.toc{position:sticky;top:56px;align-self:flex-start;width:280px;min-width:280px;height:calc(100vh - 56px);overflow:auto;padding:16px 14px;border-right:1px solid #e5e7eb;font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.92rem;}
+ nav.toc a.brand{display:block;font-weight:700;color:var(--green);text-decoration:none;font-size:1rem;margin-bottom:8px;}
+ nav.toc h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid #eaf2ed;padding-bottom:6px;}
+ nav.toc ul{list-style:none;padding-left:0;margin:8px 0;} nav.toc li{margin:3px 0;}
+ nav.toc a{text-decoration:none;color:var(--ink);display:block;padding:4px 8px;border-radius:5px;}
+ nav.toc a:hover{background:#eaf2ed;color:var(--green);}
+ nav.toc a.active{background:var(--green);color:#fff;font-weight:600;}
+ main{flex:1;min-width:0;max-width:820px;padding:24px 34px 50px;}
+ .chapter h1{border-bottom:2px solid #eaf2ed;padding-bottom:6px;margin-top:0;}
+ h2.pb{margin-top:26px;}
+ .cover{padding:10px 0 8px;border-bottom:2px solid #eaf2ed;margin-bottom:16px;}
+ .cover h1{font-size:2rem;margin:0 0 4px;border:0;} .cover p{color:var(--muted);margin:2px 0;}
+ .pn{display:flex;justify-content:space-between;gap:12px;margin:34px 0 10px;padding-top:16px;border-top:1px solid #e5e7eb;font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.92rem;}
+ .pn a{text-decoration:none;font-weight:600;background:#eaf2ed;color:var(--green);border-radius:8px;padding:8px 14px;max-width:48%;}
+ .pn a:hover{background:#d9e8df;}
+ footer.foot{border-top:1px solid #e5e7eb;margin-top:26px;padding:16px 0 40px;color:var(--muted);font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.85rem;}
+ @media(max-width:820px){ nav.toc{display:none} main{padding:18px 16px 40px} .pn a{max-width:none} }
+</style></head><body><header class="topbar"><span class="t">Geospatial Data Analysis with Python</span><a class="pdf" href="Geospatial_Data_Analysis_with_Python.pdf" download>⬇ Download PDF</a></header><div class="layout"><nav class="toc"><a class="brand" href="index.html">Geospatial Data Analysis with Python</a><h2>Contents</h2><ul><li><a href="index.html">About this book</a></li><li><a href="ch01.html">Chapter 1 — Python Foundations</a></li><li><a href="ch02.html">Chapter 2 — Programming Logic &amp; Reusable Code</a></li><li><a href="ch03.html">Chapter 3 — Tabular Data with Pandas</a></li><li><a class="active" href="ch04.html">Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a></li><li><a href="ch05.html">Chapter 5 — CRS, Files &amp; Data Quality</a></li><li><a href="ch06.html">Chapter 6 — Consolidation</a></li><li><a href="ch07.html">Chapter 7 — ArcPy: Tools &amp; Environments</a></li><li><a href="ch08.html">Chapter 8 — ArcPy: Automation</a></li><li><a href="ch09.html">Chapter 9 — Raster Data with NumPy &amp; Rasterio</a></li><li><a href="ch10.html">Chapter 10 — Visualization &amp; Communication</a></li><li><a href="ch11.html">Chapter 11 — Introductory Machine Learning</a></li></ul></nav><main><section class="chapter"><h1>Chapter 4 — Vector Data with GeoPandas &amp; Shapely</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Last week's table had <code>lat</code>/<code>lon</code> columns. <strong>GeoPandas</strong> turns a table into a
+<strong>GeoDataFrame</strong> — a DataFrame with a <code>geometry</code> column of <strong>Shapely</strong> shapes — so
+we can filter, measure, join, map, and export real vector data.</p>
+<blockquote><p>Run this notebook in the <strong>Python (gem530)</strong> environment (GeoPandas installed).</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Learning-outcomes">Learning outcomes<a class="anchor-link" href="#Learning-outcomes">&#182;</a></h3><ol>
+<li>Build a <strong>GeoDataFrame</strong> from coordinates and read a vector file.</li>
+<li>Inspect <code>geometry</code>, attributes, and the <strong>CRS</strong>.</li>
+<li>Filter by attribute; compute area / length / centroid.</li>
+<li>Do one <strong>attribute join</strong> and one simple <strong>spatial join</strong>.</li>
+<li><strong>Export</strong> to a GeoPackage.
+This is about data <strong>handling</strong> — not advanced spatial analysis (that's the R course).</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-From-a-table-to-points">1. From a table to points<a class="anchor-link" href="#1.-From-a-table-to-points">&#182;</a></h2><p>We reuse Week 3's cleaned fires table and make a point per row. GeoPandas uses
+<code>(x, y) = (lon, lat)</code> and we tag the CRS as WGS84 (<code>EPSG:4326</code>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="c1"># In the course you would read your Week 3 output:  df = pd.read_csv(&quot;data/fires_clean.csv&quot;)</span>
+<span class="c1"># Here we build a small sample so this notebook runs on its own:</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;site&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="s2">&quot;MKRF&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF&quot;</span><span class="p">,</span> <span class="s2">&quot;Ambaro&quot;</span><span class="p">,</span> <span class="s2">&quot;Ambaro&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;cause&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="s2">&quot;lightning&quot;</span><span class="p">,</span> <span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;lightning&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;lon&quot;</span><span class="p">:</span>    <span class="p">[</span><span class="o">-</span><span class="mf">122.57</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.55</span><span class="p">,</span> <span class="mf">48.55</span><span class="p">,</span> <span class="mf">48.60</span><span class="p">],</span>
+    <span class="s2">&quot;lat&quot;</span><span class="p">:</span>    <span class="p">[</span><span class="mf">49.27</span><span class="p">,</span> <span class="mf">49.29</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.35</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.40</span><span class="p">],</span>
+    <span class="s2">&quot;area_ha&quot;</span><span class="p">:[</span><span class="mf">12.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">,</span> <span class="mf">22.0</span><span class="p">],</span>
+<span class="p">})</span>
+
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">]),</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">gdf</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CRS:&quot;</span><span class="p">,</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Your field GPS gives lon/lat columns; turning them into point geometries is the step that lets you map plots, measure distances, and ask <em>'what falls inside the reserve?'</em></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-point-order">&#9989; Quick check &#8212; point order<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-point-order">&#182;</a></h3><p>To build points from a table, is it <code>points_from_xy(lon, lat)</code> or <code>points_from_xy(lat, lon)</code>?</p>
+<details open><summary>▶ Show answer</summary>
+<code>points_from_xy(lon, lat)</code> — <b>x = longitude first</b>. Reversing them puts every plot in the wrong place.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Read-a-vector-file">2. Read a vector file<a class="anchor-link" href="#2.-Read-a-vector-file">&#182;</a></h2><p>Real layers come as shapefiles, GeoPackages, or geodatabases. <code>read_file</code> loads
+any of them into a GeoDataFrame.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># Example (adjust the path to the provided data):</span>
+<span class="c1"># stands = gpd.read_file(&quot;data/MKRF/stands.shp&quot;)</span>
+<span class="c1"># print(stands.crs)</span>
+<span class="c1"># stands.head()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Forestry example.</strong> Stand boundaries, road networks, stream layers, protected areas — all arrive as shapefiles or GeoPackages. <code>read_file</code> loads any of them into one consistent table you can analyse.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Inspect-geometry,-attributes,-CRS,-and-a-quick-map">3. Inspect geometry, attributes, CRS, and a quick map<a class="anchor-link" href="#3.-Inspect-geometry,-attributes,-CRS,-and-a-quick-map">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Columns:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Geometry type:&quot;</span><span class="p">,</span> <span class="n">gdf</span><span class="o">.</span><span class="n">geom_type</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>   <span class="c1"># a quick look</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Checking the CRS and geometry type up front prevents the classic disasters — points in the ocean, areas of zero — before they reach a map or a report.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-Filter-by-attribute">4. Filter by attribute<a class="anchor-link" href="#4.-Filter-by-attribute">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">mkrf</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;site&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;MKRF&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MKRF fire points:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">mkrf</span><span class="p">))</span>
+<span class="n">mkrf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Forestry example.</strong> Filtering a layer to one management unit, one species, or one disturbance year is the everyday first move before mapping or summarising.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.-Geometry-measurements">5. Geometry measurements<a class="anchor-link" href="#5.-Geometry-measurements">&#182;</a></h2><p><code>area</code>, <code>length</code>, and <code>centroid</code> are computed on the geometry. <strong>Important:</strong> in a
+geographic CRS (degrees) these are <em>not</em> real metres — we fix that in <strong>Week 5</strong> by
+reprojecting. For polygons you would use <code>gdf.area</code>; for now we show centroids.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># centroid of each geometry (for points, the point itself)</span>
+<span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;centroid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">centroid</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdf</span><span class="p">[[</span><span class="s2">&quot;site&quot;</span><span class="p">,</span> <span class="s2">&quot;centroid&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Area of a cutblock, length of a stream buffer, the centroid of a stand — these drive planning. (Compute them in a <em>projected</em> CRS — that's Week 5.)</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-area-units">&#9989; Quick check &#8212; area units<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-area-units">&#182;</a></h3><p>A GeoDataFrame is still in EPSG:4326 (degrees). Is <code>gdf.area</code> a real area in square metres?</p>
+<details open><summary>▶ Show answer</summary>
+<b>No</b> — in a geographic CRS the number is in <i>square degrees</i>, which is meaningless. Reproject to a projected CRS first (Week 5).
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="6.-Attribute-join-+-one-spatial-join">6. Attribute join + one spatial join<a class="anchor-link" href="#6.-Attribute-join-+-one-spatial-join">&#182;</a></h2><p>An <strong>attribute join</strong> matches on a shared column (like Week 3's <code>merge</code>). A
+<strong>spatial join</strong> matches by <em>location</em> — e.g. which region polygon each point
+falls in.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># attribute join: add a lookup column</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;site&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;MKRF&quot;</span><span class="p">,</span> <span class="s2">&quot;Ambaro&quot;</span><span class="p">],</span> <span class="s2">&quot;manager&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;UBC&quot;</span><span class="p">,</span> <span class="s2">&quot;Community&quot;</span><span class="p">]})</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;site&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+
+<span class="c1"># spatial join (example — needs a polygon layer &#39;regions&#39;):</span>
+<span class="c1"># regions = gpd.read_file(&quot;data/regions.gpkg&quot;).to_crs(gdf.crs)</span>
+<span class="c1"># joined = gpd.sjoin(gdf, regions, how=&quot;left&quot;, predicate=&quot;within&quot;)</span>
+<span class="c1"># joined.head()</span>
+<span class="n">gdf</span><span class="p">[[</span><span class="s2">&quot;site&quot;</span><span class="p">,</span> <span class="s2">&quot;manager&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Forestry example.</strong> Joins answer <em>'which plots fall in which watershed?'</em> (spatial) and <em>'attach each stand's manager'</em> (attribute) — combining field data with reference layers.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="7.-Export">7. Export<a class="anchor-link" href="#7.-Export">&#182;</a></h2><p>Save results as a GeoPackage (<code>.gpkg</code>) — a modern single-file format that keeps the
+CRS and attributes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;centroid&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;data/fires_points.gpkg&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GPKG&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wrote data/fires_points.gpkg&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Try it yourself.</strong> Filter <code>gdf</code> to the <strong>Ambaro</strong> site and plot only those
+points. How many are there?</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Exporting a clean GeoPackage means your result opens in QGIS/ArcGIS and re-runs next season — reproducible, shareable geospatial work.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Map-your-plots--(~20-min)">&#128736;&#65039; In-class activity &#8212; Map your plots  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Map-your-plots--(~20-min)">&#182;</a></h2><p>Turn a small plot table into a mapped GeoDataFrame. Work individually; we'll discuss.</p>
+<p><strong>Task 1.</strong> Make a GeoDataFrame of points from the table below (<code>crs="EPSG:4326"</code>).
+<strong>Task 2.</strong> Filter to the <code>"MKRF"</code> region and count the plots.
+<strong>Task 3.</strong> Plot the points coloured by <code>region</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span><span class="o">,</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;plot&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;MKRF&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF&quot;</span><span class="p">,</span> <span class="s2">&quot;Ambaro&quot;</span><span class="p">,</span> <span class="s2">&quot;Ambaro&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;lon&quot;</span><span class="p">:</span>    <span class="p">[</span><span class="o">-</span><span class="mf">122.57</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.55</span><span class="p">,</span> <span class="mf">48.55</span><span class="p">,</span> <span class="mf">48.60</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.52</span><span class="p">],</span>
+    <span class="s2">&quot;lat&quot;</span><span class="p">:</span>    <span class="p">[</span><span class="mf">49.27</span><span class="p">,</span> <span class="mf">49.29</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.35</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.40</span><span class="p">,</span> <span class="mf">49.31</span><span class="p">],</span>
+<span class="p">}</span>
+<span class="c1"># TODO Task 1: build the GeoDataFrame (points_from_xy, crs=&quot;EPSG:4326&quot;)</span>
+<span class="c1"># TODO Task 2: filter to region == &quot;MKRF&quot; and count</span>
+<span class="c1"># TODO Task 3: plot coloured by region</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — points</summary>
+<pre>df = pd.DataFrame(data)
+gdf = gpd.GeoDataFrame(
+    df, geometry=gpd.points_from_xy(df["lon"], df["lat"]), crs="EPSG:4326")
+gdf</pre>
+</details><details open><summary>▶ Task 2 — filter & count</summary>
+<pre>mkrf = gdf[gdf["region"] == "MKRF"]
+print(len(mkrf), "MKRF plots")</pre>
+</details><details open><summary>▶ Task 3 — plot</summary>
+<pre>gdf.plot(column="region", legend=True, markersize=40)</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Common-errors-this-week-(and-the-fix)">Common errors this week (and the fix)<a class="anchor-link" href="#Common-errors-this-week-(and-the-fix)">&#182;</a></h2><table>
+<thead><tr>
+<th>Message / symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>points in the wrong place</td>
+<td>lon/lat reversed</td>
+<td><code>points_from_xy(lon, lat)</code> — x first</td>
+</tr>
+<tr>
+<td><code>.crs</code> is <code>None</code></td>
+<td>forgot to set the CRS</td>
+<td>pass <code>crs="EPSG:4326"</code> when building</td>
+</tr>
+<tr>
+<td>spatial join is empty</td>
+<td>layers in different CRSs</td>
+<td><code>other = other.to_crs(gdf.crs)</code> first</td>
+</tr>
+<tr>
+<td>area/length is tiny/odd</td>
+<td>data still in degrees</td>
+<td>reproject to a projected CRS (Week 5)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Quick-reference-%E2%80%94-Week-4-cheat-sheet">Quick reference &#8212; Week 4 cheat sheet<a class="anchor-link" href="#Quick-reference-%E2%80%94-Week-4-cheat-sheet">&#182;</a></h2><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;data/stands.gpkg&quot;</span><span class="p">)</span>          <span class="c1"># read vector</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">lat</span><span class="p">),</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">crs</span><span class="p">;</span> <span class="n">gdf</span><span class="o">.</span><span class="n">geom_type</span><span class="p">;</span> <span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>               <span class="c1"># inspect</span>
+<span class="n">gdf</span><span class="p">[</span><span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;fir&quot;</span><span class="p">]</span>                     <span class="c1"># filter</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">area</span><span class="p">;</span> <span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">length</span>           <span class="c1"># measure (projected CRS!)</span>
+<span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">regions</span><span class="p">,</span> <span class="n">predicate</span><span class="o">=</span><span class="s2">&quot;within&quot;</span><span class="p">)</span>      <span class="c1"># spatial join</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;out.gpkg&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GPKG&quot;</span><span class="p">)</span>           <span class="c1"># export</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="%F0%9F%8E%93-Additional-learning-(optional)">&#127891; Additional learning (optional)<a class="anchor-link" href="#%F0%9F%8E%93-Additional-learning-(optional)">&#182;</a></h2><p><em>Great if we have time, otherwise self-study. Not required for the quiz or exercise.</em></p>
+<h3 id="Bonus-1-%E2%80%94-Buffers-(a-riparian-zone-around-a-stream)">Bonus 1 &#8212; Buffers (a riparian zone around a stream)<a class="anchor-link" href="#Bonus-1-%E2%80%94-Buffers-(a-riparian-zone-around-a-stream)">&#182;</a></h3><p><strong>Why code this?</strong> A <strong>buffer</strong> is a zone a fixed distance from a feature — a 30 m
+riparian reserve along a stream, a setback around a road. It's one of the most-used
+tools in forest planning. (Buffer in a <em>projected</em> CRS so the distance is real metres.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">LineString</span>
+<span class="n">stream</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">LineString</span><span class="p">([(</span><span class="o">-</span><span class="mf">122.60</span><span class="p">,</span> <span class="mf">49.30</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">122.55</span><span class="p">,</span> <span class="mf">49.32</span><span class="p">)])],</span>
+                          <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+<span class="n">stream_m</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:3005&quot;</span><span class="p">)</span>     <span class="c1"># BC Albers -&gt; metres</span>
+<span class="n">riparian</span> <span class="o">=</span> <span class="n">stream_m</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>            <span class="c1"># 30-metre buffer</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;riparian buffer area (m^2):&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">riparian</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 Change 30 to your reserve width — instant riparian zones for any stream layer.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bonus-2-%E2%80%94-%22What's-inside-the-reserve?%22-with-a-spatial-test">Bonus 2 &#8212; "What's inside the reserve?" with a spatial test<a class="anchor-link" href="#Bonus-2-%E2%80%94-%22What's-inside-the-reserve?%22-with-a-spatial-test">&#182;</a></h3><p><strong>Why code this?</strong> Deciding which plots fall inside a boundary is a core GIS question —
+<code>within</code> answers it for every feature at once, no clicking.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">box</span>
+<span class="n">plots</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="o">-</span><span class="mf">122.57</span><span class="p">,</span> <span class="mf">49.27</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="o">-</span><span class="mf">121.0</span><span class="p">,</span> <span class="mf">49.0</span><span class="p">)],</span>
+                         <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+<span class="n">reserve</span> <span class="o">=</span> <span class="n">box</span><span class="p">(</span><span class="o">-</span><span class="mf">122.75</span><span class="p">,</span> <span class="mf">49.20</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.45</span><span class="p">,</span> <span class="mf">49.40</span><span class="p">)</span>     <span class="c1"># a reserve boundary</span>
+<span class="n">inside</span> <span class="o">=</span> <span class="n">plots</span><span class="p">[</span><span class="n">plots</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">reserve</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;plots inside the reserve:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">inside</span><span class="p">),</span> <span class="s2">&quot;of&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plots</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 Swap the box for a real protected-area polygon to audit which plots it contains.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Packages-used-this-week">Packages used this week<a class="anchor-link" href="#Packages-used-this-week">&#182;</a></h2><ul>
+<li><strong>GeoPandas</strong> — the vector workhorse: read/write layers, filter, measure, join,
+and map, all with a <code>geometry</code> column. <em>Geospatial link:</em> the core tool for
+vector data handling in Python.</li>
+<li><strong>Shapely</strong> — the geometry objects (Point/LineString/Polygon) inside each
+GeoDataFrame row; you met it in Week 1. See the
+<a href="../../docs/PACKAGE_GUIDE.md">Package Guide</a>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Working-with-AI-(30-second-habit)">Working with AI (30-second habit)<a class="anchor-link" href="#Working-with-AI-(30-second-habit)">&#182;</a></h2><p>GeoPandas errors often come from a <strong>missing or mismatched CRS</strong>. If AI code fails,
+check <code>gdf.crs</code> first, and confirm both layers share a CRS before any spatial join.
+More on CRS next week.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Recap-&amp;-what's-next">Recap &amp; what's next<a class="anchor-link" href="#Recap-&amp;-what's-next">&#182;</a></h2><p>GeoDataFrame · points from a table · read vector files · inspect CRS/geometry ·
+filter · measure · attribute + spatial joins · export GeoPackage.</p>
+<ul>
+<li><strong>Practice:</strong> Week 4 Exercise.</li>
+<li><strong>Check yourself:</strong> <code>Quizzes/Week04_Quiz.html</code>.</li>
+<li><strong>Next week:</strong> coordinate reference systems, files &amp; data quality (Lab 1 prep).</li>
+</ul>
+
+</div>
+</div>
+</div>
+ 
+
+<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Practise building, inspecting, filtering, and exporting vector data.</p>
+<p><em>Structure: 1) core · 2) apply · 3) interpret · 4) debug · 5) extension. ~30–60 min, individual.</em></p>
+<blockquote><p>Run in <strong>Python (gem530)</strong> (GeoPandas installed).</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Setup-(run-first)">Setup (run first)<a class="anchor-link" href="#Setup-(run-first)">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span><span class="o">,</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;site&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">,</span><span class="s2">&quot;d&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;MKRF&quot;</span><span class="p">,</span><span class="s2">&quot;MKRF&quot;</span><span class="p">,</span><span class="s2">&quot;Ambaro&quot;</span><span class="p">,</span><span class="s2">&quot;Ambaro&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">122.57</span><span class="p">,</span><span class="o">-</span><span class="mf">122.55</span><span class="p">,</span><span class="mf">48.55</span><span class="p">,</span><span class="mf">48.60</span><span class="p">],</span>
+    <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">49.27</span><span class="p">,</span><span class="mf">49.29</span><span class="p">,</span><span class="o">-</span><span class="mf">13.35</span><span class="p">,</span><span class="o">-</span><span class="mf">13.40</span><span class="p">],</span>
+<span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.-Core">1. Core<a class="anchor-link" href="#1.-Core">&#182;</a></h3><p>Build a GeoDataFrame <code>gdf</code> of points from <code>lon</code>/<code>lat</code> with <code>crs="EPSG:4326"</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.-Apply">2. Apply<a class="anchor-link" href="#2.-Apply">&#182;</a></h3><p>Print the geometry type and make a quick <code>plot()</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3.-Interpret">3. Interpret<a class="anchor-link" href="#3.-Interpret">&#182;</a></h3><p>Filter <code>gdf</code> to the MKRF region and report how many points it has (comment on the count).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4.-Debug">4. Debug<a class="anchor-link" href="#4.-Debug">&#182;</a></h3><p>This build has no CRS, so later reprojection fails. Fix it.</p>
+<div class="highlight"><pre><span></span><span class="n">gdf2</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">lat</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.-Extension">5. Extension<a class="anchor-link" href="#5.-Extension">&#182;</a></h3><p>Export <code>gdf</code> to <code>outputs/points.gpkg</code> (GeoPackage).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># TODO — your code here</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
+</section><div class="pn"><a class="prev" href="ch03.html">← Chapter 3 — Tabular Data with Pandas</a><a class="next" href="ch05.html">Chapter 5 — CRS, Files &amp; Data Quality →</a></div><footer class="foot"><p><b>Geospatial Data Analysis with Python</b> &middot; Dr. Suborna Ahmed &middot; UBC Faculty of Forestry &amp; Environmental Stewardship</p><p>Content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>. Code is under the MIT licence.</p><p><b>Cite as:</b> Ahmed, S. (2026). <i>Geospatial Data Analysis with Python.</i> UBC Faculty of Forestry &amp; Environmental Stewardship. CC BY 4.0.</p></footer></main></div></body></html>
