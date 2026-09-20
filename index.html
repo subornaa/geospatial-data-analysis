@@ -18,6 +18,7 @@
  summary{font-weight:600;color:var(--green)}
  blockquote{border-left:3px solid #cbd5e1;margin:8px 0;padding:2px 12px;color:#475569}
  .jp-InputArea-prompt,.jp-OutputArea-prompt,.prompt{display:none}
+ a.anchor-link{display:none}
 
  header.topbar{position:sticky;top:0;z-index:10;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;font-family:'Segoe UI',system-ui,Arial,sans-serif;}
  header.topbar .t{font-weight:700;font-size:1.05rem;}
@@ -29,7 +30,12 @@
  nav.toc ul{list-style:none;padding-left:0;margin:8px 0;} nav.toc li{margin:3px 0;}
  nav.toc a{text-decoration:none;color:var(--ink);display:block;padding:4px 8px;border-radius:5px;}
  nav.toc a:hover{background:#eaf2ed;color:var(--green);}
- nav.toc a.active{background:var(--green);color:#fff;font-weight:600;}
+ nav.toc ul.chaps>li>a.active{background:var(--green);color:#fff;font-weight:600;}
+ nav.toc ul.sec{list-style:none;padding-left:0;margin:2px 0 10px;border-left:2px solid #eaf2ed;}
+ nav.toc ul.sec li{margin:0;}
+ nav.toc ul.sec a{font-size:.82rem;color:var(--muted);padding:2px 8px 2px 14px;line-height:1.35;}
+ nav.toc ul.sec a:hover{background:#f2f7f4;color:var(--green);}
+ nav.toc ul.sec li.lvl3 a{padding-left:26px;font-size:.78rem;color:#8a94a0;}
  main{flex:1;min-width:0;max-width:820px;padding:24px 34px 50px;}
  .chapter h1{border-bottom:2px solid #eaf2ed;padding-bottom:6px;margin-top:0;}
  h2.pb{margin-top:26px;}
@@ -40,7 +46,7 @@
  .pn a:hover{background:#d9e8df;}
  footer.foot{border-top:1px solid #e5e7eb;margin-top:26px;padding:16px 0 40px;color:var(--muted);font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.85rem;}
  @media(max-width:820px){ nav.toc{display:none} main{padding:18px 16px 40px} .pn a{max-width:none} }
-</style></head><body><header class="topbar"><span class="t">Geospatial Data Analysis with Python</span><a class="pdf" href="Geospatial_Data_Analysis_with_Python.pdf" download>⬇ Download PDF</a></header><div class="layout"><nav class="toc"><a class="brand" href="index.html">Geospatial Data Analysis with Python</a><h2>Contents</h2><ul><li><a class="active" href="index.html">About this book</a></li><li><a href="ch01.html">Chapter 1 — Python Foundations</a></li><li><a href="ch02.html">Chapter 2 — Programming Logic &amp; Reusable Code</a></li><li><a href="ch03.html">Chapter 3 — Tabular Data with Pandas</a></li><li><a href="ch04.html">Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a></li><li><a href="ch05.html">Chapter 5 — CRS, Files &amp; Data Quality</a></li><li><a href="ch06.html">Chapter 6 — Consolidation</a></li><li><a href="ch07.html">Chapter 7 — ArcPy: Tools &amp; Environments</a></li><li><a href="ch08.html">Chapter 8 — ArcPy: Automation</a></li><li><a href="ch09.html">Chapter 9 — Raster Data with NumPy &amp; Rasterio</a></li><li><a href="ch10.html">Chapter 10 — Visualization &amp; Communication</a></li><li><a href="ch11.html">Chapter 11 — Introductory Machine Learning</a></li></ul></nav><main><div class="cover"><h1>Geospatial Data Analysis with Python</h1><p>Python programming for geospatial data handling, processing, visualization &amp; workflow automation</p><p>An open educational resource &middot; Dr. Suborna Ahmed &middot; UBC Faculty of Forestry &amp; Environmental Stewardship</p></div><section class="chapter"><h1>About this book</h1>
+</style></head><body><header class="topbar"><span class="t">Geospatial Data Analysis with Python</span><a class="pdf" href="Geospatial_Data_Analysis_with_Python.pdf" download>⬇ Download PDF</a></header><div class="layout"><nav class="toc"><a class="brand" href="index.html">Geospatial Data Analysis with Python</a><h2>Contents</h2><ul class="chaps"><li><a class="active" href="index.html">About this book</a><ul class="sec"><li class="lvl2"><a href="#how-to-use">How to use this book</a></li><li class="lvl2"><a href="#about-the-author">About the author</a></li><li class="lvl2"><a href="#companion-book">Companion book</a></li><li class="lvl2"><a href="#license">License</a></li><li class="lvl2"><a href="#how-to-cite">How to cite</a></li></ul></li><li><a href="ch01.html">Chapter 1 — Python Foundations</a></li><li><a href="ch02.html">Chapter 2 — Programming Logic &amp; Reusable Code</a></li><li><a href="ch03.html">Chapter 3 — Tabular Data with Pandas</a></li><li><a href="ch04.html">Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a></li><li><a href="ch05.html">Chapter 5 — CRS, Files &amp; Data Quality</a></li><li><a href="ch06.html">Chapter 6 — Consolidation</a></li><li><a href="ch07.html">Chapter 7 — ArcPy: Tools &amp; Environments</a></li><li><a href="ch08.html">Chapter 8 — ArcPy: Automation</a></li><li><a href="ch09.html">Chapter 9 — Raster Data with NumPy &amp; Rasterio</a></li><li><a href="ch10.html">Chapter 10 — Visualization &amp; Communication</a></li><li><a href="ch11.html">Chapter 11 — Introductory Machine Learning</a></li></ul></nav><main><div class="cover"><h1>Geospatial Data Analysis with Python</h1><p>Python programming for geospatial data handling, processing, visualization &amp; workflow automation</p><p>An open educational resource &middot; Dr. Suborna Ahmed &middot; UBC Faculty of Forestry &amp; Environmental Stewardship</p></div><section class="chapter"><h1>About this book</h1>
 <p>This open educational resource teaches <b>Python programming for geospatial data
 analysis</b>, starting from no assumed programming experience. You'll learn Python
 fundamentals with small geospatial examples, then work with tabular, vector, and
@@ -49,7 +55,7 @@ to machine learning on satellite imagery.</p>
 <p>Two environmental datasets recur throughout: the <b>Malcolm Knapp Research Forest</b>
 in British Columbia and the <b>mangrove coast of northwest Madagascar</b>, alongside
 Landsat imagery.</p>
-<h2>How to use this book</h2>
+<h2 id="how-to-use">How to use this book</h2>
 <ul>
   <li>Each chapter is a hands-on lesson: read the explanation, run the code, and try the
       <b>Quick check</b> and <b>Try it yourself</b> prompts (answers are collapsible).</li>
@@ -58,19 +64,19 @@ Landsat imagery.</p>
       which requires ArcGIS Pro.</li>
   <li>Each chapter ends with <b>practice exercises</b> to work through on your own.</li>
 </ul>
-<h2>About the author</h2>
+<h2 id="about-the-author">About the author</h2>
 <p><b>Dr. Suborna Ahmed</b> — Associate Professor of Teaching, Department of Forest
 Resources Management, Faculty of Forestry &amp; Environmental Stewardship, University of
 British Columbia. She teaches data analytics, computing, forest biometrics, and
 quantitative methods for forestry and natural-resources students, and develops open
 educational resources using real forestry datasets.</p>
-<h2>Companion book</h2>
+<h2 id="companion-book">Companion book</h2>
 <p>See the companion resource,
 <a href="https://subornaa.github.io/modern-computing-forestry/"><i>Modern Data Analytics
 for Forestry and Natural Resources</i></a> (efficient coding, data analysis, and
 AI-assisted debugging, in R &amp; Quarto).</p>
-<h2>License</h2>
+<h2 id="license">License</h2>
 <p>Content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>. Code is under the MIT licence.</p>
-<h2>How to cite</h2>
+<h2 id="how-to-cite">How to cite</h2>
 <p>Ahmed, S. (2026). <i>Geospatial Data Analysis with Python.</i> UBC Faculty of Forestry &amp; Environmental Stewardship. CC BY 4.0.</p>
 </section><div class="pn"><span></span><a class="next" href="ch01.html">Chapter 1 — Python Foundations →</a></div><footer class="foot"><p><b>Geospatial Data Analysis with Python</b> &middot; Dr. Suborna Ahmed &middot; UBC Faculty of Forestry &amp; Environmental Stewardship</p><p>Content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>. Code is under the MIT licence.</p><p><b>Cite as:</b> Ahmed, S. (2026). <i>Geospatial Data Analysis with Python.</i> UBC Faculty of Forestry &amp; Environmental Stewardship. CC BY 4.0.</p></footer></main></div></body></html>

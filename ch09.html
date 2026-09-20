@@ -18,6 +18,7 @@
  summary{font-weight:600;color:var(--green)}
  blockquote{border-left:3px solid #cbd5e1;margin:8px 0;padding:2px 12px;color:#475569}
  .jp-InputArea-prompt,.jp-OutputArea-prompt,.prompt{display:none}
+ a.anchor-link{display:none}
 
  header.topbar{position:sticky;top:0;z-index:10;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;font-family:'Segoe UI',system-ui,Arial,sans-serif;}
  header.topbar .t{font-weight:700;font-size:1.05rem;}
@@ -29,7 +30,12 @@
  nav.toc ul{list-style:none;padding-left:0;margin:8px 0;} nav.toc li{margin:3px 0;}
  nav.toc a{text-decoration:none;color:var(--ink);display:block;padding:4px 8px;border-radius:5px;}
  nav.toc a:hover{background:#eaf2ed;color:var(--green);}
- nav.toc a.active{background:var(--green);color:#fff;font-weight:600;}
+ nav.toc ul.chaps>li>a.active{background:var(--green);color:#fff;font-weight:600;}
+ nav.toc ul.sec{list-style:none;padding-left:0;margin:2px 0 10px;border-left:2px solid #eaf2ed;}
+ nav.toc ul.sec li{margin:0;}
+ nav.toc ul.sec a{font-size:.82rem;color:var(--muted);padding:2px 8px 2px 14px;line-height:1.35;}
+ nav.toc ul.sec a:hover{background:#f2f7f4;color:var(--green);}
+ nav.toc ul.sec li.lvl3 a{padding-left:26px;font-size:.78rem;color:#8a94a0;}
  main{flex:1;min-width:0;max-width:820px;padding:24px 34px 50px;}
  .chapter h1{border-bottom:2px solid #eaf2ed;padding-bottom:6px;margin-top:0;}
  h2.pb{margin-top:26px;}
@@ -40,7 +46,7 @@
  .pn a:hover{background:#d9e8df;}
  footer.foot{border-top:1px solid #e5e7eb;margin-top:26px;padding:16px 0 40px;color:var(--muted);font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:.85rem;}
  @media(max-width:820px){ nav.toc{display:none} main{padding:18px 16px 40px} .pn a{max-width:none} }
-</style></head><body><header class="topbar"><span class="t">Geospatial Data Analysis with Python</span><a class="pdf" href="Geospatial_Data_Analysis_with_Python.pdf" download>⬇ Download PDF</a></header><div class="layout"><nav class="toc"><a class="brand" href="index.html">Geospatial Data Analysis with Python</a><h2>Contents</h2><ul><li><a href="index.html">About this book</a></li><li><a href="ch01.html">Chapter 1 — Python Foundations</a></li><li><a href="ch02.html">Chapter 2 — Programming Logic &amp; Reusable Code</a></li><li><a href="ch03.html">Chapter 3 — Tabular Data with Pandas</a></li><li><a href="ch04.html">Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a></li><li><a href="ch05.html">Chapter 5 — CRS, Files &amp; Data Quality</a></li><li><a href="ch06.html">Chapter 6 — Consolidation</a></li><li><a href="ch07.html">Chapter 7 — ArcPy: Tools &amp; Environments</a></li><li><a href="ch08.html">Chapter 8 — ArcPy: Automation</a></li><li><a class="active" href="ch09.html">Chapter 9 — Raster Data with NumPy &amp; Rasterio</a></li><li><a href="ch10.html">Chapter 10 — Visualization &amp; Communication</a></li><li><a href="ch11.html">Chapter 11 — Introductory Machine Learning</a></li></ul></nav><main><section class="chapter"><h1>Chapter 9 — Raster Data with NumPy &amp; Rasterio</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</style></head><body><header class="topbar"><span class="t">Geospatial Data Analysis with Python</span><a class="pdf" href="Geospatial_Data_Analysis_with_Python.pdf" download>⬇ Download PDF</a></header><div class="layout"><nav class="toc"><a class="brand" href="index.html">Geospatial Data Analysis with Python</a><h2>Contents</h2><ul class="chaps"><li><a href="index.html">About this book</a></li><li><a href="ch01.html">Chapter 1 — Python Foundations</a></li><li><a href="ch02.html">Chapter 2 — Programming Logic &amp; Reusable Code</a></li><li><a href="ch03.html">Chapter 3 — Tabular Data with Pandas</a></li><li><a href="ch04.html">Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a></li><li><a href="ch05.html">Chapter 5 — CRS, Files &amp; Data Quality</a></li><li><a href="ch06.html">Chapter 6 — Consolidation</a></li><li><a href="ch07.html">Chapter 7 — ArcPy: Tools &amp; Environments</a></li><li><a href="ch08.html">Chapter 8 — ArcPy: Automation</a></li><li><a class="active" href="ch09.html">Chapter 9 — Raster Data with NumPy &amp; Rasterio</a><ul class="sec"><li class="lvl3"><a href="#Learning-outcomes">Learning outcomes</a></li><li class="lvl2"><a href="#1.-A-raster-is-an-array">1. A raster is an array</a></li><li class="lvl2"><a href="#2.-Handle-NoData-with-a-mask">2. Handle NoData with a mask</a></li><li class="lvl3"><a href="#%E2%9C%85-Quick-check-%E2%80%94-NoData">&#9989; Quick check &#8212; NoData</a></li><li class="lvl2"><a href="#3.-Array-math-&amp;-reclassification">3. Array math &amp; reclassification</a></li><li class="lvl2"><a href="#4.-A-simple-index-(NDVI)">4. A simple index (NDVI)</a></li><li class="lvl2"><a href="#5.-Read-a-real-raster-with-Rasterio">5. Read a real raster with Rasterio</a></li><li class="lvl3"><a href="#%E2%9C%85-Quick-check-%E2%80%94-Rasterio">&#9989; Quick check &#8212; Rasterio</a></li><li class="lvl2"><a href="#6.-Write-a-result-back-to-a-GeoTIFF">6. Write a result back to a GeoTIFF</a></li><li class="lvl2"><a href="#7.-Display-with-Matplotlib">7. Display with Matplotlib</a></li><li class="lvl2"><a href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Burn-severity-classes--(~20-min)">&#128736;&#65039; In-class activity &#8212; Burn-severity classes  (~20 min)</a></li><li class="lvl3"><a href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss</a></li><li class="lvl2"><a href="#Common-errors-this-chapter-(and-the-fix)">Common errors this chapter (and the fix)</a></li><li class="lvl2"><a href="#%F0%9F%8E%93-Additional-learning-(optional)">&#127891; Additional learning (optional)</a></li><li class="lvl3"><a href="#Bonus-1-%E2%80%94-From-pixel-counts-to-hectares">Bonus 1 &#8212; From pixel counts to hectares</a></li><li class="lvl3"><a href="#Bonus-2-%E2%80%94-Zonal-statistics-(a-value-inside-a-zone)">Bonus 2 &#8212; Zonal statistics (a value inside a zone)</a></li><li class="lvl2"><a href="#Packages-used-this-chapter">Packages used this chapter</a></li><li class="lvl2"><a href="#Working-with-AI-(30-second-habit)">Working with AI (30-second habit)</a></li><li class="lvl2"><a href="#Recap-&amp;-what's-next">Recap &amp; what's next</a></li><li class="lvl2"><a href="#practice-exercises">Practice exercises</a></li><li class="lvl3"><a href="#Setup-(run-first)">Setup (run first)</a></li><li class="lvl3"><a href="#1.-Core">1. Core</a></li><li class="lvl3"><a href="#2.-Apply">2. Apply</a></li><li class="lvl3"><a href="#3.-Interpret">3. Interpret</a></li><li class="lvl3"><a href="#4.-Debug">4. Debug</a></li><li class="lvl3"><a href="#5.-Extension">5. Extension</a></li><li class="lvl2"><a href="#going-further">Going further — advanced (optional)</a></li><li class="lvl3"><a href="#You'll-practise">You'll practise</a></li><li class="lvl2"><a href="#1.-NDVI-%E2%80%94-vegetation-from-two-bands">1. NDVI &#8212; vegetation from two bands</a></li><li class="lvl2"><a href="#2.-Masking-NoData">2. Masking NoData</a></li><li class="lvl3"><a href="#%E2%9C%85-Quick-check-%E2%80%94-NoData">&#9989; Quick check &#8212; NoData</a></li><li class="lvl2"><a href="#3.-Reclassify-+-terrain-gradient">3. Reclassify + terrain gradient</a></li><li class="lvl2"><a href="#4.-Write-a-raster-in-memory">4. Write a raster in memory</a></li><li class="lvl3"><a href="#%F0%9F%8C%9F-Challenge">&#127775; Challenge</a></li><li class="lvl3"><a href="#%F0%9F%8E%93-Nicely-done">&#127891; Nicely done</a></li></ul></li><li><a href="ch10.html">Chapter 10 — Visualization &amp; Communication</a></li><li><a href="ch11.html">Chapter 11 — Introductory Machine Learning</a></li></ul></nav><main><section class="chapter"><h1>Chapter 9 — Raster Data with NumPy &amp; Rasterio</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vector data was points and polygons. <strong>Raster</strong> data is a grid of cells — elevation,
@@ -561,7 +567,7 @@ write GeoTIFF with Rasterio · display with Matplotlib.</p>
 </div>
  
 
-<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<h2 class="pb" id="practice-exercises">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Practise raster-as-array operations: NoData, reclassify, indices.</p>
@@ -700,6 +706,170 @@ write GeoTIFF with Rasterio · display with Matplotlib.</p>
 </div>
 </div>
 
+</div>
+ 
+
+<h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Optional extension — for when you've finished the Chapter 9 exercise and want more.
+Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
+<li>Compute <strong>NDVI</strong> from red and NIR bands.</li>
+<li>Handle <strong>NoData</strong> with <code>np.where</code> and <code>np.nanmean</code>.</li>
+<li><strong>Reclassify</strong> by thresholds and read a terrain <strong>gradient</strong>.</li>
+<li>Write and re-read a raster fully <strong>in memory</strong> (no files).</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-NDVI-%E2%80%94-vegetation-from-two-bands">1. NDVI &#8212; vegetation from two bands<a class="anchor-link" href="#1.-NDVI-%E2%80%94-vegetation-from-two-bands">&#182;</a></h2><p>NDVI = (NIR − Red) / (NIR + Red). NumPy applies it to whole arrays at once.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">red</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.28</span><span class="p">]])</span>
+<span class="n">nir</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.60</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">]])</span>
+<span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">nir</span> <span class="o">-</span> <span class="n">red</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">nir</span> <span class="o">+</span> <span class="n">red</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Masking-NoData">2. Masking NoData<a class="anchor-link" href="#2.-Masking-NoData">&#182;</a></h2><p>Sentinel values like <code>-9999</code> must be excluded, or they wreck your statistics.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">elev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">110</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="o">-</span><span class="mi">9999</span><span class="p">],</span> <span class="p">[</span><span class="mi">108</span><span class="p">,</span> <span class="o">-</span><span class="mi">9999</span><span class="p">,</span> <span class="mi">111</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">masked</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">elev</span> <span class="o">==</span> <span class="o">-</span><span class="mi">9999</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">elev</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean ignoring NoData:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">masked</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-NoData">&#9989; Quick check &#8212; NoData<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-NoData">&#182;</a></h3><p>Why use <code>np.nanmean</code> instead of <code>np.mean</code> after masking NoData to <code>np.nan</code>?</p>
+<details open><summary>✅ Show answer</summary>
+<code>np.mean</code> returns <code>nan</code> if any value is <code>nan</code>; <code>np.nanmean</code> <b>skips</b> the NaNs and averages the real pixels.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Reclassify-+-terrain-gradient">3. Reclassify + terrain gradient<a class="anchor-link" href="#3.-Reclassify-+-terrain-gradient">&#182;</a></h2><p>Threshold the elevation into classes, and use <code>np.gradient</code> for a simple slope-direction read.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">recl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">masked</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">masked</span> <span class="o">&lt;</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;reclassified:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">recl</span><span class="p">)</span>
+
+<span class="n">dem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+<span class="n">dz_dy</span><span class="p">,</span> <span class="n">dz_dx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">dem</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;gradient in x:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">dz_dx</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-Write-a-raster-in-memory">4. Write a raster <strong>in memory</strong><a class="anchor-link" href="#4.-Write-a-raster-in-memory">&#182;</a></h2><p><code>MemoryFile</code> lets you create and read a GeoTIFF without touching disk — great for tests and pipelines.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">rasterio.io</span> <span class="kn">import</span> <span class="n">MemoryFile</span>
+<span class="kn">from</span> <span class="nn">rasterio.transform</span> <span class="kn">import</span> <span class="n">from_origin</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">recl</span><span class="p">,</span> <span class="n">nan</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">MemoryFile</span><span class="p">()</span> <span class="k">as</span> <span class="n">mem</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">mem</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GTiff&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                  <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:3005&quot;</span><span class="p">,</span>
+                  <span class="n">transform</span><span class="o">=</span><span class="n">from_origin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="k">as</span> <span class="n">ds</span><span class="p">:</span>
+        <span class="n">ds</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">mem</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">ds</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;read back:&quot;</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;| CRS:&quot;</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">to_epsg</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Band math turns raw satellite bands into meaning — NDVI for greenness, NBR for burn severity. Masking NoData keeps cloud and edge pixels out of your averages. These array moves are the whole of raster analysis, whether the grid is elevation, canopy height, or a Landsat scene.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8C%9F-Challenge">&#127775; Challenge<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge">&#182;</a></h3><p>Compute NDVI for the arrays below, then report the <strong>fraction of pixels with NDVI &gt; 0.4</strong> (healthy vegetation).</p>
+<details open><summary>🌟 Show one solution</summary>
+<pre>red = np.array([[0.2, 0.4], [0.1, 0.35]])
+nir = np.array([[0.6, 0.5], [0.7, 0.4]])
+ndvi = (nir - red) / (nir + red)
+frac = (ndvi > 0.4).mean()
+print("NDVI:\n", np.round(ndvi, 2))
+print("fraction > 0.4:", round(float(frac), 2))</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 9 material. Next chapter: turning these grids and vectors into clear, publishable maps.</p>
+
+</div>
+</div>
 </div>
  
 

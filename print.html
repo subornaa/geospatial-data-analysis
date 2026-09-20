@@ -12,6 +12,7 @@
  summary{font-weight:600;color:var(--green)}
  blockquote{border-left:3px solid #cbd5e1;margin:8px 0;padding:2px 12px;color:#475569}
  .jp-InputArea-prompt,.jp-OutputArea-prompt,.prompt{display:none}
+ a.anchor-link{display:none}
 
  body{max-width:820px;margin:0 auto;padding:0 22px;}
  .cover{text-align:center;padding:30vh 0 38vh;page-break-after:always}
@@ -29,7 +30,7 @@ to machine learning on satellite imagery.</p>
 <p>Two environmental datasets recur throughout: the <b>Malcolm Knapp Research Forest</b>
 in British Columbia and the <b>mangrove coast of northwest Madagascar</b>, alongside
 Landsat imagery.</p>
-<h2>How to use this book</h2>
+<h2 id="how-to-use">How to use this book</h2>
 <ul>
   <li>Each chapter is a hands-on lesson: read the explanation, run the code, and try the
       <b>Quick check</b> and <b>Try it yourself</b> prompts (answers are collapsible).</li>
@@ -38,20 +39,20 @@ Landsat imagery.</p>
       which requires ArcGIS Pro.</li>
   <li>Each chapter ends with <b>practice exercises</b> to work through on your own.</li>
 </ul>
-<h2>About the author</h2>
+<h2 id="about-the-author">About the author</h2>
 <p><b>Dr. Suborna Ahmed</b> — Associate Professor of Teaching, Department of Forest
 Resources Management, Faculty of Forestry &amp; Environmental Stewardship, University of
 British Columbia. She teaches data analytics, computing, forest biometrics, and
 quantitative methods for forestry and natural-resources students, and develops open
 educational resources using real forestry datasets.</p>
-<h2>Companion book</h2>
+<h2 id="companion-book">Companion book</h2>
 <p>See the companion resource,
 <a href="https://subornaa.github.io/modern-computing-forestry/"><i>Modern Data Analytics
 for Forestry and Natural Resources</i></a> (efficient coding, data analysis, and
 AI-assisted debugging, in R &amp; Quarto).</p>
-<h2>License</h2>
+<h2 id="license">License</h2>
 <p>Content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>. Code is under the MIT licence.</p>
-<h2>How to cite</h2>
+<h2 id="how-to-cite">How to cite</h2>
 <p>Ahmed, S. (2026). <i>Geospatial Data Analysis with Python.</i> UBC Faculty of Forestry &amp; Environmental Stewardship. CC BY 4.0.</p>
 </section><section class="chapter"><h1>Chapter 1 — Python Foundations</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -1173,7 +1174,7 @@ and functions, applied to coordinates and files.</li>
 </div>
  
 
-<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<h2 class="pb" id="practice-exercises">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Practise variables, data structures, indexing, and a first Shapely geometry.</p>
@@ -1288,6 +1289,196 @@ and functions, applied to coordinates and files.</li>
 </div>
 </div>
 
+</div>
+ 
+
+<h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Optional extension — for when you've finished the Chapter 1 exercise and want more.
+Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
+<li>Rewrite loops as <strong>list/dict comprehensions</strong>.</li>
+<li>Format output neatly with <strong>f-string specifiers</strong>.</li>
+<li>Write a small <strong>function</strong> with a default argument and a docstring.</li>
+<li>Handle bad input safely with <strong>try / except</strong>.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-Comprehensions-%E2%80%94-a-loop-on-one-line">1. Comprehensions &#8212; a loop on one line<a class="anchor-link" href="#1.-Comprehensions-%E2%80%94-a-loop-on-one-line">&#182;</a></h2><p>A <strong>list comprehension</strong> builds a new list from an old one. It reads like English: <em>value for each item</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">heights_m</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">47</span><span class="p">]</span>
+<span class="n">heights_ft</span> <span class="o">=</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="mf">3.28084</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">heights_m</span><span class="p">]</span>   <span class="c1"># metres -&gt; feet</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">heights_ft</span><span class="p">)</span>
+
+<span class="n">tall</span> <span class="o">=</span> <span class="p">[</span><span class="n">h</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">heights_m</span> <span class="k">if</span> <span class="n">h</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">]</span>                   <span class="c1"># keep only the tall trees</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;tall (&gt;40 m):&quot;</span><span class="p">,</span> <span class="n">tall</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A <strong>dict comprehension</strong> does the same for dictionaries — here, counting species codes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">species</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Df&quot;</span><span class="p">,</span> <span class="s2">&quot;Cw&quot;</span><span class="p">,</span> <span class="s2">&quot;Hw&quot;</span><span class="p">,</span> <span class="s2">&quot;Df&quot;</span><span class="p">,</span> <span class="s2">&quot;Cw&quot;</span><span class="p">]</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span><span class="p">:</span> <span class="n">species</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">species</span><span class="p">)}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+<span class="n">codes</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Df&quot;</span><span class="p">:</span> <span class="s2">&quot;Douglas-fir&quot;</span><span class="p">,</span> <span class="s2">&quot;Cw&quot;</span><span class="p">:</span> <span class="s2">&quot;western redcedar&quot;</span><span class="p">,</span> <span class="s2">&quot;Hw&quot;</span><span class="p">:</span> <span class="s2">&quot;western hemlock&quot;</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">codes</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">species</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-comprehensions">&#9989; Quick check &#8212; comprehensions<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-comprehensions">&#182;</a></h3><p>What does <code>[x*x for x in [1, 2, 3, 4] if x % 2 == 0]</code> produce?</p>
+<details open><summary>✅ Show answer</summary>
+<code>[4, 16]</code> — it keeps only the even numbers (2 and 4), then squares each.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-f-string-formatting-%E2%80%94-a-tidy-report">2. f-string formatting &#8212; a tidy report<a class="anchor-link" href="#2.-f-string-formatting-%E2%80%94-a-tidy-report">&#182;</a></h2><p>Inside an f-string, <code>:</code> starts a <em>format spec</em>: <code>&lt;</code> left-aligns, <code>&gt;</code> right-aligns, <code>.1f</code> fixes one decimal.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">plots</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="mf">47.5</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;A2&quot;</span><span class="p">,</span> <span class="mf">61.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;B1&quot;</span><span class="p">,</span> <span class="mf">28.0</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">dbh</span> <span class="ow">in</span> <span class="n">plots</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">&lt;4</span><span class="si">}</span><span class="s2"> DBH </span><span class="si">{</span><span class="n">dbh</span><span class="si">:</span><span class="s2">&gt;6.1f</span><span class="si">}</span><span class="s2"> cm&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Functions-with-a-default-and-a-docstring">3. Functions with a default and a docstring<a class="anchor-link" href="#3.-Functions-with-a-default-and-a-docstring">&#182;</a></h2><p>A <strong>default argument</strong> lets a caller skip it. The <code>"""docstring"""</code> documents what the function does.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">dbh_class</span><span class="p">(</span><span class="n">dbh_cm</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return &#39;large&#39; if dbh_cm is above threshold, else &#39;small&#39;.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;large&quot;</span> <span class="k">if</span> <span class="n">dbh_cm</span> <span class="o">&gt;</span> <span class="n">threshold</span> <span class="k">else</span> <span class="s2">&quot;small&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">dbh_class</span><span class="p">(</span><span class="mi">61</span><span class="p">),</span> <span class="n">dbh_class</span><span class="p">(</span><span class="mi">28</span><span class="p">),</span> <span class="n">dbh_class</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">40</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dbh_class</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-Safe-input-with-try-/-except">4. Safe input with try / except<a class="anchor-link" href="#4.-Safe-input-with-try-/-except">&#182;</a></h2><p>Real field data has typos. <code>try/except</code> lets your code <em>keep going</em> instead of crashing.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">safe_lat</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a valid latitude float, or None if the value is bad.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">v</span> <span class="k">if</span> <span class="o">-</span><span class="mi">90</span> <span class="o">&lt;=</span> <span class="n">v</span> <span class="o">&lt;=</span> <span class="mi">90</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">safe_lat</span><span class="p">(</span><span class="s2">&quot;49.27&quot;</span><span class="p">),</span> <span class="n">safe_lat</span><span class="p">(</span><span class="s2">&quot;oops&quot;</span><span class="p">),</span> <span class="n">safe_lat</span><span class="p">(</span><span class="mi">120</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Comprehensions and small functions are how you turn a one-off script into a <strong>reusable tool</strong> — the same <code>dbh_class</code> runs on 5 trees or 50,000, and <code>safe_lat</code> quietly cleans a messy inventory file instead of stopping at the first typo.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8C%9F-Challenge">&#127775; Challenge<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge">&#182;</a></h3><p>Write a function <code>mean_dbh(records, species)</code> that takes a list of <code>(species, dbh)</code> tuples and returns the average DBH for one species (or <code>None</code> if that species is absent).</p>
+<details open><summary>🌟 Show one solution</summary>
+<pre>def mean_dbh(records, species):
+    vals = [d for s, d in records if s == species]
+    return round(sum(vals) / len(vals), 1) if vals else None
+
+data = [("Df", 47.5), ("Cw", 61.0), ("Df", 28.0)]
+print(mean_dbh(data, "Df"))   # 37.8
+print(mean_dbh(data, "Hw"))   # None</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 1 material. Next chapter we turn these functions into fully reusable, testable code.</p>
+
+</div>
+</div>
 </div>
  
 
@@ -1860,7 +2051,7 @@ Your Chapter 2 exercise includes one "fix this broken function" task.</p>
 </div>
  
 
-<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<h2 class="pb" id="practice-exercises">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Practise conditionals, loops, and writing reusable functions.</p>
@@ -2000,6 +2191,173 @@ Your Chapter 2 exercise includes one "fix this broken function" task.</p>
 </div>
 </div>
 
+</div>
+ 
+
+<h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Optional extension — for when you've finished the Chapter 2 exercise and want more.
+Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
+<li>Write functions that <strong>return</strong> values (and several at once).</li>
+<li>Combine lists with <strong>zip</strong> and <strong>enumerate</strong>.</li>
+<li>Guard against empty input with an early <strong>return</strong>.</li>
+<li>Assemble a few functions into a reusable <strong>toolkit</strong>.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-Functions-that-return-values">1. Functions that return values<a class="anchor-link" href="#1.-Functions-that-return-values">&#182;</a></h2><p>A good function <em>returns</em> a result you can reuse, rather than only printing it.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">basal_area</span><span class="p">(</span><span class="n">dbh_cm</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Basal area (m^2) of a tree from its DBH in cm.&quot;&quot;&quot;</span>
+    <span class="n">radius_m</span> <span class="o">=</span> <span class="p">(</span><span class="n">dbh_cm</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="mf">3.14159</span> <span class="o">*</span> <span class="n">radius_m</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="n">dbhs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">51</span><span class="p">]</span>
+<span class="n">areas</span> <span class="o">=</span> <span class="p">[</span><span class="n">basal_area</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dbhs</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">areas</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;stand basal area:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">areas</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span> <span class="s2">&quot;m^2&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-zip-and-enumerate">2. zip and enumerate<a class="anchor-link" href="#2.-zip-and-enumerate">&#182;</a></h2><p><code>zip</code> walks two lists together; <code>enumerate</code> gives you a counter for free.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">species</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Df&quot;</span><span class="p">,</span> <span class="s2">&quot;Cw&quot;</span><span class="p">,</span> <span class="s2">&quot;Hw&quot;</span><span class="p">]</span>
+<span class="n">dbhs</span>    <span class="o">=</span> <span class="p">[</span><span class="mf">47.5</span><span class="p">,</span> <span class="mf">61.0</span><span class="p">,</span> <span class="mf">28.0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">sp</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">dbhs</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">sp</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2"> cm&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-zip">&#9989; Quick check &#8212; zip<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-zip">&#182;</a></h3><p>How many items does <code>list(zip([1, 2, 3], ['a', 'b']))</code> contain?</p>
+<details open><summary>✅ Show answer</summary>
+<b>2</b> — <code>zip</code> stops at the shorter list, giving <code>[(1,'a'), (2,'b')]</code>.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Multiple-return-values-+-a-guard-clause">3. Multiple return values + a guard clause<a class="anchor-link" href="#3.-Multiple-return-values-+-a-guard-clause">&#182;</a></h2><p>A <strong>guard clause</strong> handles the empty case first, so the rest of the function can assume good input.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">summarize</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return (min, max, mean) — or (None, None, None) if empty.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">values</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">values</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">values</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">,</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">summarize</span><span class="p">(</span><span class="n">dbhs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="s2">&quot;| max&quot;</span><span class="p">,</span> <span class="n">hi</span><span class="p">,</span> <span class="s2">&quot;| mean&quot;</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summarize</span><span class="p">([]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-A-tiny-reusable-toolkit">4. A tiny reusable toolkit<a class="anchor-link" href="#4.-A-tiny-reusable-toolkit">&#182;</a></h2><p>Group related functions together — this is the seed of your own analysis library.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">to_feet</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>       <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">m</span> <span class="o">*</span> <span class="mf">3.28084</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">is_big</span><span class="p">(</span><span class="n">dbh</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span> <span class="k">return</span> <span class="n">dbh</span> <span class="o">&gt;</span> <span class="n">k</span>
+<span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="n">dbh</span><span class="p">):</span>     <span class="k">return</span> <span class="s2">&quot;large&quot;</span> <span class="k">if</span> <span class="n">is_big</span><span class="p">(</span><span class="n">dbh</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;small&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">to_feet</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span> <span class="n">is_big</span><span class="p">(</span><span class="mi">61</span><span class="p">),</span> <span class="n">classify</span><span class="p">(</span><span class="mi">28</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">classify</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dbhs</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Every forestry model — volume, biomass, carbon — is just a stack of small functions like these. Writing them once, with clear names and returns, means your Chapter-11 machine-learning features and your Lab analyses can all call the <em>same tested code</em>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8C%9F-Challenge">&#127775; Challenge<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge">&#182;</a></h3><p>Write <code>big_trees(records, k=50)</code> that returns the list of species whose DBH exceeds <code>k</code>, from a list of <code>(species, dbh)</code> tuples.</p>
+<details open><summary>🌟 Show one solution</summary>
+<pre>def big_trees(records, k=50):
+    return [s for s, d in records if d > k]
+
+data = [("Df", 47.5), ("Cw", 61.0), ("Hw", 28.0)]
+print(big_trees(data))        # ['Cw']
+print(big_trees(data, k=25))  # ['Df', 'Cw', 'Hw']</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 2 material. You now have the tools to write clean, reusable analysis code all term.</p>
+
+</div>
+</div>
 </div>
  
 
@@ -2525,7 +2883,7 @@ answer. Your exercise includes one merge to debug.</p>
 </div>
  
 
-<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<h2 class="pb" id="practice-exercises">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Practise loading, filtering, grouping, joining, and exporting a table.</p>
@@ -2667,6 +3025,188 @@ answer. Your exercise includes one merge to debug.</p>
 </div>
 </div>
 
+</div>
+ 
+
+<h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Optional extension — for when you've finished the Chapter 3 exercise and want more.
+Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
+<li>Summarise groups with <strong>groupby().agg()</strong> and named aggregations.</li>
+<li>Reshape data with <strong>pivot_table</strong>.</li>
+<li>Combine tables with <strong>merge</strong> (left vs inner).</li>
+<li>Handle missing values with <strong>fillna / dropna</strong> and method chaining.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-A-small-fires-table">1. A small fires table<a class="anchor-link" href="#1.-A-small-fires-table">&#182;</a></h2><p>We'll reuse the term's fire records (MKRF + Madagascar) as a DataFrame.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span><span class="o">,</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">fires</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;site&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="s2">&quot;MKRF&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF&quot;</span><span class="p">,</span> <span class="s2">&quot;Ambaro&quot;</span><span class="p">,</span> <span class="s2">&quot;Ambaro&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;year&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">2021</span><span class="p">],</span>
+    <span class="s2">&quot;area_ha&quot;</span><span class="p">:[</span><span class="mf">12.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">,</span> <span class="mf">22.0</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">],</span>
+    <span class="s2">&quot;cause&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="s2">&quot;lightning&quot;</span><span class="p">,</span> <span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;lightning&quot;</span><span class="p">,</span> <span class="s2">&quot;lightning&quot;</span><span class="p">],</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fires</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-groupby-with-named-aggregations">2. groupby with named aggregations<a class="anchor-link" href="#2.-groupby-with-named-aggregations">&#182;</a></h2><p>Name each output column and the function that fills it — clear and self-documenting.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">fires</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;site&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">n</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;area_ha&quot;</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">),</span>
+    <span class="n">total_ha</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;area_ha&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+    <span class="n">mean_ha</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;area_ha&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-pivot_table-%E2%80%94-sites-%C3%97-causes">3. pivot_table &#8212; sites &#215; causes<a class="anchor-link" href="#3.-pivot_table-%E2%80%94-sites-%C3%97-causes">&#182;</a></h2><p><code>pivot_table</code> cross-tabulates: one variable down the rows, another across the columns.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">pt</span> <span class="o">=</span> <span class="n">fires</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;site&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;cause&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;area_ha&quot;</span><span class="p">,</span>
+                       <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-groupby">&#9989; Quick check &#8212; groupby<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-groupby">&#182;</a></h3><p>In <code>df.groupby("site").agg(n=("area_ha", "size"))</code>, what does <code>n</code> count?</p>
+<details open><summary>✅ Show answer</summary>
+The number of <b>rows in each site group</b> (fires per site) — <code>size</code> counts rows, including any with missing area.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-merge-%E2%80%94-attach-a-lookup-table">4. merge &#8212; attach a lookup table<a class="anchor-link" href="#4.-merge-%E2%80%94-attach-a-lookup-table">&#182;</a></h2><p><code>how="left"</code> keeps every fire row and adds the manager where it matches.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">owners</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;site&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;MKRF&quot;</span><span class="p">,</span> <span class="s2">&quot;Ambaro&quot;</span><span class="p">],</span> <span class="s2">&quot;manager&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;UBC&quot;</span><span class="p">,</span> <span class="s2">&quot;Community&quot;</span><span class="p">]})</span>
+<span class="n">merged</span> <span class="o">=</span> <span class="n">fires</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">owners</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;site&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">merged</span><span class="p">[[</span><span class="s2">&quot;site&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;area_ha&quot;</span><span class="p">,</span> <span class="s2">&quot;manager&quot;</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.-Missing-data-+-method-chaining">5. Missing data + method chaining<a class="anchor-link" href="#5.-Missing-data-+-method-chaining">&#182;</a></h2><p>Chain operations to read top-to-bottom. <code>.assign</code> adds a column without mutating the original.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">fires</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;area_ha&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;missing area_ha:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;area_ha&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="n">filled</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">area_ha</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;area_ha&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;area_ha&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;after fill:&quot;</span><span class="p">,</span> <span class="n">filled</span><span class="p">[</span><span class="s2">&quot;area_ha&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Field campaigns produce messy tables: gaps, duplicate plots, mixed units. <code>groupby</code>, <code>pivot_table</code> and <code>merge</code> are the daily tools that turn raw plot records into the summaries a forest manager actually reads — area burned per district, mean DBH per stand, volume per owner.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8C%9F-Challenge">&#127775; Challenge<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge">&#182;</a></h3><p>From <code>fires</code>, compute the <strong>mean area per cause per year</strong> as a table with years down the rows and causes across the columns (fill blanks with 0).</p>
+<details open><summary>🌟 Show one solution</summary>
+<pre>out = fires.pivot_table(index="year", columns="cause",
+                        values="area_ha", aggfunc="mean", fill_value=0)
+print(out)</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 3 material. These reshaping moves carry straight into GeoPandas, where rows also carry geometry.</p>
+
+</div>
+</div>
 </div>
  
 
@@ -3202,7 +3742,7 @@ filter · measure · attribute + spatial joins · export GeoPackage.</p>
 </div>
  
 
-<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<h2 class="pb" id="practice-exercises">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Practise building, inspecting, filtering, and exporting vector data.</p>
@@ -3345,6 +3885,160 @@ filter · measure · attribute + spatial joins · export GeoPackage.</p>
 </div>
 </div>
 
+</div>
+ 
+
+<h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Optional extension — for when you've finished the Chapter 4 exercise and want more.
+Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
+<li>Find which points fall in which polygon with <strong>sjoin</strong>.</li>
+<li>Build <strong>buffers</strong> and measure their area.</li>
+<li>Merge features by attribute with <strong>dissolve</strong>.</li>
+<li>Measure <strong>distances</strong> between geometries.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-Plots-and-a-reserve">1. Plots and a reserve<a class="anchor-link" href="#1.-Plots-and-a-reserve">&#182;</a></h2><p>We work in a <strong>projected CRS (BC Albers, EPSG:3005)</strong> so distances and areas are in metres.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="n">plots</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;plot&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;p1&quot;</span><span class="p">,</span> <span class="s2">&quot;p2&quot;</span><span class="p">,</span> <span class="s2">&quot;p3&quot;</span><span class="p">,</span> <span class="s2">&quot;p4&quot;</span><span class="p">],</span> <span class="s2">&quot;species&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Df&quot;</span><span class="p">,</span> <span class="s2">&quot;Cw&quot;</span><span class="p">,</span> <span class="s2">&quot;Hw&quot;</span><span class="p">,</span> <span class="s2">&quot;Df&quot;</span><span class="p">]},</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:3005&quot;</span><span class="p">)</span>
+<span class="n">reserve</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;reserve&quot;</span><span class="p">]},</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">Polygon</span><span class="p">([(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)])],</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:3005&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">plots</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Spatial-join-%E2%80%94-which-plots-are-in-the-reserve?">2. Spatial join &#8212; which plots are in the reserve?<a class="anchor-link" href="#2.-Spatial-join-%E2%80%94-which-plots-are-in-the-reserve?">&#182;</a></h2><p><code>sjoin</code> with <code>predicate="within"</code> keeps points that fall inside a polygon.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">inside</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">plots</span><span class="p">,</span> <span class="n">reserve</span><span class="p">,</span> <span class="n">predicate</span><span class="o">=</span><span class="s2">&quot;within&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inside</span><span class="p">[[</span><span class="s2">&quot;plot&quot;</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;plots inside:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">inside</span><span class="p">),</span> <span class="s2">&quot;of&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plots</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-predicates">&#9989; Quick check &#8212; predicates<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-predicates">&#182;</a></h3><p>Which predicate keeps points that fall <em>inside</em> a polygon: <code>within</code> or <code>contains</code>?</p>
+<details open><summary>✅ Show answer</summary>
+<code>within</code> — a point is <i>within</i> a polygon. <code>contains</code> is the reverse (the polygon contains the point), used when the polygon is the left table.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Buffers-and-dissolve">3. Buffers and dissolve<a class="anchor-link" href="#3.-Buffers-and-dissolve">&#182;</a></h2><p><code>buffer(d)</code> grows each geometry by <code>d</code> metres; <code>dissolve(by=...)</code> merges rows that share an attribute.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">buf</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">buf</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                 <span class="c1"># 3-metre buffers</span>
+<span class="n">by_species</span> <span class="o">=</span> <span class="n">buf</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">by_species</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>          <span class="c1"># merged area per species</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-Distance-between-geometries">4. Distance between geometries<a class="anchor-link" href="#4.-Distance-between-geometries">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">plots</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">plots</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;distance p1 -&gt; p2:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;m&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Spatial joins answer the questions foresters ask constantly: <em>which plots are inside the protected area? which streams cross this cutblock?</em> Buffers create riparian setbacks; dissolve merges stands into management units. This is the core of vector GIS — now in code you can re-run on next year's data.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8C%9F-Challenge">&#127775; Challenge<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge">&#182;</a></h3><p>Buffer the plots by <strong>5 m</strong>, then report the <strong>total</strong> buffered area (dissolve everything into one shape first so overlaps aren't double-counted).</p>
+<details open><summary>🌟 Show one solution</summary>
+<pre>b = plots.copy()
+b["geometry"] = plots.buffer(5)
+one = b.dissolve()                 # merge all into a single geometry
+print("total buffered area:", round(one.geometry.area.iloc[0], 1), "m^2")</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 4 material. Next chapter: making sure those areas and distances are trustworthy (CRS &amp; data quality).</p>
+
+</div>
+</div>
 </div>
  
 
@@ -3845,7 +4539,7 @@ everything Lab 1 assesses.</li>
 </div>
  
 
-<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<h2 class="pb" id="practice-exercises">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Practise reprojection, correct measurement, and quality checks.</p>
@@ -3985,6 +4679,139 @@ everything Lab 1 assesses.</li>
 </div>
 </div>
 
+</div>
+ 
+
+<h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Optional extension — for when you've finished the Chapter 5 exercise and want more.
+Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
+<li>See why <strong>area must be measured in a projected CRS</strong>.</li>
+<li>Detect and repair <strong>invalid geometries</strong>.</li>
+<li>Write and re-read a <strong>GeoPackage</strong> safely.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-Area-needs-a-projected-CRS">1. Area needs a projected CRS<a class="anchor-link" href="#1.-Area-needs-a-projected-CRS">&#182;</a></h2><p>Measuring area in degrees is meaningless. Reproject to metres first.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<span class="n">stand</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]},</span> <span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">Polygon</span><span class="p">(</span>
+    <span class="p">[(</span><span class="o">-</span><span class="mf">122.6</span><span class="p">,</span> <span class="mf">49.2</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">122.5</span><span class="p">,</span> <span class="mf">49.2</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">122.5</span><span class="p">,</span> <span class="mf">49.3</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">122.6</span><span class="p">,</span> <span class="mf">49.3</span><span class="p">)])],</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;area in degrees^2 (meaningless):&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">stand</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">stand_m</span> <span class="o">=</span> <span class="n">stand</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="mi">3005</span><span class="p">)</span>               <span class="c1"># BC Albers, metres</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;area in ha (correct):&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">stand_m</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">10_000</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-CRS">&#9989; Quick check &#8212; CRS<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-CRS">&#182;</a></h3><p>You need the area of a harvest block in hectares. Do you compute it in EPSG:4326 (degrees) or EPSG:3005 (metres)?</p>
+<details open><summary>✅ Show answer</summary>
+<b>EPSG:3005</b> (a projected, metre-based CRS). Area in degrees is not a real area — always <code>.to_crs()</code> to a projected CRS first.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Invalid-geometries">2. Invalid geometries<a class="anchor-link" href="#2.-Invalid-geometries">&#182;</a></h2><p>A self-intersecting ("bow-tie") polygon breaks many operations. <code>buffer(0)</code> is a classic repair.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<span class="n">bowtie</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>   <span class="c1"># self-intersecting</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;valid?&quot;</span><span class="p">,</span> <span class="n">bowtie</span><span class="o">.</span><span class="n">is_valid</span><span class="p">)</span>
+<span class="n">fixed</span> <span class="o">=</span> <span class="n">bowtie</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;fixed valid?&quot;</span><span class="p">,</span> <span class="n">fixed</span><span class="o">.</span><span class="n">is_valid</span><span class="p">,</span> <span class="s2">&quot;| area:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">fixed</span><span class="o">.</span><span class="n">area</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Round-trip-to-a-GeoPackage">3. Round-trip to a GeoPackage<a class="anchor-link" href="#3.-Round-trip-to-a-GeoPackage">&#182;</a></h2><p>Write to disk and read back to confirm the CRS and rows survive. We use a temporary folder so nothing clutters your course folder.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">tempfile</span><span class="o">,</span> <span class="nn">os</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="s2">&quot;stand.gpkg&quot;</span><span class="p">)</span>
+<span class="n">stand_m</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GPKG&quot;</span><span class="p">)</span>
+<span class="n">back</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;re-read CRS:&quot;</span><span class="p">,</span> <span class="n">back</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">to_epsg</span><span class="p">(),</span> <span class="s2">&quot;| rows:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">back</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> A wrong CRS is the single most common geospatial bug — and it silently gives areas that are off by orders of magnitude. Checking validity and re-reading what you wrote is how you make a mangrove-loss or harvest-area number you can defend.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8C%9F-Challenge">&#127775; Challenge<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge">&#182;</a></h3><p>Reproject <code>stand</code> to <strong>UTM zone 10N (EPSG:32610)</strong> and print its perimeter (boundary length) in metres.</p>
+<details open><summary>🌟 Show one solution</summary>
+<pre>u = stand.to_crs(32610)
+print("perimeter:", round(u.geometry.length.iloc[0], 1), "m")</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 5 material. You can now trust your measurements — next is consolidating everything into a workflow.</p>
+
+</div>
+</div>
 </div>
  
 
@@ -4145,6 +4972,137 @@ and a <em>tool</em>.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote><p>🌲 Reuse this on any new plot table — the same five steps, one call.</p>
 </blockquote>
+
+</div>
+</div>
+</div>
+ 
+
+<h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Optional extension — for when you've finished the Chapter 6 exercise and want more.
+Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
+<li>Chain <strong>tabular → spatial → summary</strong> in one clean pass.</li>
+<li>Turn a CSV of coordinates into points, join them to regions, and summarise.</li>
+<li>Practise the shape of a real analysis you'll repeat all term.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-Start-with-a-table-of-plots">1. Start with a table of plots<a class="anchor-link" href="#1.-Start-with-a-table-of-plots">&#182;</a></h2><p>Imagine this came from a field CSV (<code>pd.read_csv</code>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span><span class="o">,</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">box</span>
+<span class="n">plots</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;plot&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;lon&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="o">-</span><span class="mf">122.57</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.55</span><span class="p">,</span> <span class="mf">48.55</span><span class="p">,</span> <span class="mf">48.58</span><span class="p">],</span>
+    <span class="s2">&quot;lat&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">49.27</span><span class="p">,</span> <span class="mf">49.29</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.35</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.33</span><span class="p">],</span>
+    <span class="s2">&quot;dbh_cm&quot;</span><span class="p">:[</span><span class="mi">47</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">plots</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Make-points,-then-region-polygons">2. Make points, then region polygons<a class="anchor-link" href="#2.-Make-points,-then-region-polygons">&#182;</a></h2><p><code>points_from_xy</code> builds geometry straight from lon/lat columns.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">plots</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">plots</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">plots</span><span class="o">.</span><span class="n">lat</span><span class="p">),</span>
+                       <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+<span class="n">regions</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">({</span><span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;MKRF&quot;</span><span class="p">,</span> <span class="s2">&quot;Ambaro&quot;</span><span class="p">]},</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">box</span><span class="p">(</span><span class="o">-</span><span class="mi">123</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="o">-</span><span class="mi">122</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">box</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="o">-</span><span class="mi">14</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="o">-</span><span class="mi">13</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">geom_type</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Spatial-join,-then-summarise-by-region">3. Spatial join, then summarise by region<a class="anchor-link" href="#3.-Spatial-join,-then-summarise-by-region">&#182;</a></h2><p>This is the payoff — a tabular summary that came from <em>where</em> the points are.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">joined</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">regions</span><span class="p">,</span> <span class="n">predicate</span><span class="o">=</span><span class="s2">&quot;within&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="n">joined</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;region&quot;</span><span class="p">)[</span><span class="s2">&quot;dbh_cm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-workflow">&#9989; Quick check &#8212; workflow<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-workflow">&#182;</a></h3><p>Why must both <code>gdf</code> and <code>regions</code> share the same CRS before <code>sjoin</code>?</p>
+<details open><summary>✅ Show answer</summary>
+A spatial join compares coordinates directly — if the two layers use different CRSs, the same real-world spot has different numbers and the join is wrong. Match with <code>.to_crs()</code> first.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> This tabular → spatial → summary pattern <em>is</em> Lab 1, and most real projects: read messy field data, put it on the map, and report a number per management unit. Master the shape here and every later analysis is a variation on it.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8C%9F-Challenge">&#127775; Challenge<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge">&#182;</a></h3><p>Add a column <code>dbh_class</code> (<code>"large"</code> if DBH &gt; 50 else <code>"small"</code>), then count large vs small plots <strong>within each region</strong>.</p>
+<details open><summary>🌟 Show one solution</summary>
+<pre>joined2 = joined.assign(dbh_class=joined["dbh_cm"].apply(lambda d: "large" if d > 50 else "small"))
+print(joined2.groupby(["region", "dbh_class"]).size())</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 6 material. You've built a whole analysis end to end — exactly the muscle Lab 1 tests.</p>
 
 </div>
 </div>
@@ -4599,7 +5557,7 @@ listing datasets/fields · <code>Describe</code> · tool messages &amp; errors �
 </div>
  
 
-<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<h2 class="pb" id="practice-exercises">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Practise scripting geoprocessing tools with ArcPy.</p>
@@ -4738,6 +5696,134 @@ listing datasets/fields · <code>Describe</code> · tool messages &amp; errors �
 </div>
 </div>
 
+</div>
+ 
+
+<h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Optional extension — for when you've finished the Chapter 7 exercise and want more.
+Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
+<li>Control tool behaviour with <strong>arcpy.env</strong> settings.</li>
+<li><strong>Chain</strong> geoprocessing tools (buffer then clip).</li>
+<li>Inspect a dataset with <strong>arcpy.Describe</strong>.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>⚠️ <strong>Run this in ArcGIS Pro → Notebooks</strong> (Chapters 7–8 use <code>arcpy</code>, which only runs with an ArcGIS Pro licence). The code uses the bundled <code>data/MKRF.gdb</code> layers <code>roads</code>, <code>streams</code>, <code>hydroline</code>, <code>trails</code>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-Environment-settings">1. Environment settings<a class="anchor-link" href="#1.-Environment-settings">&#182;</a></h2><p><code>arcpy.env</code> values apply to every tool that follows — set them once at the top.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">arcpy</span>
+<span class="n">arcpy</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">workspace</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;data/MKRF.gdb&quot;</span>
+<span class="n">arcpy</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">overwriteOutput</span> <span class="o">=</span> <span class="kc">True</span>          <span class="c1"># let re-runs replace outputs</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;workspace:&quot;</span><span class="p">,</span> <span class="n">arcpy</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">workspace</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;feature classes:&quot;</span><span class="p">,</span> <span class="n">arcpy</span><span class="o">.</span><span class="n">ListFeatureClasses</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Chain-tools-%E2%80%94-buffer,-then-clip">2. Chain tools &#8212; buffer, then clip<a class="anchor-link" href="#2.-Chain-tools-%E2%80%94-buffer,-then-clip">&#182;</a></h2><p>The output of one tool becomes the input of the next. Here: buffer the roads, then clip the streams to that buffer.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">road_buf</span> <span class="o">=</span> <span class="s2">&quot;road_buffer&quot;</span>
+<span class="n">arcpy</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="s2">&quot;roads&quot;</span><span class="p">,</span> <span class="n">road_buf</span><span class="p">,</span> <span class="s2">&quot;50 Meters&quot;</span><span class="p">)</span>
+<span class="n">streams_near_roads</span> <span class="o">=</span> <span class="s2">&quot;streams_near_roads&quot;</span>
+<span class="n">arcpy</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">Clip</span><span class="p">(</span><span class="s2">&quot;streams&quot;</span><span class="p">,</span> <span class="n">road_buf</span><span class="p">,</span> <span class="n">streams_near_roads</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;clipped streams count:&quot;</span><span class="p">,</span>
+      <span class="nb">int</span><span class="p">(</span><span class="n">arcpy</span><span class="o">.</span><span class="n">management</span><span class="o">.</span><span class="n">GetCount</span><span class="p">(</span><span class="n">streams_near_roads</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Describe-a-dataset">3. Describe a dataset<a class="anchor-link" href="#3.-Describe-a-dataset">&#182;</a></h2><p><code>Describe</code> reports a layer's type, geometry, and spatial reference — handy before you process it.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">arcpy</span><span class="o">.</span><span class="n">Describe</span><span class="p">(</span><span class="s2">&quot;roads&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;type:&quot;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">dataType</span><span class="p">,</span> <span class="s2">&quot;| shape:&quot;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">shapeType</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CRS:&quot;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">spatialReference</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Setting <code>arcpy.env</code> once (extent, snap raster, overwrite) keeps a multi-step forest workflow consistent and repeatable. Chaining buffer → clip is exactly how you'd extract <em>streams within 50 m of a road</em> for a riparian-risk assessment.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8C%9F-Challenge">&#127775; Challenge<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge">&#182;</a></h3><p>Buffer <code>streams</code> by 30 m, then use <strong>Clip</strong> to keep only the <code>roads</code> that fall within that stream buffer. (Same pattern, inputs swapped.)</p>
+<details open><summary>🌟 Show one solution</summary>
+<pre>arcpy.analysis.Buffer("streams", "stream_buf", "30 Meters")
+arcpy.analysis.Clip("roads", "stream_buf", "roads_near_streams")
+print(int(arcpy.management.GetCount("roads_near_streams")[0]))</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 7 material. Next: automating these tools over many datasets with cursors.</p>
+
+</div>
+</div>
 </div>
  
 
@@ -5188,7 +6274,7 @@ error handling &amp; logging.</p>
 </div>
  
 
-<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<h2 class="pb" id="practice-exercises">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Practise cursors, batch processing, and reusable geoprocessing functions.</p>
@@ -5328,6 +6414,156 @@ error handling &amp; logging.</p>
 </div>
 </div>
 
+</div>
+ 
+
+<h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Optional extension — for when you've finished the Chapter 8 exercise and want more.
+Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
+<li>Read attributes with a <strong>SearchCursor</strong>.</li>
+<li>Edit attributes with an <strong>UpdateCursor</strong>.</li>
+<li><strong>Batch</strong>-process every feature class with a function.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>⚠️ <strong>Run this in ArcGIS Pro → Notebooks.</strong> Uses the bundled <code>data/MKRF.gdb</code> (<code>roads</code>, <code>streams</code>, <code>hydroline</code>, <code>trails</code>).</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-SearchCursor-%E2%80%94-total-road-length">1. SearchCursor &#8212; total road length<a class="anchor-link" href="#1.-SearchCursor-%E2%80%94-total-road-length">&#182;</a></h2><p>A cursor streams through rows one at a time. <code>SHAPE@LENGTH</code> is the geometry's length.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">arcpy</span>
+<span class="n">arcpy</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">workspace</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;data/MKRF.gdb&quot;</span>
+<span class="n">arcpy</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">overwriteOutput</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">with</span> <span class="n">arcpy</span><span class="o">.</span><span class="n">da</span><span class="o">.</span><span class="n">SearchCursor</span><span class="p">(</span><span class="s2">&quot;roads&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;SHAPE@LENGTH&quot;</span><span class="p">])</span> <span class="k">as</span> <span class="n">cur</span><span class="p">:</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">length</span><span class="p">,)</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">length</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;total road length:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;m&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-UpdateCursor-%E2%80%94-add-and-fill-a-field">2. UpdateCursor &#8212; add and fill a field<a class="anchor-link" href="#2.-UpdateCursor-%E2%80%94-add-and-fill-a-field">&#182;</a></h2><p>Add a <code>length_km</code> field, then write a value into every row.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">if</span> <span class="s2">&quot;length_km&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">arcpy</span><span class="o">.</span><span class="n">ListFields</span><span class="p">(</span><span class="s2">&quot;roads&quot;</span><span class="p">)]:</span>
+    <span class="n">arcpy</span><span class="o">.</span><span class="n">management</span><span class="o">.</span><span class="n">AddField</span><span class="p">(</span><span class="s2">&quot;roads&quot;</span><span class="p">,</span> <span class="s2">&quot;length_km&quot;</span><span class="p">,</span> <span class="s2">&quot;DOUBLE&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">arcpy</span><span class="o">.</span><span class="n">da</span><span class="o">.</span><span class="n">UpdateCursor</span><span class="p">(</span><span class="s2">&quot;roads&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;SHAPE@LENGTH&quot;</span><span class="p">,</span> <span class="s2">&quot;length_km&quot;</span><span class="p">])</span> <span class="k">as</span> <span class="n">cur</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">:</span>
+        <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mf">1000.0</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">updateRow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;length_km populated&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-cursors">&#9989; Quick check &#8212; cursors<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-cursors">&#182;</a></h3><p>Which cursor would you use to <em>change</em> attribute values: <code>SearchCursor</code> or <code>UpdateCursor</code>?</p>
+<details open><summary>✅ Show answer</summary>
+<code>UpdateCursor</code> — it can edit and write rows back with <code>updateRow</code>. <code>SearchCursor</code> is read-only.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Batch-over-every-feature-class">3. Batch over every feature class<a class="anchor-link" href="#3.-Batch-over-every-feature-class">&#182;</a></h2><p>Wrap a tool in a loop to process a whole geodatabase at once.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">buffer_all</span><span class="p">(</span><span class="n">distance</span><span class="o">=</span><span class="s2">&quot;25 Meters&quot;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">fc</span> <span class="ow">in</span> <span class="n">arcpy</span><span class="o">.</span><span class="n">ListFeatureClasses</span><span class="p">():</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">fc</span> <span class="o">+</span> <span class="s2">&quot;_buf&quot;</span>
+        <span class="n">arcpy</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">distance</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;buffered&quot;</span><span class="p">,</span> <span class="n">fc</span><span class="p">,</span> <span class="s2">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+
+<span class="n">buffer_all</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Cursors + batch loops are what make GIS <em>scale</em>: computing length for every road, or buffering every layer in a forest geodatabase, with no clicking. This is the automation payoff — one script re-runs the whole analysis when next year's data lands.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8C%9F-Challenge">&#127775; Challenge<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge">&#182;</a></h3><p>Use a <code>SearchCursor</code> to find the <strong>single longest</strong> <code>streams</code> feature (its <code>SHAPE@LENGTH</code>).</p>
+<details open><summary>🌟 Show one solution</summary>
+<pre>longest = 0.0
+with arcpy.da.SearchCursor("streams", ["SHAPE@LENGTH"]) as cur:
+    for (length,) in cur:
+        longest = max(longest, length)
+print("longest stream:", round(longest, 1), "m")</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 8 material. You can now automate ArcGIS tasks — back to open-source rasters next.</p>
+
+</div>
+</div>
 </div>
  
 
@@ -5852,7 +7088,7 @@ write GeoTIFF with Rasterio · display with Matplotlib.</p>
 </div>
  
 
-<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<h2 class="pb" id="practice-exercises">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Practise raster-as-array operations: NoData, reclassify, indices.</p>
@@ -5991,6 +7227,170 @@ write GeoTIFF with Rasterio · display with Matplotlib.</p>
 </div>
 </div>
 
+</div>
+ 
+
+<h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Optional extension — for when you've finished the Chapter 9 exercise and want more.
+Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
+<li>Compute <strong>NDVI</strong> from red and NIR bands.</li>
+<li>Handle <strong>NoData</strong> with <code>np.where</code> and <code>np.nanmean</code>.</li>
+<li><strong>Reclassify</strong> by thresholds and read a terrain <strong>gradient</strong>.</li>
+<li>Write and re-read a raster fully <strong>in memory</strong> (no files).</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-NDVI-%E2%80%94-vegetation-from-two-bands">1. NDVI &#8212; vegetation from two bands<a class="anchor-link" href="#1.-NDVI-%E2%80%94-vegetation-from-two-bands">&#182;</a></h2><p>NDVI = (NIR − Red) / (NIR + Red). NumPy applies it to whole arrays at once.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">red</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.28</span><span class="p">]])</span>
+<span class="n">nir</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.60</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">]])</span>
+<span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">nir</span> <span class="o">-</span> <span class="n">red</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">nir</span> <span class="o">+</span> <span class="n">red</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Masking-NoData">2. Masking NoData<a class="anchor-link" href="#2.-Masking-NoData">&#182;</a></h2><p>Sentinel values like <code>-9999</code> must be excluded, or they wreck your statistics.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">elev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">110</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="o">-</span><span class="mi">9999</span><span class="p">],</span> <span class="p">[</span><span class="mi">108</span><span class="p">,</span> <span class="o">-</span><span class="mi">9999</span><span class="p">,</span> <span class="mi">111</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">masked</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">elev</span> <span class="o">==</span> <span class="o">-</span><span class="mi">9999</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">elev</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean ignoring NoData:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">masked</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-NoData">&#9989; Quick check &#8212; NoData<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-NoData">&#182;</a></h3><p>Why use <code>np.nanmean</code> instead of <code>np.mean</code> after masking NoData to <code>np.nan</code>?</p>
+<details open><summary>✅ Show answer</summary>
+<code>np.mean</code> returns <code>nan</code> if any value is <code>nan</code>; <code>np.nanmean</code> <b>skips</b> the NaNs and averages the real pixels.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Reclassify-+-terrain-gradient">3. Reclassify + terrain gradient<a class="anchor-link" href="#3.-Reclassify-+-terrain-gradient">&#182;</a></h2><p>Threshold the elevation into classes, and use <code>np.gradient</code> for a simple slope-direction read.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">recl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">masked</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">masked</span> <span class="o">&lt;</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;reclassified:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">recl</span><span class="p">)</span>
+
+<span class="n">dem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+<span class="n">dz_dy</span><span class="p">,</span> <span class="n">dz_dx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">dem</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;gradient in x:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">dz_dx</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-Write-a-raster-in-memory">4. Write a raster <strong>in memory</strong><a class="anchor-link" href="#4.-Write-a-raster-in-memory">&#182;</a></h2><p><code>MemoryFile</code> lets you create and read a GeoTIFF without touching disk — great for tests and pipelines.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">rasterio.io</span> <span class="kn">import</span> <span class="n">MemoryFile</span>
+<span class="kn">from</span> <span class="nn">rasterio.transform</span> <span class="kn">import</span> <span class="n">from_origin</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">recl</span><span class="p">,</span> <span class="n">nan</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">MemoryFile</span><span class="p">()</span> <span class="k">as</span> <span class="n">mem</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">mem</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GTiff&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                  <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:3005&quot;</span><span class="p">,</span>
+                  <span class="n">transform</span><span class="o">=</span><span class="n">from_origin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="k">as</span> <span class="n">ds</span><span class="p">:</span>
+        <span class="n">ds</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">mem</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">ds</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;read back:&quot;</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;| CRS:&quot;</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">to_epsg</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Band math turns raw satellite bands into meaning — NDVI for greenness, NBR for burn severity. Masking NoData keeps cloud and edge pixels out of your averages. These array moves are the whole of raster analysis, whether the grid is elevation, canopy height, or a Landsat scene.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8C%9F-Challenge">&#127775; Challenge<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge">&#182;</a></h3><p>Compute NDVI for the arrays below, then report the <strong>fraction of pixels with NDVI &gt; 0.4</strong> (healthy vegetation).</p>
+<details open><summary>🌟 Show one solution</summary>
+<pre>red = np.array([[0.2, 0.4], [0.1, 0.35]])
+nir = np.array([[0.6, 0.5], [0.7, 0.4]])
+ndvi = (nir - red) / (nir + red)
+frac = (ndvi > 0.4).mean()
+print("NDVI:\n", np.round(ndvi, 2))
+print("fraction > 0.4:", round(float(frac), 2))</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 9 material. Next chapter: turning these grids and vectors into clear, publishable maps.</p>
+
+</div>
+</div>
 </div>
  
 
@@ -6476,7 +7876,7 @@ attribute charts · one <code>.explore()</code> map · honest interpretation.</p
 </div>
  
 
-<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<h2 class="pb" id="practice-exercises">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Practise clear maps, overlays, and interpretation.</p>
@@ -6616,6 +8016,158 @@ attribute charts · one <code>.explore()</code> map · honest interpretation.</p
 </div>
 </div>
 
+</div>
+ 
+
+<h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Optional extension — for when you've finished the Chapter 10 exercise and want more.
+Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
+<li>Build <strong>multi-panel</strong> figures with subplots.</li>
+<li>Make a <strong>classified</strong> choropleth with a mapclassify scheme.</li>
+<li><strong>Overlay</strong> vector points on a raster.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-A-two-panel-figure">1. A two-panel figure<a class="anchor-link" href="#1.-A-two-panel-figure">&#182;</a></h2><p>We use the non-interactive <code>Agg</code> backend so this runs anywhere (no pop-up windows).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span><span class="o">,</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;Agg&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">({</span><span class="s2">&quot;v&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]},</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:3005&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;a raster&quot;</span><span class="p">)</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">column</span><span class="o">=</span><span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;YlGnBu&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;points&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;built a 2-panel figure:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">),</span> <span class="s2">&quot;axes&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-A-classified-choropleth">2. A classified choropleth<a class="anchor-link" href="#2.-A-classified-choropleth">&#182;</a></h2><p>A <strong>classification scheme</strong> (e.g. quantiles) groups values into bins — far clearer than a raw continuous ramp.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">polys</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">({</span><span class="s2">&quot;area_ha&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">]},</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="o">.</span><span class="n">from_wkt</span><span class="p">([</span>
+        <span class="s2">&quot;POLYGON((0 0,1 0,1 1,0 1,0 0))&quot;</span><span class="p">,</span> <span class="s2">&quot;POLYGON((1 0,2 0,2 1,1 1,1 0))&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;POLYGON((2 0,3 0,3 1,2 1,2 0))&quot;</span><span class="p">,</span> <span class="s2">&quot;POLYGON((3 0,4 0,4 1,3 1,3 0))&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;POLYGON((4 0,5 0,5 1,4 1,4 0))&quot;</span><span class="p">]),</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:3005&quot;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">polys</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;area_ha&quot;</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;quantiles&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;classified choropleth drawn with&quot;</span><span class="p">,</span> <span class="s2">&quot;quantiles (k=3)&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-classification">&#9989; Quick check &#8212; classification<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-classification">&#182;</a></h3><p>Why classify a choropleth into bins instead of a continuous colour ramp?</p>
+<details open><summary>✅ Show answer</summary>
+Bins make categories readable and comparable across maps; a continuous ramp hides where the meaningful breaks are. Schemes like <code>quantiles</code> or <code>natural_breaks</code> choose those breaks for you.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Overlay-points-on-a-raster">3. Overlay points on a raster<a class="anchor-link" href="#3.-Overlay-points-on-a-raster">&#182;</a></h2><p>Draw the raster first, then plot the vector <em>on the same axes</em> (<code>ax=ax</code>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">rasterio.io</span> <span class="kn">import</span> <span class="n">MemoryFile</span>
+<span class="kn">from</span> <span class="nn">rasterio.transform</span> <span class="kn">import</span> <span class="n">from_origin</span>
+<span class="kn">from</span> <span class="nn">rasterio.plot</span> <span class="kn">import</span> <span class="n">show</span>
+
+<span class="n">arr</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">MemoryFile</span><span class="p">()</span> <span class="k">as</span> <span class="n">mem</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">mem</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GTiff&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">,</span>
+                  <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:3005&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">from_origin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">as</span> <span class="n">ds</span><span class="p">:</span>
+        <span class="n">ds</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">mem</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">ds</span><span class="p">:</span>                     <span class="c1"># reopen read-only for plotting</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+        <span class="n">show</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;terrain&quot;</span><span class="p">)</span>
+        <span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;overlaid&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gdf</span><span class="p">),</span> <span class="s2">&quot;points on the raster&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> A map is how your analysis reaches a decision-maker. Multi-panel layouts compare before/after or two indices side by side; classified choropleths make <em>area burned per district</em> legible at a glance; overlays put your sample plots in context on the terrain. Communication is half the job.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8C%9F-Challenge">&#127775; Challenge<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge">&#182;</a></h3><p>Re-draw the choropleth from section 2 using the <strong>natural_breaks</strong> scheme with <strong>k=4</strong>, and a <code>viridis</code> colour map.</p>
+<details open><summary>🌟 Show one solution</summary>
+<pre>ax = polys.plot(column="area_ha", scheme="natural_breaks", k=4,
+                cmap="viridis", legend=True)
+print("drew natural_breaks choropleth, k=4")</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 10 material. Next: letting a model read these grids for you (machine learning).</p>
+
+</div>
+</div>
 </div>
  
 
@@ -7142,7 +8694,7 @@ map predictions · <strong>test on a new date</strong> (generalisation) · limit
 </div>
  
 
-<h2 class="pb">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<h2 class="pb" id="practice-exercises">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uses the real Landsat/fires rasters (in the Chapter 11 lecture <code>data/</code> folder). Run in <strong>gem530</strong>.</p>
@@ -7259,6 +8811,170 @@ Split that sample 70/30 (<code>random_state=0</code>), fit a <code>DecisionTreeC
 </div>
 </div>
 
+</div>
+ 
+
+<h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Optional extension — for when you've finished the Chapter 11 exercise and want more.
+Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
+<li>Engineer a new <strong>feature</strong> (NDVI) from raw bands.</li>
+<li>Estimate real performance with <strong>cross-validation</strong>.</li>
+<li>Read which inputs matter via <strong>feature importances</strong>.</li>
+<li>Inspect errors with a <strong>confusion matrix</strong>.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-A-synthetic-'Landsat'-sample">1. A synthetic 'Landsat' sample<a class="anchor-link" href="#1.-A-synthetic-'Landsat'-sample">&#182;</a></h2><p>To stay fast and self-contained we simulate pixels where <em>burned</em> areas have low NDVI. (The same steps apply to the real Chapter-11 scenes.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">red</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">nir</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">nir</span> <span class="o">-</span> <span class="n">red</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">nir</span> <span class="o">+</span> <span class="n">red</span><span class="p">)</span>          <span class="c1"># engineered feature</span>
+<span class="n">burned</span> <span class="o">=</span> <span class="p">(</span><span class="n">ndvi</span> <span class="o">&lt;</span> <span class="mf">0.10</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">flip</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.05</span>               <span class="c1"># 5% label noise, like real data</span>
+<span class="n">burned</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">flip</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">burned</span><span class="p">,</span> <span class="n">burned</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">red</span><span class="p">,</span> <span class="n">nir</span><span class="p">,</span> <span class="n">ndvi</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">burned</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;burned pixels:&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="s2">&quot;of&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Cross-validation">2. Cross-validation<a class="anchor-link" href="#2.-Cross-validation">&#182;</a></h2><p>A single train/test split can be lucky. <strong>5-fold CV</strong> trains and tests five times for an honest average.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;fold accuracies:&quot;</span><span class="p">,</span> <span class="n">scores</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean CV accuracy:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%E2%9C%85-Quick-check-%E2%80%94-cross-validation">&#9989; Quick check &#8212; cross-validation<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-cross-validation">&#182;</a></h3><p>Why report the mean of 5-fold cross-validation instead of one train/test split?</p>
+<details open><summary>✅ Show answer</summary>
+One split can be lucky or unlucky. Cross-validation averages over several splits, giving a more <b>reliable</b> estimate of how the model generalises.
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Which-features-matter?">3. Which features matter?<a class="anchor-link" href="#3.-Which-features-matter?">&#182;</a></h2><p>After fitting, <code>feature_importances_</code> ranks the inputs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">imp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;nir&quot;</span><span class="p">,</span> <span class="s2">&quot;ndvi&quot;</span><span class="p">],</span> <span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">&gt;5</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">imp</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-Confusion-matrix">4. Confusion matrix<a class="anchor-link" href="#4.-Confusion-matrix">&#182;</a></h2><p>Accuracy hides <em>which</em> class is wrong. The matrix shows it: rows = actual, columns = predicted.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">Xtr</span><span class="p">,</span> <span class="n">Xte</span><span class="p">,</span> <span class="n">ytr</span><span class="p">,</span> <span class="n">yte</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtr</span><span class="p">,</span> <span class="n">ytr</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">yte</span><span class="p">,</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xte</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(rows = actual [not-burned, burned], cols = predicted)&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>🌲 <strong>Why code this?</strong> Good remote-sensing ML is mostly <em>features and honesty</em>: NDVI often beats raw bands, cross-validation stops you fooling yourself, and a confusion matrix reveals whether you're missing the burned pixels that actually matter for a fire-mapping product.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8C%9F-Challenge">&#127775; Challenge<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge">&#182;</a></h3><p>Fit a <code>DecisionTreeClassifier(max_depth=4)</code> on the same <code>X, y</code> and compare its 5-fold CV mean accuracy with the random forest above.</p>
+<details open><summary>🌟 Show one solution</summary>
+<pre>from sklearn.tree import DecisionTreeClassifier
+dt = DecisionTreeClassifier(max_depth=4, random_state=0)
+dt_scores = cross_val_score(dt, X, y, cv=5)
+print("decision tree CV mean:", round(dt_scores.mean(), 3))</pre>
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 11 material. That's the whole course — from first variable to a validated classifier. Well done.</p>
+
+</div>
+</div>
 </div>
  
 
