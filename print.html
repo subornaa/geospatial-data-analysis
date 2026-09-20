@@ -57,13 +57,12 @@ AI-assisted debugging, in R &amp; Quarto).</p>
 </section><section class="chapter"><h1>Chapter 1 — Python Foundations</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is your <strong>first teaching notebook</strong>. We learn the building blocks of Python
+<p>This is your <strong>first notebook</strong>. We learn the building blocks of Python
 using tiny, real geospatial examples — coordinates and shapes for two places we
-will return to all term: the <strong>Malcolm Knapp Research Forest (MKRF)</strong> in British
+will return to throughout: the <strong>Malcolm Knapp Research Forest (MKRF)</strong> in British
 Columbia and the <strong>mangrove coast of NW Madagascar</strong>.</p>
 <blockquote><p>No prior Python experience is assumed. Run each code cell, read the output, and
-try the <em>Try it yourself</em> prompts. Nothing here is graded — the graded practice
-is the <strong>Chapter 1 Exercise</strong> and the <strong>Chapter 1 Quiz</strong>.</p>
+try the <em>Try it yourself</em> prompts.</p>
 </blockquote>
 
 </div>
@@ -789,7 +788,7 @@ what's inside a reserve, and map change over time</strong>.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="%E2%9C%85-Quick-check-%E2%80%94-geometry-order">&#9989; Quick check &#8212; geometry order<a class="anchor-link" href="#%E2%9C%85-Quick-check-%E2%80%94-geometry-order">&#182;</a></h3><p>To place a point at <strong>latitude 49.3, longitude −122.6</strong>, do you write
 <code>Point(49.3, -122.6)</code> or <code>Point(-122.6, 49.3)</code>?</p>
-<details open><summary>▶ Show answer (discuss first!)</summary>
+<details open><summary>▶ Show answer</summary>
 <code>Point(-122.6, 49.3)</code> — Shapely takes <b>(lon, lat)</b>. Writing
 <code>(lat, lon)</code> puts the point in the wrong place (a classic bug).
 </details>
@@ -799,8 +798,7 @@ what's inside a reserve, and map change over time</strong>.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Build-&amp;-Share-Your-Field-Site--(~20-min)">&#128736;&#65039; In-class activity &#8212; Build &amp; Share Your Field Site  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Build-&amp;-Share-Your-Field-Site--(~20-min)">&#182;</a></h2><p>Turn a <strong>real place you care about</strong> into Python data and your first geometry — then
-we'll share and discuss. Work individually; edit the starter cell below.</p>
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Build-&amp;-Share-Your-Field-Site--(~20-min)">&#128736;&#65039; Hands-on activity &#8212; Build Your Field Site  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Build-&amp;-Share-Your-Field-Site--(~20-min)">&#182;</a></h2><p>Turn a <strong>real place you care about</strong> into Python data and your first geometry. Work individually; edit the starter cell below.</p>
 <p><strong>Task 1.</strong> Create variables for your site: <code>site_name</code>, <code>lat</code>, <code>lon</code>, <code>protected</code>.
 <strong>Task 2.</strong> Make a list <code>neighbours</code> of 2–3 nearby <code>(lon, lat)</code> coordinates, and a
 dictionary <code>site</code> with keys <code>name</code>, <code>lat</code>, <code>lon</code>.
@@ -860,7 +858,7 @@ dictionary <code>site</code> with keys <code>name</code>, <code>lat</code>, <cod
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><p>Have a go first, then open each one as we talk it through.</p>
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><p>Have a go first, then open each one as we talk it through.</p>
 <details open><summary>▶ Task 1 — variables</summary>
 <pre>site_name = "Malcolm Knapp Research Forest"
 lat, lon  = 49.27, -122.57
@@ -912,7 +910,7 @@ GeoPandas in Chapter 4. <em>Geospatial link:</em> the geometry engine under GeoD
 <h2 id="Why-this-matters">Why this matters<a class="anchor-link" href="#Why-this-matters">&#182;</a></h2><p>Today's pieces look small, but they are the <strong>vocabulary of every geospatial
 workflow</strong>: a forest inventory is a list of plot dictionaries, a satellite image is
 arrays of numbers, and a conservation map is Shapely geometries with attributes.
-Master these and the rest of the course is <em>combining</em> them.</p>
+Master these and the rest of the book is <em>combining</em> them.</p>
 <p><strong>Career connection.</strong> GIS analysts, remote-sensing scientists, and conservation
 data specialists write exactly this code every day — reading coordinates, organising
 attributes, and turning them into maps and decisions.</p>
@@ -923,7 +921,7 @@ attributes, and turning them into maps and decisions.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Concept-check-(discuss-with-a-neighbour-%E2%80%94-2-min)">Concept check (discuss with a neighbour &#8212; 2 min)<a class="anchor-link" href="#Concept-check-(discuss-with-a-neighbour-%E2%80%94-2-min)">&#182;</a></h2><ol>
+<h2 id="Concept-check-(discuss-with-a-neighbour-%E2%80%94-2-min)">Concept check<a class="anchor-link" href="#Concept-check-(discuss-with-a-neighbour-%E2%80%94-2-min)">&#182;</a></h2><ol>
 <li>What will <code>type(49.27)</code> say — and why is it different from <code>type(49)</code>?</li>
 <li><code>coords = [(-122.6, 49.3), (-122.5, 49.4)]</code>. How do you get the <strong>latitude</strong> of
 the second point? (Careful with the order!)</li>
@@ -1013,7 +1011,7 @@ Chapter 5!)</p>
 Not required for the quiz or exercise, but they make the next chapters easier.</em></p>
 <h3 id="Bonus-1-%E2%80%94-Formatting-output-with-f-strings">Bonus 1 &#8212; Formatting output with f-strings<a class="anchor-link" href="#Bonus-1-%E2%80%94-Formatting-output-with-f-strings">&#182;</a></h3><p><strong>Why code this?</strong> A result only matters if you can <em>communicate</em> it. An <strong>f-string</strong>
 drops variables into a string, so you can build clean report lines, map labels, and
-messages from your data — something you'll do in every chapter of this course.</p>
+messages from your data — something you'll do in every chapter of this book.</p>
 
 </div>
 </div>
@@ -1148,7 +1146,7 @@ print(n_df, "Douglas-fir trees")   # 3</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Working-with-AI-this-term-(30-second-habit)">Working with AI this term (30-second habit)<a class="anchor-link" href="#Working-with-AI-this-term-(30-second-habit)">&#182;</a></h2><p>You may use AI assistants, but in this course you must be able to <strong>explain and
+<h2 id="Working-with-AI-(30-second-habit)">Working with AI (30-second habit)<a class="anchor-link" href="#Working-with-AI-(30-second-habit)">&#182;</a></h2><p>You may use AI assistants, but in this book you must be able to <strong>explain and
 check</strong> any code. Each chapter has a small "does this code do what it claims?" task.
 Habit to start now: if AI gives you code, (1) read each line, (2) run it, (3) check
 the result is sensible, (4) confirm functions exist in the official docs.</p>
@@ -1163,8 +1161,7 @@ the result is sensible, (4) confirm functions exist in the official docs.</p>
 indexing · file paths · importing packages · first Shapely geometries.</p>
 <ul>
 <li><strong>Practice now:</strong> open the <strong>Chapter 1 Exercise</strong> (5 short parts, ~30–60 min).</li>
-<li><strong>Check yourself:</strong> the <strong>Chapter 1 Quiz</strong> (<code>Quizzes/Week01_Quiz.html</code>), ~1 hour;
-detailed answers unlock after the due date.</li>
+
 <li><strong>Next chapter (Chapter 2):</strong> programming logic &amp; reusable code — conditions, loops,
 and functions, applied to coordinates and files.</li>
 </ul>
@@ -1295,8 +1292,7 @@ and functions, applied to coordinates and files.</li>
 <h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Optional extension — for when you've finished the Chapter 1 exercise and want more.
-Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<p><em>Optional extension — for when you've finished the Chapter 1 exercise and want more. </em></p>
 <h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
 <li>Rewrite loops as <strong>list/dict comprehensions</strong>.</li>
 <li>Format output neatly with <strong>f-string specifiers</strong>.</li>
@@ -1819,8 +1815,8 @@ error type. Use <code>try</code> / <code>except</code> to handle problems gracef
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Classify-the-stand--(~20-min)">&#128736;&#65039; In-class activity &#8212; Classify the stand  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Classify-the-stand--(~20-min)">&#182;</a></h2><p>Write a function that assigns a <strong>size class</strong> to a tree by its DBH, then run it over
-a small inventory and count the mature trees. Work individually; we'll discuss.</p>
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Classify-the-stand--(~20-min)">&#128736;&#65039; Hands-on activity &#8212; Classify the stand  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Classify-the-stand--(~20-min)">&#182;</a></h2><p>Write a function that assigns a <strong>size class</strong> to a tree by its DBH, then run it over
+a small inventory and count the mature trees. Work individually.</p>
 <p><strong>Task 1.</strong> Write <code>size_class(dbh)</code> returning <code>"seedling"</code> (&lt;2.5 cm), <code>"sapling"</code>
 (2.5–10 cm), or <code>"mature"</code> (&gt;10 cm).
 <strong>Task 2.</strong> Loop over the <code>inventory</code> below and print each tree's class.
@@ -1849,7 +1845,7 @@ a small inventory and count the mature trees. Work individually; we'll discuss.<
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — the function</summary>
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — the function</summary>
 <pre>def size_class(dbh):
     if dbh < 2.5:
         return "seedling"
@@ -2042,7 +2038,7 @@ Your Chapter 2 exercise includes one "fix this broken function" task.</p>
 &amp; <code>try/except</code>.</p>
 <ul>
 <li><strong>Practice:</strong> Chapter 2 Exercise (~30–60 min).</li>
-<li><strong>Check yourself:</strong> <code>Quizzes/Week02_Quiz.html</code> (answers unlock after the due date).</li>
+
 <li><strong>Next chapter:</strong> tabular data with <strong>Pandas</strong> — the DataFrame.</li>
 </ul>
 
@@ -2197,8 +2193,7 @@ Your Chapter 2 exercise includes one "fix this broken function" task.</p>
 <h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Optional extension — for when you've finished the Chapter 2 exercise and want more.
-Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<p><em>Optional extension — for when you've finished the Chapter 2 exercise and want more. </em></p>
 <h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
 <li>Write functions that <strong>return</strong> values (and several at once).</li>
 <li>Combine lists with <strong>zip</strong> and <strong>enumerate</strong>.</li>
@@ -2354,7 +2349,7 @@ print(big_trees(data, k=25))  # ['Df', 'Cw', 'Hw']</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 2 material. You now have the tools to write clean, reusable analysis code all term.</p>
+<h3 id="%F0%9F%8E%93-Nicely-done">&#127891; Nicely done<a class="anchor-link" href="#%F0%9F%8E%93-Nicely-done">&#182;</a></h3><p>You've gone a step beyond the Chapter 2 material. You now have the tools to write clean, reusable analysis code throughout.</p>
 
 </div>
 </div>
@@ -2668,7 +2663,7 @@ export the cleaned table.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Summarise-a-plot-inventory--(~20-min)">&#128736;&#65039; In-class activity &#8212; Summarise a plot inventory  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Summarise-a-plot-inventory--(~20-min)">&#182;</a></h2><p>Build a tiny inventory, add a derived column, and summarise it. Work individually.</p>
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Summarise-a-plot-inventory--(~20-min)">&#128736;&#65039; Hands-on activity &#8212; Summarise a plot inventory  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Summarise-a-plot-inventory--(~20-min)">&#182;</a></h2><p>Build a tiny inventory, add a derived column, and summarise it. Work individually.</p>
 <p><strong>Task 1.</strong> From the dict below, make a DataFrame and show it.
 <strong>Task 2.</strong> Add a column <code>basal_area</code> = <code>3.14159 * (dbh_cm/2)**2</code>.
 <strong>Task 3.</strong> Report the <strong>mean <code>dbh_cm</code> per <code>species</code></strong>.</p>
@@ -2700,7 +2695,7 @@ export the cleaned table.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — DataFrame</summary>
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — DataFrame</summary>
 <pre>df = pd.DataFrame(data)
 df</pre>
 </details><details open><summary>▶ Task 2 — derived column</summary>
@@ -2874,7 +2869,7 @@ answer. Your exercise includes one merge to debug.</p>
 · coordinate checks · export.</p>
 <ul>
 <li><strong>Practice:</strong> Chapter 3 Exercise.</li>
-<li><strong>Check yourself:</strong> <code>Quizzes/Week03_Quiz.html</code>.</li>
+
 <li><strong>Next chapter:</strong> turn this table into map features with <strong>GeoPandas</strong>.</li>
 </ul>
 
@@ -3031,8 +3026,7 @@ answer. Your exercise includes one merge to debug.</p>
 <h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Optional extension — for when you've finished the Chapter 3 exercise and want more.
-Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<p><em>Optional extension — for when you've finished the Chapter 3 exercise and want more. </em></p>
 <h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
 <li>Summarise groups with <strong>groupby().agg()</strong> and named aggregations.</li>
 <li>Reshape data with <strong>pivot_table</strong>.</li>
@@ -3046,7 +3040,7 @@ Same style as the lecture, just a step more advanced. <strong>Nothing here is gr
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="1.-A-small-fires-table">1. A small fires table<a class="anchor-link" href="#1.-A-small-fires-table">&#182;</a></h2><p>We'll reuse the term's fire records (MKRF + Madagascar) as a DataFrame.</p>
+<h2 id="1.-A-small-fires-table">1. A small fires table<a class="anchor-link" href="#1.-A-small-fires-table">&#182;</a></h2><p>We'll reuse the earlier fire records (MKRF + Madagascar) as a DataFrame.</p>
 
 </div>
 </div>
@@ -3254,7 +3248,7 @@ This is about data <strong>handling</strong> — not advanced spatial analysis (
 <div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 
-<span class="c1"># In the course you would read your Chapter 3 output:  df = pd.read_csv(&quot;data/fires_clean.csv&quot;)</span>
+<span class="c1"># In practice you would read your Chapter 3 output:  df = pd.read_csv(&quot;data/fires_clean.csv&quot;)</span>
 <span class="c1"># Here we build a small sample so this notebook runs on its own:</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">&quot;site&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="s2">&quot;MKRF&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF&quot;</span><span class="p">,</span> <span class="s2">&quot;Ambaro&quot;</span><span class="p">,</span> <span class="s2">&quot;Ambaro&quot;</span><span class="p">],</span>
@@ -3525,7 +3519,7 @@ points. How many are there?</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Map-your-plots--(~20-min)">&#128736;&#65039; In-class activity &#8212; Map your plots  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Map-your-plots--(~20-min)">&#182;</a></h2><p>Turn a small plot table into a mapped GeoDataFrame. Work individually; we'll discuss.</p>
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Map-your-plots--(~20-min)">&#128736;&#65039; Hands-on activity &#8212; Map your plots  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Map-your-plots--(~20-min)">&#182;</a></h2><p>Turn a small plot table into a mapped GeoDataFrame. Work individually.</p>
 <p><strong>Task 1.</strong> Make a GeoDataFrame of points from the table below (<code>crs="EPSG:4326"</code>).
 <strong>Task 2.</strong> Filter to the <code>"MKRF"</code> region and count the plots.
 <strong>Task 3.</strong> Plot the points coloured by <code>region</code>.</p>
@@ -3558,7 +3552,7 @@ points. How many are there?</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — points</summary>
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — points</summary>
 <pre>df = pd.DataFrame(data)
 gdf = gpd.GeoDataFrame(
     df, geometry=gpd.points_from_xy(df["lon"], df["lat"]), crs="EPSG:4326")
@@ -3733,7 +3727,7 @@ More on CRS next chapter.</p>
 filter · measure · attribute + spatial joins · export GeoPackage.</p>
 <ul>
 <li><strong>Practice:</strong> Chapter 4 Exercise.</li>
-<li><strong>Check yourself:</strong> <code>Quizzes/Week04_Quiz.html</code>.</li>
+
 <li><strong>Next chapter:</strong> coordinate reference systems, files &amp; data quality (Lab 1 prep).</li>
 </ul>
 
@@ -3891,8 +3885,7 @@ filter · measure · attribute + spatial joins · export GeoPackage.</p>
 <h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Optional extension — for when you've finished the Chapter 4 exercise and want more.
-Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<p><em>Optional extension — for when you've finished the Chapter 4 exercise and want more. </em></p>
 <h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
 <li>Find which points fall in which polygon with <strong>sjoin</strong>.</li>
 <li>Build <strong>buffers</strong> and measure their area.</li>
@@ -4085,7 +4078,7 @@ for real distances and areas.</p>
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 
-<span class="c1"># In the course: gdf = gpd.read_file(&quot;data/fires_points.gpkg&quot;)  (your Chapter 4 output).</span>
+<span class="c1"># In practice: gdf = gpd.read_file(&quot;data/fires_points.gpkg&quot;)  (your Chapter 4 output).</span>
 <span class="c1"># Here we build a small MKRF (British Columbia) sample so BC Albers (EPSG:3005) is correct:</span>
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
     <span class="p">{</span><span class="s2">&quot;site&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;MKRF-1&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF-2&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF-3&quot;</span><span class="p">]},</span>
@@ -4325,8 +4318,8 @@ CRS is geographic or projected (hint: <code>gdf.crs.is_geographic</code>).</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-QA-a-messy-layer--(~20-min)">&#128736;&#65039; In-class activity &#8212; QA a messy layer  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-QA-a-messy-layer--(~20-min)">&#182;</a></h2><p>The layer below has a duplicate plot and a missing measurement. Find and fix the
-problems, then reproject. Work individually; we'll discuss.</p>
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-QA-a-messy-layer--(~20-min)">&#128736;&#65039; Hands-on activity &#8212; QA a messy layer  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-QA-a-messy-layer--(~20-min)">&#182;</a></h2><p>The layer below has a duplicate plot and a missing measurement. Find and fix the
+problems, then reproject. Work individually.</p>
 <p><strong>Task 1.</strong> Report the number of duplicate rows and missing values.
 <strong>Task 2.</strong> Drop the duplicate rows into a new <code>clean</code> GeoDataFrame.
 <strong>Task 3.</strong> Reproject <code>clean</code> to <code>EPSG:3005</code> and confirm it's no longer geographic.</p>
@@ -4359,7 +4352,7 @@ problems, then reproject. Work individually; we'll discuss.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — report</summary>
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — report</summary>
 <pre>print("duplicates:", gdf.duplicated().sum())
 print(gdf.isna().sum())</pre>
 </details><details open><summary>▶ Task 2 — drop duplicates</summary>
@@ -4529,7 +4522,7 @@ make sense (metres, not degrees).</p>
 checks · relative paths &amp; folders · a reusable QA function.</p>
 <ul>
 <li><strong>Practice:</strong> Chapter 5 Exercise.</li>
-<li><strong>Check yourself:</strong> <code>Quizzes/Week05_Quiz.html</code>.</li>
+
 <li><strong>Next chapter (Chapter 6):</strong> consolidation + <strong>Lab 1</strong> studio — you have now learned
 everything Lab 1 assesses.</li>
 </ul>
@@ -4685,8 +4678,7 @@ everything Lab 1 assesses.</li>
 <h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Optional extension — for when you've finished the Chapter 5 exercise and want more.
-Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<p><em>Optional extension — for when you've finished the Chapter 5 exercise and want more. </em></p>
 <h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
 <li>See why <strong>area must be measured in a projected CRS</strong>.</li>
 <li>Detect and repair <strong>invalid geometries</strong>.</li>
@@ -4819,7 +4811,7 @@ print("perimeter:", round(u.geometry.length.iloc[0], 1), "m")</pre>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>No new concepts this chapter.</strong> We connect Chapters 1–5 into one small, reproducible
-workflow, then you start <strong>Lab 1</strong> with TA support. This is a catch-up and
+workflow, then you start <strong>Lab 1</strong>. This is a catch-up and
 confidence week before the ArcPy block.</p>
 
 </div>
@@ -4858,7 +4850,7 @@ export. Read each step and notice which chapter taught it.</p>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="c1"># 1) TABLE (Chapter 3): load and clean</span>
-<span class="c1"># In the course: df = pd.read_csv(&quot;data/fires_clean.csv&quot;). Small MKRF sample here:</span>
+<span class="c1"># In practice: df = pd.read_csv(&quot;data/fires_clean.csv&quot;). Small MKRF sample here:</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">&quot;site&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="s2">&quot;MKRF-N&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF-N&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF-S&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF-S&quot;</span><span class="p">],</span>
     <span class="s2">&quot;lon&quot;</span><span class="p">:</span>    <span class="p">[</span><span class="o">-</span><span class="mf">122.57</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.55</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.52</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.50</span><span class="p">],</span>
@@ -4912,7 +4904,7 @@ export. Read each step and notice which chapter taught it.</p>
 <h2 id="Lab-1-studio">Lab 1 studio<a class="anchor-link" href="#Lab-1-studio">&#182;</a></h2><p>Open <strong>Lab 1</strong> now and start Part 1 (tabular cleaning). Aim to finish Parts 1–2 in
 class while TAs are here. Lab 1 assesses only Chapters 1–5 — everything you need has
 been taught and practised.</p>
-<blockquote><p>No quiz this chapter (no new lecture material). Use the time for Lab 1.</p>
+<blockquote><p>No quiz this chapter (no new material). Use the time for Lab 1.</p>
 </blockquote>
 
 </div>
@@ -4981,12 +4973,11 @@ and a <em>tool</em>.</p>
 <h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Optional extension — for when you've finished the Chapter 6 exercise and want more.
-Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<p><em>Optional extension — for when you've finished the Chapter 6 exercise and want more. </em></p>
 <h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
 <li>Chain <strong>tabular → spatial → summary</strong> in one clean pass.</li>
 <li>Turn a CSV of coordinates into points, join them to regions, and summarise.</li>
-<li>Practise the shape of a real analysis you'll repeat all term.</li>
+<li>Practise the shape of a real analysis you'll repeat throughout.</li>
 </ol>
 
 </div>
@@ -5370,7 +5361,7 @@ print the messages to debug.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Script-a-buffer-workflow--(~20-min)">&#128736;&#65039; In-class activity &#8212; Script a buffer workflow  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Script-a-buffer-workflow--(~20-min)">&#182;</a></h2><p>Run inside <strong>ArcGIS Pro → Notebooks</strong> with the bundled <code>data/MKRF.gdb</code>
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Script-a-buffer-workflow--(~20-min)">&#128736;&#65039; Hands-on activity &#8212; Script a buffer workflow  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Script-a-buffer-workflow--(~20-min)">&#182;</a></h2><p>Run inside <strong>ArcGIS Pro → Notebooks</strong> with the bundled <code>data/MKRF.gdb</code>
 (layers: <code>roads</code>, <code>streams</code>, <code>trails</code>, <code>hydroline</code>).</p>
 <p><strong>Task 1.</strong> Set the workspace and list the feature classes.
 <strong>Task 2.</strong> Buffer <code>streams</code> by 50 m with a systematic output name.
@@ -5401,7 +5392,7 @@ print the messages to debug.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — list</summary>
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — list</summary>
 <pre>print(arcpy.ListFeatureClasses())</pre>
 </details><details open><summary>▶ Task 2 — buffer</summary>
 <pre>in_fc, dist = "streams", "50 Meters"
@@ -5548,7 +5539,7 @@ and read <code>arcpy.GetMessages()</code> rather than trusting that a tool "prob
 listing datasets/fields · <code>Describe</code> · tool messages &amp; errors · systematic naming.</p>
 <ul>
 <li><strong>Practice:</strong> Chapter 7 Exercise (ArcPy — assessed by exercise, not a lab).</li>
-<li><strong>Check yourself:</strong> <code>Quizzes/Week07_Quiz.html</code>.</li>
+
 <li><strong>Next chapter:</strong> automation — cursors and batch processing.</li>
 </ul>
 
@@ -5702,8 +5693,7 @@ listing datasets/fields · <code>Describe</code> · tool messages &amp; errors �
 <h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Optional extension — for when you've finished the Chapter 7 exercise and want more.
-Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<p><em>Optional extension — for when you've finished the Chapter 7 exercise and want more. </em></p>
 <h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
 <li>Control tool behaviour with <strong>arcpy.env</strong> settings.</li>
 <li><strong>Chain</strong> geoprocessing tools (buffer then clip).</li>
@@ -5985,7 +5975,7 @@ So one bad layer is <b>logged and skipped</b> instead of killing the whole batch
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="4.-Wrap-a-workflow-in-a-reusable-function">4. Wrap a workflow in a reusable function<a class="anchor-link" href="#4.-Wrap-a-workflow-in-a-reusable-function">&#182;</a></h2><p>Package a repeatable task so you (and classmates) can reuse it — the Chapter 2 idea,
+<h2 id="4.-Wrap-a-workflow-in-a-reusable-function">4. Wrap a workflow in a reusable function<a class="anchor-link" href="#4.-Wrap-a-workflow-in-a-reusable-function">&#182;</a></h2><p>Package a repeatable task so you can reuse it — the Chapter 2 idea,
 applied to geoprocessing.</p>
 
 </div>
@@ -6015,7 +6005,7 @@ applied to geoprocessing.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>🌲 <strong>Why code this?</strong> Wrapping a workflow in a function turns a one-off script into a tool your whole team can reuse on next year's delivery.</p>
+<blockquote><p>🌲 <strong>Why code this?</strong> Wrapping a workflow in a function turns a one-off script into a tool you can reuse on next year's delivery.</p>
 </blockquote>
 
 </div>
@@ -6070,7 +6060,7 @@ whole batch, and log messages.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Automate-the-road-network--(~20-min)">&#128736;&#65039; In-class activity &#8212; Automate the road network  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Automate-the-road-network--(~20-min)">&#182;</a></h2><p>Run in <strong>ArcGIS Pro → Notebooks</strong> with <code>data/MKRF.gdb</code>.</p>
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Automate-the-road-network--(~20-min)">&#128736;&#65039; Hands-on activity &#8212; Automate the road network  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Automate-the-road-network--(~20-min)">&#182;</a></h2><p>Run in <strong>ArcGIS Pro → Notebooks</strong> with <code>data/MKRF.gdb</code>.</p>
 <p><strong>Task 1.</strong> Use a <code>SearchCursor</code> to print the 5 longest roads (<code>SHAPE@LENGTH</code>, <code>NAME</code>).
 <strong>Task 2.</strong> Add a <code>length_km</code> field to <code>roads</code> and fill it with an <code>UpdateCursor</code>.
 <strong>Task 3.</strong> Buffer every feature class in the geodatabase by 100 m, skipping failures.</p>
@@ -6100,7 +6090,7 @@ whole batch, and log messages.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — longest roads</summary>
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — longest roads</summary>
 <pre>rows = []
 with arcpy.da.SearchCursor("roads", ["SHAPE@LENGTH", "NAME"]) as cur:
     rows = sorted(cur, reverse=True)[:5]
@@ -6265,7 +6255,7 @@ close.</p>
 error handling &amp; logging.</p>
 <ul>
 <li><strong>Practice:</strong> Chapter 8 Exercise.</li>
-<li><strong>Check yourself:</strong> <code>Quizzes/Week08_Quiz.html</code>.</li>
+
 <li><strong>Next chapter:</strong> raster data with NumPy &amp; Rasterio (back in the <code>gem530</code> env).</li>
 </ul>
 
@@ -6420,8 +6410,7 @@ error handling &amp; logging.</p>
 <h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Optional extension — for when you've finished the Chapter 8 exercise and want more.
-Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<p><em>Optional extension — for when you've finished the Chapter 8 exercise and want more. </em></p>
 <h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
 <li>Read attributes with a <strong>SearchCursor</strong>.</li>
 <li>Edit attributes with an <strong>UpdateCursor</strong>.</li>
@@ -6767,7 +6756,7 @@ georeferencing (CRS, transform, NoData).</p>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># In the course you would open a provided raster (e.g. SRTM over MKRF). Here we</span>
+<span class="c1"># In practice you would open a provided raster (e.g. SRTM over MKRF). Here we</span>
 <span class="c1"># create a small demo GeoTIFF so the notebook runs on its own:</span>
 <span class="n">demo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
 <span class="n">demo</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9999.0</span>
@@ -6897,7 +6886,7 @@ re-run. How many cells change class?</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Burn-severity-classes--(~20-min)">&#128736;&#65039; In-class activity &#8212; Burn-severity classes  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Burn-severity-classes--(~20-min)">&#182;</a></h2><p>A small burn-severity grid is below (<code>-1</code> marks NoData). Work individually.</p>
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Burn-severity-classes--(~20-min)">&#128736;&#65039; Hands-on activity &#8212; Burn-severity classes  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Burn-severity-classes--(~20-min)">&#182;</a></h2><p>A small burn-severity grid is below (<code>-1</code> marks NoData). Work individually.</p>
 <p><strong>Task 1.</strong> Mask NoData to <code>np.nan</code> and report the mean severity.
 <strong>Task 2.</strong> Reclassify into 1 = low (&lt;0.3), 2 = moderate (0.3–0.6), 3 = high (&gt;0.6).
 <strong>Task 3.</strong> Count the pixels in each class.</p>
@@ -6930,7 +6919,7 @@ re-run. How many cells change class?</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — mask & mean</summary>
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — mask & mean</summary>
 <pre>masked = np.where(severity == -1.0, np.nan, severity)
 print("mean severity:", round(np.nanmean(masked), 3))</pre>
 </details><details open><summary>▶ Task 2 — reclassify</summary>
@@ -7079,7 +7068,7 @@ matching shapes before you combine them.</p>
 write GeoTIFF with Rasterio · display with Matplotlib.</p>
 <ul>
 <li><strong>Practice:</strong> Chapter 9 Exercise.</li>
-<li><strong>Check yourself:</strong> <code>Quizzes/Week09_Quiz.html</code>.</li>
+
 <li><strong>Next chapter:</strong> turn all of this into clear maps — visualization &amp; communication.</li>
 </ul>
 
@@ -7233,8 +7222,7 @@ write GeoTIFF with Rasterio · display with Matplotlib.</p>
 <h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Optional extension — for when you've finished the Chapter 9 exercise and want more.
-Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<p><em>Optional extension — for when you've finished the Chapter 9 exercise and want more. </em></p>
 <h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
 <li>Compute <strong>NDVI</strong> from red and NIR bands.</li>
 <li>Handle <strong>NoData</strong> with <code>np.where</code> and <code>np.nanmean</code>.</li>
@@ -7439,7 +7427,7 @@ quick interactive map.</p>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="c1"># In the course: gdf = gpd.read_file(&quot;outputs/fires_bcalbers.gpkg&quot;) (Chapter 6 output).</span>
+<span class="c1"># In practice: gdf = gpd.read_file(&quot;outputs/fires_bcalbers.gpkg&quot;) (Chapter 6 output).</span>
 <span class="c1"># Small MKRF sample so the classification has enough values to show:</span>
 <span class="n">lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">122.60</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.48</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 <span class="n">lats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">49.26</span><span class="p">,</span> <span class="mf">49.34</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
@@ -7499,7 +7487,7 @@ axes</strong> so they line up (they must share a CRS).</p>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># In the course: open a provided DEM (e.g. SRTM.tif). Here we make a small demo</span>
+<span class="c1"># In practice: open a provided DEM (e.g. SRTM.tif). Here we make a small demo</span>
 <span class="c1"># raster covering the sample points so the overlay lines up:</span>
 <span class="n">demo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
 <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data/demo_elev.tif&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GTiff&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
@@ -7679,7 +7667,7 @@ must be reported.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Build-an-analytical-map--(~20-min)">&#128736;&#65039; In-class activity &#8212; Build an analytical map  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Build-an-analytical-map--(~20-min)">&#182;</a></h2><p>Make a map that could go in a report. Work individually; we'll compare results.</p>
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Build-an-analytical-map--(~20-min)">&#128736;&#65039; Hands-on activity &#8212; Build an analytical map  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Build-an-analytical-map--(~20-min)">&#182;</a></h2><p>Make a map that could go in a report. Work individually.</p>
 <p><strong>Task 1.</strong> Plot the stands below coloured by <code>area_ha</code>, with a legend.
 <strong>Task 2.</strong> Add a title and turn the axes off.
 <strong>Task 3.</strong> Annotate the largest stand.</p>
@@ -7712,7 +7700,7 @@ must be reported.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — choropleth</summary>
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — choropleth</summary>
 <pre>ax = stands.plot(column="area_ha", legend=True, cmap="YlGn", edgecolor="black")</pre>
 </details><details open><summary>▶ Task 2 — title & axes</summary>
 <pre>ax.set_title("Stand area (ha)")
@@ -7867,7 +7855,7 @@ chosen to exaggerate)? Misleading maps are easy to make by accident.</p>
 attribute charts · one <code>.explore()</code> map · honest interpretation.</p>
 <ul>
 <li><strong>Practice:</strong> Chapter 10 Exercise. <strong>Lab 2</strong> is released this chapter.</li>
-<li><strong>Check yourself:</strong> <code>Quizzes/Week10_Quiz.html</code>.</li>
+
 <li><strong>Next chapter:</strong> an introduction to machine learning with environmental data.</li>
 </ul>
 
@@ -8022,8 +8010,7 @@ attribute charts · one <code>.explore()</code> map · honest interpretation.</p
 <h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Optional extension — for when you've finished the Chapter 10 exercise and want more.
-Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<p><em>Optional extension — for when you've finished the Chapter 10 exercise and want more. </em></p>
 <h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
 <li>Build <strong>multi-panel</strong> figures with subplots.</li>
 <li>Make a <strong>classified</strong> choropleth with a mapclassify scheme.</li>
@@ -8488,7 +8475,7 @@ held-out and later-date results.</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Fit-and-evaluate-a-small-classifier--(~20-min)">&#128736;&#65039; In-class activity &#8212; Fit and evaluate a small classifier  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-In-class-activity-%E2%80%94-Fit-and-evaluate-a-small-classifier--(~20-min)">&#182;</a></h2><p>A small labelled sample of spectral values is built below (forest vs burned).
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Fit-and-evaluate-a-small-classifier--(~20-min)">&#128736;&#65039; Hands-on activity &#8212; Fit and evaluate a small classifier  (~20 min)<a class="anchor-link" href="#%F0%9F%9B%A0%EF%B8%8F-Hands-on-activity-%E2%80%94-Fit-and-evaluate-a-small-classifier--(~20-min)">&#182;</a></h2><p>A small labelled sample of spectral values is built below (forest vs burned).
 Work individually.</p>
 <p><strong>Task 1.</strong> Split into train/test (30% test, <code>random_state=0</code>).
 <strong>Task 2.</strong> Fit a <code>DecisionTreeClassifier</code> and report the <strong>test</strong> accuracy.
@@ -8523,7 +8510,7 @@ Work individually.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions &#8212; reveal &amp; discuss<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — split</summary>
+<h3 id="Activity-solutions-%E2%80%94-reveal-&amp;-discuss">Activity solutions<a class="anchor-link" href="#Activity-solutions-%E2%80%94-reveal-&amp;-discuss">&#182;</a></h3><details open><summary>▶ Task 1 — split</summary>
 <pre>from sklearn.model_selection import train_test_split
 Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.3, random_state=0, stratify=y)
 print(len(Xtr), "train |", len(Xte), "test")</pre>
@@ -8685,8 +8672,8 @@ data it was evaluated on.</p>
 map predictions · <strong>test on a new date</strong> (generalisation) · limitations.</p>
 <ul>
 <li><strong>Practice:</strong> Chapter 11 Exercise.</li>
-<li><strong>Check yourself:</strong> <code>Quizzes/Week11_Quiz.html</code>.</li>
-<li><strong>Next:</strong> the term-end <strong>project</strong> — your own question, your own data.</li>
+
+<li><strong>Next:</strong> the final <strong>project</strong> — your own question, your own data.</li>
 </ul>
 
 </div>
@@ -8697,7 +8684,7 @@ map predictions · <strong>test on a new date</strong> (generalisation) · limit
 <h2 class="pb" id="practice-exercises">Practice exercises</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Uses the real Landsat/fires rasters (in the Chapter 11 lecture <code>data/</code> folder). Run in <strong>gem530</strong>.</p>
+<p>Uses the real Landsat/fires rasters (in the Chapter 11 <code>data/</code> folder). Run in <strong>gem530</strong>.</p>
 <p><em>Structure: core · apply · interpret · debug · extension. ~30–60 min, individual.</em></p>
 
 </div>
@@ -8817,8 +8804,7 @@ Split that sample 70/30 (<code>random_state=0</code>), fit a <code>DecisionTreeC
 <h2 class="pb" id="going-further">Going further — advanced (optional)</h2><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Optional extension — for when you've finished the Chapter 11 exercise and want more.
-Same style as the lecture, just a step more advanced. <strong>Nothing here is graded.</strong></em></p>
+<p><em>Optional extension — for when you've finished the Chapter 11 exercise and want more. </em></p>
 <h3 id="You'll-practise">You'll practise<a class="anchor-link" href="#You'll-practise">&#182;</a></h3><ol>
 <li>Engineer a new <strong>feature</strong> (NDVI) from raw bands.</li>
 <li>Estimate real performance with <strong>cross-validation</strong>.</li>
