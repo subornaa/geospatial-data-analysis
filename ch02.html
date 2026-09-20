@@ -43,7 +43,7 @@
 </style></head><body><header class="topbar"><span class="t">Geospatial Data Analysis with Python</span><a class="pdf" href="Geospatial_Data_Analysis_with_Python.pdf" download>⬇ Download PDF</a></header><div class="layout"><nav class="toc"><a class="brand" href="index.html">Geospatial Data Analysis with Python</a><h2>Contents</h2><ul><li><a href="index.html">About this book</a></li><li><a href="ch01.html">Chapter 1 — Python Foundations</a></li><li><a class="active" href="ch02.html">Chapter 2 — Programming Logic &amp; Reusable Code</a></li><li><a href="ch03.html">Chapter 3 — Tabular Data with Pandas</a></li><li><a href="ch04.html">Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a></li><li><a href="ch05.html">Chapter 5 — CRS, Files &amp; Data Quality</a></li><li><a href="ch06.html">Chapter 6 — Consolidation</a></li><li><a href="ch07.html">Chapter 7 — ArcPy: Tools &amp; Environments</a></li><li><a href="ch08.html">Chapter 8 — ArcPy: Automation</a></li><li><a href="ch09.html">Chapter 9 — Raster Data with NumPy &amp; Rasterio</a></li><li><a href="ch10.html">Chapter 10 — Visualization &amp; Communication</a></li><li><a href="ch11.html">Chapter 11 — Introductory Machine Learning</a></li></ul></nav><main><section class="chapter"><h1>Chapter 2 — Programming Logic &amp; Reusable Code</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Last week we stored data in variables, lists, and dictionaries. This week we make
+<p>Last chapter we stored data in variables, lists, and dictionaries. This chapter we make
 Python <strong>decide</strong> and <strong>repeat</strong> — conditions, loops, and <strong>functions</strong> — the tools
 for writing code you can reuse across many coordinates and files.</p>
 
@@ -207,7 +207,7 @@ is false.</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="4.-Functions:-reusable-code">4. Functions: reusable code<a class="anchor-link" href="#4.-Functions:-reusable-code">&#182;</a></h2><p>A <strong>function</strong> packages steps under a name so you can reuse them. It takes
-<strong>parameters</strong> and can <strong>return</strong> a value. This is the most important idea this week.</p>
+<strong>parameters</strong> and can <strong>return</strong> a value. This is the most important idea this chapter.</p>
 
 </div>
 </div>
@@ -330,7 +330,7 @@ error type. Use <code>try</code> / <code>except</code> to handle problems gracef
 <span class="k">try</span><span class="p">:</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;does_not_exist.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
 <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;That file is missing — check the path (see Week 5).&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;That file is missing — check the path (see Chapter 5).&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -427,7 +427,7 @@ print("mature trees:", n_mature)</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Common-errors-this-week-(and-the-fix)">Common errors this week (and the fix)<a class="anchor-link" href="#Common-errors-this-week-(and-the-fix)">&#182;</a></h2><table>
+<h2 id="Common-errors-this-chapter-(and-the-fix)">Common errors this chapter (and the fix)<a class="anchor-link" href="#Common-errors-this-chapter-(and-the-fix)">&#182;</a></h2><table>
 <thead><tr>
 <th>Message / symptom</th>
 <th>Likely cause</th>
@@ -464,7 +464,7 @@ print("mature trees:", n_mature)</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Quick-reference-%E2%80%94-Week-2-cheat-sheet">Quick reference &#8212; Week 2 cheat sheet<a class="anchor-link" href="#Quick-reference-%E2%80%94-Week-2-cheat-sheet">&#182;</a></h2><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">dbh</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>            <span class="c1"># condition</span>
+<h2 id="Quick-reference-%E2%80%94-Chapter-2-cheat-sheet">Quick reference &#8212; Chapter 2 cheat sheet<a class="anchor-link" href="#Quick-reference-%E2%80%94-Chapter-2-cheat-sheet">&#182;</a></h2><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">dbh</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>            <span class="c1"># condition</span>
     <span class="o">...</span>
 <span class="k">elif</span> <span class="n">dbh</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
     <span class="o">...</span>
@@ -534,7 +534,7 @@ filter plots, and build inputs for maps.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Bonus-2-%E2%80%94-Pairing-two-lists-with-zip">Bonus 2 &#8212; Pairing two lists with <code>zip</code><a class="anchor-link" href="#Bonus-2-%E2%80%94-Pairing-two-lists-with-zip">&#182;</a></h3><p><strong>Why code this?</strong> Measurements often arrive in <em>parallel lists</em> (species here, DBH
 there). <code>zip</code> pairs them up so you can build records — the bridge to the tables you'll
-meet in Pandas (Week 3).</p>
+meet in Pandas (Chapter 3).</p>
 
 </div>
 </div>
@@ -563,7 +563,7 @@ meet in Pandas (Week 3).</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>🌲 This <code>records</code> list is exactly the shape Pandas turns into a DataFrame next week.</p>
+<blockquote><p>🌲 This <code>records</code> list is exactly the shape Pandas turns into a DataFrame next chapter.</p>
 </blockquote>
 
 </div>
@@ -572,7 +572,7 @@ meet in Pandas (Week 3).</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Packages-used-this-week">Packages used this week<a class="anchor-link" href="#Packages-used-this-week">&#182;</a></h2><ul>
+<h2 id="Packages-used-this-chapter">Packages used this chapter<a class="anchor-link" href="#Packages-used-this-chapter">&#182;</a></h2><ul>
 <li><strong>Python standard library</strong> — the core language: operators, <code>if</code>, loops, <code>def</code>.</li>
 <li><strong><code>statistics</code></strong> (standard library) — quick summaries like <code>mean</code>, <code>median</code>.
 <em>Geospatial link:</em> summarize coordinate lists or attribute values before mapping.</li>
@@ -588,7 +588,7 @@ meet in Pandas (Week 3).</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Working-with-AI-(30-second-habit)">Working with AI (30-second habit)<a class="anchor-link" href="#Working-with-AI-(30-second-habit)">&#182;</a></h2><p>If AI writes a loop or function for you: read it line by line, run it on a <strong>small</strong>
 input you can check by hand, and confirm the returned value is what you expect.
-Your Week 2 exercise includes one "fix this broken function" task.</p>
+Your Chapter 2 exercise includes one "fix this broken function" task.</p>
 
 </div>
 </div>
@@ -599,9 +599,9 @@ Your Week 2 exercise includes one "fix this broken function" task.</p>
 <h2 id="Recap-&amp;-what's-next">Recap &amp; what's next<a class="anchor-link" href="#Recap-&amp;-what's-next">&#182;</a></h2><p>Operators · <code>if/elif/else</code> · <code>for</code>/<code>while</code> loops · <strong>functions</strong> · modules · errors
 &amp; <code>try/except</code>.</p>
 <ul>
-<li><strong>Practice:</strong> Week 2 Exercise (~30–60 min).</li>
+<li><strong>Practice:</strong> Chapter 2 Exercise (~30–60 min).</li>
 <li><strong>Check yourself:</strong> <code>Quizzes/Week02_Quiz.html</code> (answers unlock after the due date).</li>
-<li><strong>Next week:</strong> tabular data with <strong>Pandas</strong> — the DataFrame.</li>
+<li><strong>Next chapter:</strong> tabular data with <strong>Pandas</strong> — the DataFrame.</li>
 </ul>
 
 </div>

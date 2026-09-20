@@ -295,7 +295,7 @@ add a region label per site.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="6.-Check-coordinates-&amp;-export">6. Check coordinates &amp; export<a class="anchor-link" href="#6.-Check-coordinates-&amp;-export">&#182;</a></h2><p>Before mapping (Week 4), confirm latitude/longitude are in valid ranges, then
+<h2 id="6.-Check-coordinates-&amp;-export">6. Check coordinates &amp; export<a class="anchor-link" href="#6.-Check-coordinates-&amp;-export">&#182;</a></h2><p>Before mapping (Chapter 4), confirm latitude/longitude are in valid ranges, then
 export the cleaned table.</p>
 
 </div>
@@ -394,7 +394,7 @@ df</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Common-errors-this-week-(and-the-fix)">Common errors this week (and the fix)<a class="anchor-link" href="#Common-errors-this-week-(and-the-fix)">&#182;</a></h2><table>
+<h2 id="Common-errors-this-chapter-(and-the-fix)">Common errors this chapter (and the fix)<a class="anchor-link" href="#Common-errors-this-chapter-(and-the-fix)">&#182;</a></h2><table>
 <thead><tr>
 <th>Message / symptom</th>
 <th>Likely cause</th>
@@ -431,7 +431,7 @@ df</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Quick-reference-%E2%80%94-Week-3-cheat-sheet">Quick reference &#8212; Week 3 cheat sheet<a class="anchor-link" href="#Quick-reference-%E2%80%94-Week-3-cheat-sheet">&#182;</a></h2><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<h2 id="Quick-reference-%E2%80%94-Chapter-3-cheat-sheet">Quick reference &#8212; Chapter 3 cheat sheet<a class="anchor-link" href="#Quick-reference-%E2%80%94-Chapter-3-cheat-sheet">&#182;</a></h2><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/plots.csv&quot;</span><span class="p">)</span>   <span class="c1"># load a table</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">();</span> <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">();</span> <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>  <span class="c1"># look at it</span>
 <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;dbh_cm&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">]</span>                <span class="c1"># filter rows</span>
@@ -525,11 +525,11 @@ region. <code>pivot_table</code> builds it in one call.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Packages-used-this-week">Packages used this week<a class="anchor-link" href="#Packages-used-this-week">&#182;</a></h2><ul>
+<h2 id="Packages-used-this-chapter">Packages used this chapter<a class="anchor-link" href="#Packages-used-this-chapter">&#182;</a></h2><ul>
 <li><strong>Pandas</strong> — the DataFrame: load, clean, filter, group, join, and export tables.
 <em>Why:</em> most field/attribute data is tabular. <em>When:</em> any time data starts as a
 CSV/Excel/table. <em>Geospatial link:</em> the attribute side of spatial data, and the
-lat/lon table we turn into map points next week. See the
+lat/lon table we turn into map points next chapter. See the
 <a href="../../docs/PACKAGE_GUIDE.md">Package Guide</a>.</li>
 </ul>
 
@@ -552,9 +552,9 @@ answer. Your exercise includes one merge to debug.</p>
 <h2 id="Recap-&amp;-what's-next">Recap &amp; what's next<a class="anchor-link" href="#Recap-&amp;-what's-next">&#182;</a></h2><p>DataFrame · select/filter/sort · new columns &amp; missing values · <code>groupby</code> · <code>merge</code>
 · coordinate checks · export.</p>
 <ul>
-<li><strong>Practice:</strong> Week 3 Exercise.</li>
+<li><strong>Practice:</strong> Chapter 3 Exercise.</li>
 <li><strong>Check yourself:</strong> <code>Quizzes/Week03_Quiz.html</code>.</li>
-<li><strong>Next week:</strong> turn this table into map features with <strong>GeoPandas</strong>.</li>
+<li><strong>Next chapter:</strong> turn this table into map features with <strong>GeoPandas</strong>.</li>
 </ul>
 
 </div>

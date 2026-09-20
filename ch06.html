@@ -43,7 +43,7 @@
 </style></head><body><header class="topbar"><span class="t">Geospatial Data Analysis with Python</span><a class="pdf" href="Geospatial_Data_Analysis_with_Python.pdf" download>⬇ Download PDF</a></header><div class="layout"><nav class="toc"><a class="brand" href="index.html">Geospatial Data Analysis with Python</a><h2>Contents</h2><ul><li><a href="index.html">About this book</a></li><li><a href="ch01.html">Chapter 1 — Python Foundations</a></li><li><a href="ch02.html">Chapter 2 — Programming Logic &amp; Reusable Code</a></li><li><a href="ch03.html">Chapter 3 — Tabular Data with Pandas</a></li><li><a href="ch04.html">Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a></li><li><a href="ch05.html">Chapter 5 — CRS, Files &amp; Data Quality</a></li><li><a class="active" href="ch06.html">Chapter 6 — Consolidation</a></li><li><a href="ch07.html">Chapter 7 — ArcPy: Tools &amp; Environments</a></li><li><a href="ch08.html">Chapter 8 — ArcPy: Automation</a></li><li><a href="ch09.html">Chapter 9 — Raster Data with NumPy &amp; Rasterio</a></li><li><a href="ch10.html">Chapter 10 — Visualization &amp; Communication</a></li><li><a href="ch11.html">Chapter 11 — Introductory Machine Learning</a></li></ul></nav><main><section class="chapter"><h1>Chapter 6 — Consolidation</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>No new concepts this week.</strong> We connect Weeks 1–5 into one small, reproducible
+<p><strong>No new concepts this chapter.</strong> We connect Chapters 1–5 into one small, reproducible
 workflow, then you start <strong>Lab 1</strong> with TA support. This is a catch-up and
 confidence week before the ArcPy block.</p>
 
@@ -67,8 +67,8 @@ confidence week before the ArcPy block.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-end-to-end-pipeline-(Weeks-1%E2%80%935-in-one-flow)">The end-to-end pipeline (Weeks 1&#8211;5 in one flow)<a class="anchor-link" href="#The-end-to-end-pipeline-(Weeks-1%E2%80%935-in-one-flow)">&#182;</a></h2><p>Table → clean (Pandas) → points (GeoPandas) → reproject &amp; QA (CRS) → summarize →
-export. Read each step and notice which week taught it.</p>
+<h2 id="The-end-to-end-pipeline-(Chapters-1%E2%80%935-in-one-flow)">The end-to-end pipeline (Chapters 1&#8211;5 in one flow)<a class="anchor-link" href="#The-end-to-end-pipeline-(Chapters-1%E2%80%935-in-one-flow)">&#182;</a></h2><p>Table → clean (Pandas) → points (GeoPandas) → reproject &amp; QA (CRS) → summarize →
+export. Read each step and notice which chapter taught it.</p>
 
 </div>
 </div>
@@ -82,7 +82,7 @@ export. Read each step and notice which week taught it.</p>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
-<span class="c1"># 1) TABLE (Week 3): load and clean</span>
+<span class="c1"># 1) TABLE (Chapter 3): load and clean</span>
 <span class="c1"># In the course: df = pd.read_csv(&quot;data/fires_clean.csv&quot;). Small MKRF sample here:</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">&quot;site&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="s2">&quot;MKRF-N&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF-N&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF-S&quot;</span><span class="p">,</span> <span class="s2">&quot;MKRF-S&quot;</span><span class="p">],</span>
@@ -92,20 +92,20 @@ export. Read each step and notice which week taught it.</p>
 <span class="p">})</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">])</span>            <span class="c1"># need coordinates to map</span>
 
-<span class="c1"># 2) POINTS (Week 4): build a GeoDataFrame</span>
+<span class="c1"># 2) POINTS (Chapter 4): build a GeoDataFrame</span>
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
     <span class="n">df</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">]),</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span>
 <span class="p">)</span>
 
-<span class="c1"># 3) CRS + QA (Week 5): reproject, then check quality</span>
+<span class="c1"># 3) CRS + QA (Chapter 5): reproject, then check quality</span>
 <span class="n">gdf_m</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:3005&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;invalid geometries:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="o">~</span><span class="n">gdf_m</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_valid</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;duplicate rows:&quot;</span><span class="p">,</span> <span class="n">gdf_m</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 
-<span class="c1"># 4) SUMMARIZE (Week 3): area burned per site</span>
+<span class="c1"># 4) SUMMARIZE (Chapter 3): area burned per site</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">gdf_m</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;site&quot;</span><span class="p">)[</span><span class="s2">&quot;area_ha&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 
-<span class="c1"># 5) EXPORT (Weeks 4–5): reproducible output</span>
+<span class="c1"># 5) EXPORT (Chapters 4–5): reproducible output</span>
 <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;outputs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">gdf_m</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outputs/fires_bcalbers.gpkg&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GPKG&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wrote outputs/fires_bcalbers.gpkg&quot;</span><span class="p">)</span>
@@ -119,13 +119,13 @@ export. Read each step and notice which week taught it.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Debugging-clinic-%E2%80%94-the-usual-suspects">Debugging clinic &#8212; the usual suspects<a class="anchor-link" href="#Debugging-clinic-%E2%80%94-the-usual-suspects">&#182;</a></h2><p>When something breaks, check these first (each maps to a week):</p>
+<h2 id="Debugging-clinic-%E2%80%94-the-usual-suspects">Debugging clinic &#8212; the usual suspects<a class="anchor-link" href="#Debugging-clinic-%E2%80%94-the-usual-suspects">&#182;</a></h2><p>When something breaks, check these first (each maps to a chapter):</p>
 <ol>
-<li><strong>Path</strong> wrong / absolute → <em>Week 5</em> (use relative paths).</li>
-<li><strong>CRS</strong> missing or mismatched → <em>Weeks 4–5</em> (<code>gdf.crs</code>, <code>.to_crs</code>).</li>
-<li><strong>Merge key</strong> wrong → <em>Week 3</em> (check the <code>on=</code> column and row counts).</li>
-<li><strong>Missing values</strong> → <em>Week 3</em> (<code>isna().sum()</code>, decide fill vs drop).</li>
-<li><strong>(lon, lat) reversed</strong> → <em>Weeks 1 &amp; 4</em> (x = longitude first).</li>
+<li><strong>Path</strong> wrong / absolute → <em>Chapter 5</em> (use relative paths).</li>
+<li><strong>CRS</strong> missing or mismatched → <em>Chapters 4–5</em> (<code>gdf.crs</code>, <code>.to_crs</code>).</li>
+<li><strong>Merge key</strong> wrong → <em>Chapter 3</em> (check the <code>on=</code> column and row counts).</li>
+<li><strong>Missing values</strong> → <em>Chapter 3</em> (<code>isna().sum()</code>, decide fill vs drop).</li>
+<li><strong>(lon, lat) reversed</strong> → <em>Chapters 1 &amp; 4</em> (x = longitude first).</li>
 </ol>
 
 </div>
@@ -135,9 +135,9 @@ export. Read each step and notice which week taught it.</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Lab-1-studio">Lab 1 studio<a class="anchor-link" href="#Lab-1-studio">&#182;</a></h2><p>Open <strong>Lab 1</strong> now and start Part 1 (tabular cleaning). Aim to finish Parts 1–2 in
-class while TAs are here. Lab 1 assesses only Weeks 1–5 — everything you need has
+class while TAs are here. Lab 1 assesses only Chapters 1–5 — everything you need has
 been taught and practised.</p>
-<blockquote><p>No quiz this week (no new lecture material). Use the time for Lab 1.</p>
+<blockquote><p>No quiz this chapter (no new lecture material). Use the time for Lab 1.</p>
 </blockquote>
 
 </div>
@@ -146,7 +146,7 @@ been taught and practised.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="%F0%9F%8C%B2-Why-this-consolidation-week-matters">&#127794; Why this consolidation week matters<a class="anchor-link" href="#%F0%9F%8C%B2-Why-this-consolidation-week-matters">&#182;</a></h2><p>Real forest analyses are never one command — they're a <strong>chain</strong>: table → clean →
+<h2 id="%F0%9F%8C%B2-Why-this-consolidation-chapter-matters">&#127794; Why this consolidation chapter matters<a class="anchor-link" href="#%F0%9F%8C%B2-Why-this-consolidation-chapter-matters">&#182;</a></h2><p>Real forest analyses are never one command — they're a <strong>chain</strong>: table → clean →
 map → reproject → summarise → export. Most errors happen <em>between</em> the steps, not
 inside them. Today you practise the joins between steps, which is exactly what
 Lab 1 (and your project) will ask for.</p>

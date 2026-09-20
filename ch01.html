@@ -49,7 +49,7 @@ will return to all term: the <strong>Malcolm Knapp Research Forest (MKRF)</stron
 Columbia and the <strong>mangrove coast of NW Madagascar</strong>.</p>
 <blockquote><p>No prior Python experience is assumed. Run each code cell, read the output, and
 try the <em>Try it yourself</em> prompts. Nothing here is graded — the graded practice
-is the <strong>Week 1 Exercise</strong> and the <strong>Week 1 Quiz</strong>.</p>
+is the <strong>Chapter 1 Exercise</strong> and the <strong>Chapter 1 Quiz</strong>.</p>
 </blockquote>
 
 </div>
@@ -58,7 +58,7 @@ is the <strong>Week 1 Exercise</strong> and the <strong>Week 1 Quiz</strong>.</p
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Learning-outcomes">Learning outcomes<a class="anchor-link" href="#Learning-outcomes">&#182;</a></h3><p>By the end of this week you should be able to:</p>
+<h3 id="Learning-outcomes">Learning outcomes<a class="anchor-link" href="#Learning-outcomes">&#182;</a></h3><p>By the end of this chapter you should be able to:</p>
 <ol>
 <li>Run and edit <strong>code</strong> and <strong>Markdown</strong> cells in Jupyter, and write comments.</li>
 <li>Create and inspect <strong>variables</strong> (numbers, strings, booleans).</li>
@@ -502,7 +502,7 @@ print(site)</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote><p>🌲 <strong>Why code this?</strong> A forest inventory <em>is</em> a list of plot dictionaries; a
 species-code table <em>is</em> a dictionary. Lists and dicts hold <strong>many records at once</strong>
-— no separate variable per tree — which is exactly the idea behind Pandas (Week 3).</p>
+— no separate variable per tree — which is exactly the idea behind Pandas (Chapter 3).</p>
 </blockquote>
 
 </div>
@@ -562,7 +562,7 @@ Extension: .csv
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We will treat <em>relative paths</em> (like <code>data/sites.csv</code>) as the reproducible
-default and revisit <strong>why</strong> in <strong>Week 5 (files &amp; data quality)</strong>.</p>
+default and revisit <strong>why</strong> in <strong>Chapter 5 (files &amp; data quality)</strong>.</p>
 
 </div>
 </div>
@@ -627,7 +627,7 @@ with a dot: <code>package.tool()</code>. Here is the built-in <code>math</code> 
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote><p>Notice the distance is in <strong>degrees</strong>, which is not a real-world length.
 Turning coordinates into metres needs a <strong>coordinate reference system</strong> — the
-topic of <strong>Week 5</strong>. For now, just notice the problem exists.</p>
+topic of <strong>Chapter 5</strong>. For now, just notice the problem exists.</p>
 </blockquote>
 
 </div>
@@ -649,7 +649,7 @@ difference between an afternoon and a month on a mangrove-loss analysis.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="6.-Your-first-geometries:-Shapely">6. Your first geometries: Shapely<a class="anchor-link" href="#6.-Your-first-geometries:-Shapely">&#182;</a></h2><p>A coordinate pair is just numbers. <strong>Shapely</strong> turns coordinates into <em>geometry
 objects</em> — <code>Point</code>, <code>LineString</code>, <code>Polygon</code> — the same objects that <strong>GeoPandas</strong>
-(Week 4) uses for whole datasets. This is a <em>tiny</em> first taste.</p>
+(Chapter 4) uses for whole datasets. This is a <em>tiny</em> first taste.</p>
 
 </div>
 </div>
@@ -873,10 +873,10 @@ here</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Packages-used-this-week">Packages used this week<a class="anchor-link" href="#Packages-used-this-week">&#182;</a></h2><p><em>(what it does · why we use it · when · how it connects to geospatial work)</em></p>
+<h2 id="Packages-used-this-chapter">Packages used this chapter<a class="anchor-link" href="#Packages-used-this-chapter">&#182;</a></h2><p><em>(what it does · why we use it · when · how it connects to geospatial work)</em></p>
 <ul>
 <li><strong>Jupyter Notebook</strong> — interactive code + notes + output in one document. <em>Why:</em>
-run geospatial code step by step and keep a readable record. <em>When:</em> every week.
+run geospatial code step by step and keep a readable record. <em>When:</em> every chapter.
 <em>Geospatial link:</em> the workspace where all other tools run; maps render inline.</li>
 <li><strong>Python standard library</strong> (built in) — core language + helpers like <code>math</code>.
 <em>Why:</em> the foundation everything builds on. <em>When:</em> always.</li>
@@ -885,7 +885,7 @@ is file-heavy; reproducible paths prevent "file not found" errors. <em>When:</em
 you read/write data. <em>Geospatial link:</em> every shapefile/raster/CSV is opened by a path.</li>
 <li><strong>Shapely</strong> — geometry objects (Point, LineString, Polygon). <em>Why:</em> represent real
 features as objects you can measure. <em>When:</em> introduced here; used fully via
-GeoPandas in Week 4. <em>Geospatial link:</em> the geometry engine under GeoDataFrames.</li>
+GeoPandas in Chapter 4. <em>Geospatial link:</em> the geometry engine under GeoDataFrames.</li>
 </ul>
 <p>See the full <a href="../../docs/PACKAGE_GUIDE.md">Package Guide</a> for more.</p>
 
@@ -929,7 +929,7 @@ latitude). <code>coords[1][0]</code> would give the longitude.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Common-errors-this-week-(and-the-fix)">Common errors this week (and the fix)<a class="anchor-link" href="#Common-errors-this-week-(and-the-fix)">&#182;</a></h2><table>
+<h2 id="Common-errors-this-chapter-(and-the-fix)">Common errors this chapter (and the fix)<a class="anchor-link" href="#Common-errors-this-chapter-(and-the-fix)">&#182;</a></h2><table>
 <thead><tr>
 <th>Message you see</th>
 <th>Likely cause</th>
@@ -966,7 +966,7 @@ latitude). <code>coords[1][0]</code> would give the longitude.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Quick-reference-%E2%80%94-Week-1-cheat-sheet">Quick reference &#8212; Week 1 cheat sheet<a class="anchor-link" href="#Quick-reference-%E2%80%94-Week-1-cheat-sheet">&#182;</a></h2><div class="highlight"><pre><span></span><span class="n">name</span>  <span class="o">=</span> <span class="s2">&quot;MKRF&quot;</span>                 <span class="c1"># string (str)</span>
+<h2 id="Quick-reference-%E2%80%94-Chapter-1-cheat-sheet">Quick reference &#8212; Chapter 1 cheat sheet<a class="anchor-link" href="#Quick-reference-%E2%80%94-Chapter-1-cheat-sheet">&#182;</a></h2><div class="highlight"><pre><span></span><span class="n">name</span>  <span class="o">=</span> <span class="s2">&quot;MKRF&quot;</span>                 <span class="c1"># string (str)</span>
 <span class="n">lat</span>   <span class="o">=</span> <span class="mf">49.27</span>                  <span class="c1"># decimal (float)</span>
 <span class="n">coords</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mf">122.6</span><span class="p">,</span> <span class="mf">49.3</span><span class="p">)]</span>      <span class="c1"># list of (lon, lat) tuples</span>
 <span class="n">site</span>  <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;MKRF&quot;</span><span class="p">}</span>       <span class="c1"># dictionary</span>
@@ -987,7 +987,7 @@ latitude). <code>coords[1][0]</code> would give the longitude.
 <h2 id="%F0%9F%8C%9F-Challenge-(optional-%E2%80%94-for-a-bit-more)">&#127775; Challenge (optional &#8212; for a bit more)<a class="anchor-link" href="#%F0%9F%8C%9F-Challenge-(optional-%E2%80%94-for-a-bit-more)">&#182;</a></h2><p>Build a dictionary for a place <strong>you</strong> care about with keys <code>name</code>, <code>lat</code>, <code>lon</code>,
 and a list <code>neighbours</code> of 2–3 nearby coordinates. Then make a Shapely <code>LineString</code>
 through the neighbours and print its <code>.length</code>. (It's in degrees — we fix that in
-Week 5!)</p>
+Chapter 5!)</p>
 
 </div>
 </div>
@@ -996,10 +996,10 @@ Week 5!)</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="%F0%9F%8E%93-Additional-learning-(optional)">&#127891; Additional learning (optional)<a class="anchor-link" href="#%F0%9F%8E%93-Additional-learning-(optional)">&#182;</a></h2><p><em>If we have spare time we'll do these together — otherwise they're great self-study.
-Not required for the quiz or exercise, but they make the next weeks easier.</em></p>
+Not required for the quiz or exercise, but they make the next chapters easier.</em></p>
 <h3 id="Bonus-1-%E2%80%94-Formatting-output-with-f-strings">Bonus 1 &#8212; Formatting output with f-strings<a class="anchor-link" href="#Bonus-1-%E2%80%94-Formatting-output-with-f-strings">&#182;</a></h3><p><strong>Why code this?</strong> A result only matters if you can <em>communicate</em> it. An <strong>f-string</strong>
 drops variables into a string, so you can build clean report lines, map labels, and
-messages from your data — something you'll do in every week of this course.</p>
+messages from your data — something you'll do in every chapter of this course.</p>
 
 </div>
 </div>
@@ -1062,8 +1062,8 @@ print(f"Site MKRF is at {lat} N, {lon} W")</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Bonus-2-%E2%80%94-A-forest-inventory-as-a-list-of-dictionaries">Bonus 2 &#8212; A forest inventory as a list of dictionaries<a class="anchor-link" href="#Bonus-2-%E2%80%94-A-forest-inventory-as-a-list-of-dictionaries">&#182;</a></h3><p><strong>Why code this?</strong> Real datasets are <em>collections of records</em>. Modelling a forest
 inventory as a <strong>list of dictionaries</strong> — one dict per plot — is the exact mental
-model behind every table you'll meet in <strong>Pandas</strong> (Week 3) and <strong>GeoPandas</strong>
-(Week 4). Learn it here in miniature and those weeks feel familiar.</p>
+model behind every table you'll meet in <strong>Pandas</strong> (Chapter 3) and <strong>GeoPandas</strong>
+(Chapter 4). Learn it here in miniature and those chapters feel familiar.</p>
 
 </div>
 </div>
@@ -1118,7 +1118,7 @@ Average DBH: 45.5 cm
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>🌲 This <em>is</em> a forest inventory table, built from plain Python. In Week 3 Pandas
+<blockquote><p>🌲 This <em>is</em> a forest inventory table, built from plain Python. In Chapter 3 Pandas
 will do the looping and summarising for you — but it's the same idea.</p>
 <p><strong>Try it yourself.</strong> Add a fourth tree to <code>inventory</code>, then count how many are
 <code>"Douglas-fir"</code> (hint: a loop with an <code>if</code>, or a list comprehension).</p>
@@ -1135,7 +1135,7 @@ print(n_df, "Douglas-fir trees")   # 3</pre>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Working-with-AI-this-term-(30-second-habit)">Working with AI this term (30-second habit)<a class="anchor-link" href="#Working-with-AI-this-term-(30-second-habit)">&#182;</a></h2><p>You may use AI assistants, but in this course you must be able to <strong>explain and
-check</strong> any code. Each week has a small "does this code do what it claims?" task.
+check</strong> any code. Each chapter has a small "does this code do what it claims?" task.
 Habit to start now: if AI gives you code, (1) read each line, (2) run it, (3) check
 the result is sensible, (4) confirm functions exist in the official docs.</p>
 
@@ -1148,10 +1148,10 @@ the result is sensible, (4) confirm functions exist in the official docs.</p>
 <h2 id="Recap-&amp;-what's-next">Recap &amp; what's next<a class="anchor-link" href="#Recap-&amp;-what's-next">&#182;</a></h2><p>Today: cells &amp; comments · variables &amp; types · operators · lists/tuples/dicts &amp;
 indexing · file paths · importing packages · first Shapely geometries.</p>
 <ul>
-<li><strong>Practice now:</strong> open the <strong>Week 1 Exercise</strong> (5 short parts, ~30–60 min).</li>
-<li><strong>Check yourself:</strong> the <strong>Week 1 Quiz</strong> (<code>Quizzes/Week01_Quiz.html</code>), ~1 hour;
+<li><strong>Practice now:</strong> open the <strong>Chapter 1 Exercise</strong> (5 short parts, ~30–60 min).</li>
+<li><strong>Check yourself:</strong> the <strong>Chapter 1 Quiz</strong> (<code>Quizzes/Week01_Quiz.html</code>), ~1 hour;
 detailed answers unlock after the due date.</li>
-<li><strong>Next week (Week 2):</strong> programming logic &amp; reusable code — conditions, loops,
+<li><strong>Next chapter (Chapter 2):</strong> programming logic &amp; reusable code — conditions, loops,
 and functions, applied to coordinates and files.</li>
 </ul>
 

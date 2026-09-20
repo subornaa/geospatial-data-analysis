@@ -43,7 +43,7 @@
 </style></head><body><header class="topbar"><span class="t">Geospatial Data Analysis with Python</span><a class="pdf" href="Geospatial_Data_Analysis_with_Python.pdf" download>⬇ Download PDF</a></header><div class="layout"><nav class="toc"><a class="brand" href="index.html">Geospatial Data Analysis with Python</a><h2>Contents</h2><ul><li><a href="index.html">About this book</a></li><li><a href="ch01.html">Chapter 1 — Python Foundations</a></li><li><a href="ch02.html">Chapter 2 — Programming Logic &amp; Reusable Code</a></li><li><a href="ch03.html">Chapter 3 — Tabular Data with Pandas</a></li><li><a href="ch04.html">Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a></li><li><a href="ch05.html">Chapter 5 — CRS, Files &amp; Data Quality</a></li><li><a href="ch06.html">Chapter 6 — Consolidation</a></li><li><a href="ch07.html">Chapter 7 — ArcPy: Tools &amp; Environments</a></li><li><a href="ch08.html">Chapter 8 — ArcPy: Automation</a></li><li><a href="ch09.html">Chapter 9 — Raster Data with NumPy &amp; Rasterio</a></li><li><a class="active" href="ch10.html">Chapter 10 — Visualization &amp; Communication</a></li><li><a href="ch11.html">Chapter 11 — Introductory Machine Learning</a></li></ul></nav><main><section class="chapter"><h1>Chapter 10 — Visualization &amp; Communication</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A result only matters if you can <strong>communicate</strong> it. This week: clear maps of vector
+<p>A result only matters if you can <strong>communicate</strong> it. This chapter: clear maps of vector
 and raster data, thoughtful classification and legends, and a short honest
 interpretation. <strong>Matplotlib</strong> is our main tool; <code>GeoDataFrame.explore()</code> gives one
 quick interactive map.</p>
@@ -85,7 +85,7 @@ quick interactive map.</p>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="c1"># In the course: gdf = gpd.read_file(&quot;outputs/fires_bcalbers.gpkg&quot;) (Week 6 output).</span>
+<span class="c1"># In the course: gdf = gpd.read_file(&quot;outputs/fires_bcalbers.gpkg&quot;) (Chapter 6 output).</span>
 <span class="c1"># Small MKRF sample so the classification has enough values to show:</span>
 <span class="n">lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">122.60</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.48</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 <span class="n">lats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">49.26</span><span class="p">,</span> <span class="mf">49.34</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
@@ -376,7 +376,7 @@ plt.show()</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Common-errors-this-week-(and-the-fix)">Common errors this week (and the fix)<a class="anchor-link" href="#Common-errors-this-week-(and-the-fix)">&#182;</a></h2><table>
+<h2 id="Common-errors-this-chapter-(and-the-fix)">Common errors this chapter (and the fix)<a class="anchor-link" href="#Common-errors-this-chapter-(and-the-fix)">&#182;</a></h2><table>
 <thead><tr>
 <th>Symptom</th>
 <th>Cause</th>
@@ -483,7 +483,7 @@ sharing a colour scale let a reader compare dates honestly.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Packages-used-this-week">Packages used this week<a class="anchor-link" href="#Packages-used-this-week">&#182;</a></h2><ul>
+<h2 id="Packages-used-this-chapter">Packages used this chapter<a class="anchor-link" href="#Packages-used-this-chapter">&#182;</a></h2><ul>
 <li><strong>Matplotlib</strong> — the primary plotting tool: maps, overlays, legends, annotations,
 charts. <em>Geospatial link:</em> renders both vector (via GeoPandas) and raster (via
 Rasterio) results.</li>
@@ -512,9 +512,9 @@ chosen to exaggerate)? Misleading maps are easy to make by accident.</p>
 <h2 id="Recap-&amp;-what's-next">Recap &amp; what's next<a class="anchor-link" href="#Recap-&amp;-what's-next">&#182;</a></h2><p>Vector plots &amp; choropleths · raster display + overlay · titles/legends/annotation ·
 attribute charts · one <code>.explore()</code> map · honest interpretation.</p>
 <ul>
-<li><strong>Practice:</strong> Week 10 Exercise. <strong>Lab 2</strong> is released this week.</li>
+<li><strong>Practice:</strong> Chapter 10 Exercise. <strong>Lab 2</strong> is released this chapter.</li>
 <li><strong>Check yourself:</strong> <code>Quizzes/Week10_Quiz.html</code>.</li>
-<li><strong>Next week:</strong> an introduction to machine learning with environmental data.</li>
+<li><strong>Next chapter:</strong> an introduction to machine learning with environmental data.</li>
 </ul>
 
 </div>
@@ -527,7 +527,7 @@ attribute charts · one <code>.explore()</code> map · honest interpretation.</p
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Practise clear maps, overlays, and interpretation.</p>
 <p><em>Structure: 1) core · 2) apply · 3) interpret · 4) debug · 5) extension. ~30–60 min, individual.</em></p>
-<blockquote><p>Run in <strong>Python (gem530)</strong>. Uses <code>outputs/points.gpkg</code> from the Week 4 exercise (or any point layer).</p>
+<blockquote><p>Run in <strong>Python (gem530)</strong>. Uses <code>outputs/points.gpkg</code> from the Chapter 4 exercise (or any point layer).</p>
 </blockquote>
 
 </div>

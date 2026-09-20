@@ -43,7 +43,7 @@
 </style></head><body><header class="topbar"><span class="t">Geospatial Data Analysis with Python</span><a class="pdf" href="Geospatial_Data_Analysis_with_Python.pdf" download>⬇ Download PDF</a></header><div class="layout"><nav class="toc"><a class="brand" href="index.html">Geospatial Data Analysis with Python</a><h2>Contents</h2><ul><li><a href="index.html">About this book</a></li><li><a href="ch01.html">Chapter 1 — Python Foundations</a></li><li><a href="ch02.html">Chapter 2 — Programming Logic &amp; Reusable Code</a></li><li><a href="ch03.html">Chapter 3 — Tabular Data with Pandas</a></li><li><a href="ch04.html">Chapter 4 — Vector Data with GeoPandas &amp; Shapely</a></li><li><a href="ch05.html">Chapter 5 — CRS, Files &amp; Data Quality</a></li><li><a href="ch06.html">Chapter 6 — Consolidation</a></li><li><a class="active" href="ch07.html">Chapter 7 — ArcPy: Tools &amp; Environments</a></li><li><a href="ch08.html">Chapter 8 — ArcPy: Automation</a></li><li><a href="ch09.html">Chapter 9 — Raster Data with NumPy &amp; Rasterio</a></li><li><a href="ch10.html">Chapter 10 — Visualization &amp; Communication</a></li><li><a href="ch11.html">Chapter 11 — Introductory Machine Learning</a></li></ul></nav><main><section class="chapter"><h1>Chapter 7 — ArcPy: Tools &amp; Environments</h1><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For two weeks we use <strong>ArcPy</strong> — ArcGIS Pro's Python package — to <strong>automate</strong>
+<p>For two chapters we use <strong>ArcPy</strong> — ArcGIS Pro's Python package — to <strong>automate</strong>
 geoprocessing with scripts (no clicking through the GUI). Everything you did with
 GeoPandas/Rasterio has a place here too; ArcPy's distinct value is <strong>scripting an
 existing GIS platform</strong> and batch-automating repetitive tasks.</p>
@@ -100,7 +100,7 @@ geodatabase for inputs and outputs; <code>overwriteOutput</code> lets you re-run
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>🌲 <strong>Why code this?</strong> Treating ArcPy as <em>just another package</em> is the mental shift: the same Python you've written for five weeks now drives a professional GIS.</p>
+<blockquote><p>🌲 <strong>Why code this?</strong> Treating ArcPy as <em>just another package</em> is the mental shift: the same Python you've written for five chapters now drives a professional GIS.</p>
 </blockquote>
 
 </div>
@@ -349,7 +349,7 @@ print(d.shapeType, "|", d.spatialReference.name)</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Common-errors-this-week-(and-the-fix)">Common errors this week (and the fix)<a class="anchor-link" href="#Common-errors-this-week-(and-the-fix)">&#182;</a></h2><table>
+<h2 id="Common-errors-this-chapter-(and-the-fix)">Common errors this chapter (and the fix)<a class="anchor-link" href="#Common-errors-this-chapter-(and-the-fix)">&#182;</a></h2><table>
 <thead><tr>
 <th>Symptom</th>
 <th>Cause</th>
@@ -451,10 +451,10 @@ crash on a missing input.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Packages-used-this-week">Packages used this week<a class="anchor-link" href="#Packages-used-this-week">&#182;</a></h2><ul>
+<h2 id="Packages-used-this-chapter">Packages used this chapter<a class="anchor-link" href="#Packages-used-this-chapter">&#182;</a></h2><ul>
 <li><strong>ArcPy</strong> — ArcGIS Pro's Python package: run geoprocessing tools, inspect data
 (<code>Describe</code>, <code>ListFeatureClasses</code>, <code>ListFields</code>), and read tool messages. <em>Why:</em>
-automate a professional GIS platform from scripts. <em>When:</em> Weeks 7–8. <em>Geospatial
+automate a professional GIS platform from scripts. <em>When:</em> Chapters 7–8. <em>Geospatial
 link:</em> scripted geoprocessing over feature classes in a geodatabase. Requires an
 ArcGIS Pro licence. See the <a href="../../docs/PACKAGE_GUIDE.md">Package Guide</a>.</li>
 </ul>
@@ -478,9 +478,9 @@ and read <code>arcpy.GetMessages()</code> rather than trusting that a tool "prob
 <h2 id="Recap-&amp;-what's-next">Recap &amp; what's next<a class="anchor-link" href="#Recap-&amp;-what's-next">&#182;</a></h2><p>ArcPy as a package · workspace/environment · calling tools with parameters ·
 listing datasets/fields · <code>Describe</code> · tool messages &amp; errors · systematic naming.</p>
 <ul>
-<li><strong>Practice:</strong> Week 7 Exercise (ArcPy — assessed by exercise, not a lab).</li>
+<li><strong>Practice:</strong> Chapter 7 Exercise (ArcPy — assessed by exercise, not a lab).</li>
 <li><strong>Check yourself:</strong> <code>Quizzes/Week07_Quiz.html</code>.</li>
-<li><strong>Next week:</strong> automation — cursors and batch processing.</li>
+<li><strong>Next chapter:</strong> automation — cursors and batch processing.</li>
 </ul>
 
 </div>
