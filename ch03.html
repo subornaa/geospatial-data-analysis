@@ -346,7 +346,22 @@ export the cleaned table.</p>
 <blockquote><p><strong>Try it yourself.</strong> Compute the <strong>average</strong> <code>area_ha</code> per <code>year</code> using
 <code>groupby</code>. Which year burned most on average?</p>
 </blockquote>
+<details open><summary>▶ Show answer</summary>
 
+<pre>by_year = df.groupby("year")["area_ha"].mean()
+print(by_year)</pre>
+
+<pre>year
+2019    26.25
+2020    12.50
+2021     3.75
+Name: area_ha, dtype: float64</pre>
+
+<b>2019 burned most on average — 26.25 ha.</b>
+2019 = mean(12.5, 40.0) = 26.25 &middot; 2020 = mean(3.0, 22.0) = 12.5 &middot; 2021 = mean(7.5, 0.0) = 3.75.
+
+<i>Note:</i> the earlier <code>fillna(0)</code> turned the missing Ambaro 2021 fire into a 0, which pulls the 2021 average down to 3.75. Computed <i>before</i> filling, <code>.mean()</code> skips <code>NaN</code> and 2021 would be 7.5 — either way, 2019 is the clear winner.
+</details>
 </div>
 </div>
 </div>
