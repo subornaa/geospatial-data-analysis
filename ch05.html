@@ -96,7 +96,8 @@ for real distances and areas.</p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 
 <span class="c1"># In practice: gdf = gpd.read_file(&quot;data/fires_points.gpkg&quot;)  (your Chapter 4 output).</span>
 <span class="c1"># Here we build a small MKRF (British Columbia) sample so BC Albers (EPSG:3005) is correct:</span>
@@ -575,7 +576,8 @@ everything Lab 1 assesses.</li>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="c1"># small MKRF (BC) sample so BC Albers (EPSG:3005) is correct:</span>
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">({</span><span class="s2">&quot;site&quot;</span><span class="p">:[</span><span class="s2">&quot;MKRF-1&quot;</span><span class="p">,</span><span class="s2">&quot;MKRF-2&quot;</span><span class="p">,</span><span class="s2">&quot;MKRF-3&quot;</span><span class="p">]},</span>
     <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">([</span><span class="o">-</span><span class="mf">122.57</span><span class="p">,</span><span class="o">-</span><span class="mf">122.55</span><span class="p">,</span><span class="o">-</span><span class="mf">122.52</span><span class="p">],[</span><span class="mf">49.27</span><span class="p">,</span><span class="mf">49.29</span><span class="p">,</span><span class="mf">49.31</span><span class="p">]),</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
@@ -721,7 +723,8 @@ everything Lab 1 assesses.</li>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<div class=" highlight hl-python"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
 <span class="n">stand</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]},</span> <span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">Polygon</span><span class="p">(</span>
     <span class="p">[(</span><span class="o">-</span><span class="mf">122.6</span><span class="p">,</span> <span class="mf">49.2</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">122.5</span><span class="p">,</span> <span class="mf">49.2</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">122.5</span><span class="p">,</span> <span class="mf">49.3</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">122.6</span><span class="p">,</span> <span class="mf">49.3</span><span class="p">)])],</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
